@@ -4,55 +4,52 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Force dark gradient background */
-.gradient-bg {
-  background: linear-gradient(135deg, #1e1b4b 0%, #7c2d92 50%, #be185d 100%);
+/* Government website styling */
+.gov-gradient {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   min-height: 100vh;
 }
 
-/* Glassmorphism effects */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+/* Clean card styling */
+.gov-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
 }
 
-/* Animated background orbs */
-.bg-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(40px);
-  mix-blend-mode: multiply;
-  animation: pulse 6s ease-in-out infinite;
+.gov-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.bg-orb-1 {
-  top: -10rem;
-  right: -10rem;
-  width: 20rem;
-  height: 20rem;
-  background: linear-gradient(45deg, #fbbf24, #f97316);
-  opacity: 0.2;
+/* Professional button styling */
+.gov-button-primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
 }
 
-.bg-orb-2 {
-  bottom: -10rem;
-  left: -10rem;
-  width: 20rem;
-  height: 20rem;
-  background: linear-gradient(45deg, #10b981, #3b82f6);
-  opacity: 0.2;
-  animation-delay: 2s;
+.gov-button-primary:hover {
+  background: #1d4ed8;
 }
 
-.bg-orb-3 {
-  top: 10rem;
-  left: 50%;
-  width: 20rem;
-  height: 20rem;
-  background: linear-gradient(45deg, #8b5cf6, #ec4899);
-  opacity: 0.2;
-  animation-delay: 4s;
+.gov-button-secondary {
+  background: white;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.gov-button-secondary:hover {
+  background: #eff6ff;
 }
 
 @layer base {
