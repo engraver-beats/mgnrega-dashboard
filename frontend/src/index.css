@@ -4,6 +4,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Force dark gradient background */
+.gradient-bg {
+  background: linear-gradient(135deg, #1e1b4b 0%, #7c2d92 50%, #be185d 100%);
+  min-height: 100vh;
+}
+
+/* Glassmorphism effects */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Animated background orbs */
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  mix-blend-mode: multiply;
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.bg-orb-1 {
+  top: -10rem;
+  right: -10rem;
+  width: 20rem;
+  height: 20rem;
+  background: linear-gradient(45deg, #fbbf24, #f97316);
+  opacity: 0.2;
+}
+
+.bg-orb-2 {
+  bottom: -10rem;
+  left: -10rem;
+  width: 20rem;
+  height: 20rem;
+  background: linear-gradient(45deg, #10b981, #3b82f6);
+  opacity: 0.2;
+  animation-delay: 2s;
+}
+
+.bg-orb-3 {
+  top: 10rem;
+  left: 50%;
+  width: 20rem;
+  height: 20rem;
+  background: linear-gradient(45deg, #8b5cf6, #ec4899);
+  opacity: 0.2;
+  animation-delay: 4s;
+}
+
 @layer base {
   html {
     font-family: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif;
@@ -98,4 +149,3 @@
     display: none !important;
   }
 }
-
