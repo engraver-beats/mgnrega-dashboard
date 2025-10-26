@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MGNREGA District Performance Dashboard
 
 A user-friendly web application that helps rural Indians understand their district's performance in the MGNREGA (Mahatma Gandhi National Rural Employment Guarantee Act) program.
@@ -122,5 +123,4 @@ MIT License - Built for social impact
 
 ---
 
-**Built with ❤️ for rural India's digital empowerment**
 
