@@ -1,7 +1,10 @@
 // District Service for MGNREGA Dashboard
-// Comprehensive list of Indian districts with mock MGNREGA data
+// Updated to use real backend API with fallback to mock data
 
-export const indianDistricts = [
+import apiService from './apiService';
+
+// Fallback mock data (used when backend is unavailable)
+const fallbackDistricts = [
   // Uttar Pradesh
   { id: 'UP001', name: 'Agra', state: 'Uttar Pradesh', hindi: 'आगरा' },
   { id: 'UP002', name: 'Lucknow', state: 'Uttar Pradesh', hindi: 'लखनऊ' },
@@ -22,42 +25,21 @@ export const indianDistricts = [
   { id: 'BR003', name: 'Muzaffarpur', state: 'Bihar', hindi: 'मुजफ्फरपुर' },
   { id: 'BR004', name: 'Darbhanga', state: 'Bihar', hindi: 'दरभंगा' },
   { id: 'BR005', name: 'Bhagalpur', state: 'Bihar', hindi: 'भागलपुर' },
-  
-  // West Bengal
-  { id: 'WB001', name: 'Kolkata', state: 'West Bengal', hindi: 'कोलकाता' },
-  { id: 'WB002', name: 'Howrah', state: 'West Bengal', hindi: 'हावड़ा' },
-  { id: 'WB003', name: 'Darjeeling', state: 'West Bengal', hindi: 'दार्जिलिंग' },
-  { id: 'WB004', name: 'Malda', state: 'West Bengal', hindi: 'मालदा' },
-  { id: 'WB005', name: 'Murshidabad', state: 'West Bengal', hindi: 'मुर्शिदाबाद' },
-  
-  // Rajasthan
-  { id: 'RJ001', name: 'Jaipur', state: 'Rajasthan', hindi: 'जयपुर' },
-  { id: 'RJ002', name: 'Jodhpur', state: 'Rajasthan', hindi: 'जोधपुर' },
-  { id: 'RJ003', name: 'Udaipur', state: 'Rajasthan', hindi: 'उदयपुर' },
-  { id: 'RJ004', name: 'Kota', state: 'Rajasthan', hindi: 'कोटा' },
-  { id: 'RJ005', name: 'Bikaner', state: 'Rajasthan', hindi: 'बीकानेर' },
-  
-  // Madhya Pradesh
-  { id: 'MP001', name: 'Bhopal', state: 'Madhya Pradesh', hindi: 'भोपाल' },
-  { id: 'MP002', name: 'Indore', state: 'Madhya Pradesh', hindi: 'इंदौर' },
-  { id: 'MP003', name: 'Gwalior', state: 'Madhya Pradesh', hindi: 'ग्वालियर' },
-  { id: 'MP004', name: 'Jabalpur', state: 'Madhya Pradesh', hindi: 'जबलपुर' },
-  { id: 'MP005', name: 'Ujjain', state: 'Madhya Pradesh', hindi: 'उज्जैन' },
 ];
 
-// Generate realistic MGNREGA performance data
-const generateDistrictData = (district) => {
+// Generate fallback data for offline mode
+const generateFallbackData = (district) => {
   const baseJobCards = Math.floor(Math.random() * 50000) + 20000;
-  const activePercentage = 0.6 + Math.random() * 0.3; // 60-90% active
-  const womenParticipation = 45 + Math.random() * 15; // 45-60%
-  const averageWage = 200 + Math.floor(Math.random() * 50); // ₹200-250
+  const activePercentage = 0.6 + Math.random() * 0.3;
+  const womenParticipation = 45 + Math.random() * 15;
+  const averageWage = 200 + Math.floor(Math.random() * 50);
   
   return {
     ...district,
     currentMonth: 'October 2024',
     totalJobCards: baseJobCards,
     activeJobCards: Math.floor(baseJobCards * activePercentage),
-    totalPersonDays: Math.floor(baseJobCards * activePercentage * 15), // 15 days avg
+    totalPersonDays: Math.floor(baseJobCards * activePercentage * 15),
     womenPersonDays: Math.floor(baseJobCards * activePercentage * 15 * (womenParticipation / 100)),
     averageWageRate: averageWage,
     totalWagesPaid: Math.floor(baseJobCards * activePercentage * 15 * averageWage),
@@ -65,22 +47,21 @@ const generateDistrictData = (district) => {
     worksOngoing: Math.floor(Math.random() * 150) + 50,
     womenParticipation: Math.round(womenParticipation),
     employmentProvided: Math.floor(baseJobCards * activePercentage * 15),
+    dataSource: 'Offline Mode - Mock Data',
     
-    // Monthly trend data for charts
     monthlyData: generateMonthlyTrend(),
     workCategories: generateWorkCategories(),
     paymentStatus: generatePaymentStatus(),
   };
 };
 
-// Generate 12 months of trend data
 const generateMonthlyTrend = () => {
   const months = [
     'जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून',
     'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'
   ];
   
-  return months.map((month, index) => ({
+  return months.map((month) => ({
     month,
     employment: Math.floor(Math.random() * 50000) + 30000,
     wages: Math.floor(Math.random() * 10000000) + 5000000,
@@ -88,7 +69,6 @@ const generateMonthlyTrend = () => {
   }));
 };
 
-// Generate work category breakdown
 const generateWorkCategories = () => {
   const categories = [
     { name: 'सड़क निर्माण', hindi: 'सड़क निर्माण', color: '#3b82f6' },
@@ -100,16 +80,14 @@ const generateWorkCategories = () => {
   
   return categories.map(category => ({
     ...category,
-    value: Math.floor(Math.random() * 30) + 10, // 10-40%
+    value: Math.floor(Math.random() * 30) + 10,
     count: Math.floor(Math.random() * 100) + 20,
   }));
 };
 
-// Generate payment status data
 const generatePaymentStatus = () => {
-  const total = 100;
-  const paid = 70 + Math.random() * 25; // 70-95% paid
-  const pending = total - paid;
+  const paid = 70 + Math.random() * 25;
+  const pending = 100 - paid;
   
   return [
     { name: 'भुगतान हो गया', value: Math.round(paid), color: '#10b981' },
@@ -117,8 +95,29 @@ const generatePaymentStatus = () => {
   ];
 };
 
+// Main service functions with API integration
+
 // Location detection service
-export const detectUserLocation = () => {
+export const detectUserLocation = async () => {
+  try {
+    // Try to use real API first
+    const isBackendAvailable = await apiService.isBackendAvailable();
+    
+    if (isBackendAvailable) {
+      console.log('🌐 Using real API for location detection');
+      return await apiService.detectUserLocation();
+    } else {
+      console.log('📱 Backend unavailable, using fallback location detection');
+      return await fallbackLocationDetection();
+    }
+  } catch (error) {
+    console.error('Location detection failed:', error);
+    throw error;
+  }
+};
+
+// Fallback location detection
+const fallbackLocationDetection = () => {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
       reject(new Error('Geolocation is not supported by this browser.'));
@@ -128,10 +127,9 @@ export const detectUserLocation = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
-        
-        // Simple location to district mapping (in real app, use reverse geocoding API)
-        const nearestDistrict = findNearestDistrict(latitude, longitude);
-        resolve(nearestDistrict);
+        const nearestDistrict = findNearestFallbackDistrict(latitude, longitude);
+        const districtData = generateFallbackData(nearestDistrict);
+        resolve(districtData);
       },
       (error) => {
         reject(error);
@@ -139,44 +137,79 @@ export const detectUserLocation = () => {
       {
         enableHighAccuracy: true,
         timeout: 10000,
-        maximumAge: 600000 // 10 minutes
+        maximumAge: 600000
       }
     );
   });
 };
 
-// Simple nearest district finder (in real app, use proper geocoding)
-const findNearestDistrict = (lat, lng) => {
-  // For demo, return a random district based on rough location
+const findNearestFallbackDistrict = (lat, lng) => {
   if (lat > 26 && lat < 31 && lng > 77 && lng < 85) {
-    // Roughly UP region
-    return indianDistricts.find(d => d.state === 'Uttar Pradesh') || indianDistricts[0];
+    return fallbackDistricts.find(d => d.state === 'Uttar Pradesh') || fallbackDistricts[0];
   } else if (lat > 18 && lat < 22 && lng > 72 && lng < 77) {
-    // Roughly Maharashtra region
-    return indianDistricts.find(d => d.state === 'Maharashtra') || indianDistricts[5];
+    return fallbackDistricts.find(d => d.state === 'Maharashtra') || fallbackDistricts[5];
   } else {
-    // Default to first district
-    return indianDistricts[0];
+    return fallbackDistricts[0];
   }
 };
 
 // Get district data by ID
-export const getDistrictData = (districtId) => {
-  const district = indianDistricts.find(d => d.id === districtId);
-  if (!district) {
+export const getDistrictData = async (districtId) => {
+  try {
+    // Try to use real API first
+    const isBackendAvailable = await apiService.isBackendAvailable();
+    
+    if (isBackendAvailable) {
+      console.log(`🌐 Fetching real data for district ${districtId}`);
+      const response = await apiService.getDistrictData(districtId);
+      return response.data;
+    } else {
+      console.log(`📱 Backend unavailable, using fallback data for district ${districtId}`);
+      const district = fallbackDistricts.find(d => d.id === districtId);
+      if (!district) {
+        return null;
+      }
+      return generateFallbackData(district);
+    }
+  } catch (error) {
+    console.error(`Failed to get district data for ${districtId}:`, error);
+    
+    // Fallback to mock data
+    const district = fallbackDistricts.find(d => d.id === districtId);
+    if (district) {
+      return generateFallbackData(district);
+    }
     return null;
   }
-  return generateDistrictData(district);
 };
 
 // Search districts by name
-export const searchDistricts = (query) => {
+export const searchDistricts = async (query) => {
+  try {
+    // Try to use real API first
+    const isBackendAvailable = await apiService.isBackendAvailable();
+    
+    if (isBackendAvailable) {
+      console.log(`🌐 Searching districts with real API: "${query}"`);
+      const response = await apiService.searchDistricts(query);
+      return response.data;
+    } else {
+      console.log(`📱 Backend unavailable, using fallback search for: "${query}"`);
+      return fallbackSearchDistricts(query);
+    }
+  } catch (error) {
+    console.error('Failed to search districts:', error);
+    return fallbackSearchDistricts(query);
+  }
+};
+
+const fallbackSearchDistricts = (query) => {
   if (!query || query.length < 2) {
-    return indianDistricts.slice(0, 10); // Return first 10 districts
+    return fallbackDistricts.slice(0, 10);
   }
   
   const lowerQuery = query.toLowerCase();
-  return indianDistricts.filter(district => 
+  return fallbackDistricts.filter(district => 
     district.name.toLowerCase().includes(lowerQuery) ||
     district.hindi.includes(query) ||
     district.state.toLowerCase().includes(lowerQuery)
@@ -184,13 +217,84 @@ export const searchDistricts = (query) => {
 };
 
 // Get all states
-export const getAllStates = () => {
-  const states = [...new Set(indianDistricts.map(d => d.state))];
-  return states.sort();
+export const getAllStates = async () => {
+  try {
+    // Try to use real API first
+    const isBackendAvailable = await apiService.isBackendAvailable();
+    
+    if (isBackendAvailable) {
+      console.log('🌐 Fetching states from real API');
+      const response = await apiService.getStates();
+      return response.data;
+    } else {
+      console.log('📱 Backend unavailable, using fallback states');
+      const states = [...new Set(fallbackDistricts.map(d => d.state))];
+      return states.sort();
+    }
+  } catch (error) {
+    console.error('Failed to get states:', error);
+    const states = [...new Set(fallbackDistricts.map(d => d.state))];
+    return states.sort();
+  }
 };
 
 // Get districts by state
-export const getDistrictsByState = (stateName) => {
-  return indianDistricts.filter(d => d.state === stateName);
+export const getDistrictsByState = async (stateName) => {
+  try {
+    // Try to use real API first
+    const isBackendAvailable = await apiService.isBackendAvailable();
+    
+    if (isBackendAvailable) {
+      console.log(`🌐 Fetching districts for state ${stateName} from real API`);
+      const response = await apiService.getDistrictsByState(stateName);
+      return response.data;
+    } else {
+      console.log(`📱 Backend unavailable, using fallback districts for state ${stateName}`);
+      return fallbackDistricts.filter(d => d.state === stateName);
+    }
+  } catch (error) {
+    console.error(`Failed to get districts for state ${stateName}:`, error);
+    return fallbackDistricts.filter(d => d.state === stateName);
+  }
 };
+
+// Refresh data from backend
+export const refreshData = async () => {
+  try {
+    const isBackendAvailable = await apiService.isBackendAvailable();
+    
+    if (isBackendAvailable) {
+      console.log('🔄 Refreshing data from backend');
+      const response = await apiService.refreshData();
+      return response;
+    } else {
+      throw new Error('Backend is not available');
+    }
+  } catch (error) {
+    console.error('Failed to refresh data:', error);
+    throw error;
+  }
+};
+
+// Check backend status
+export const checkBackendStatus = async () => {
+  try {
+    const health = await apiService.checkHealth();
+    return {
+      available: health.status === 'healthy',
+      lastUpdated: health.lastDataUpdate,
+      totalDistricts: health.totalDistricts,
+      status: health.status
+    };
+  } catch (error) {
+    return {
+      available: false,
+      error: error.message,
+      status: 'unavailable'
+    };
+  }
+};
+
+// Export the list for backward compatibility
+export const indianDistricts = fallbackDistricts;
 
