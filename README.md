@@ -33,6 +33,7 @@ A comprehensive web dashboard for visualizing MGNREGA (Mahatma Gandhi National R
 ### Prerequisites
 - Node.js 18+ 
 - npm or yarn
+- MGNREGA API key (optional, for real government data)
 
 ### 1. Clone Repository
 ```bash
@@ -60,10 +61,21 @@ npm run dev
 
 The frontend will start on `http://localhost:5173`
 
-### 4. Access Dashboard
+### 4. Configure Real Data (Optional)
+```bash
+# Run the interactive setup script
+node setup-real-data.js
+
+# Or manually edit backend/.env
+USE_REAL_DATA=true
+MGNREGA_API_KEY=your_actual_api_key_here
+```
+
+### 5. Access Dashboard
 Open your browser and go to:
 - **Home**: http://localhost:5173
 - **Dashboard**: http://localhost:5173/dashboard/UP001 (example)
+- **Health Check**: http://localhost:5000/api/health
 
 ## 📁 Project Structure
 
@@ -99,7 +111,14 @@ mgnrega-dashboard/
 PORT=5000                           # Server port
 NODE_ENV=development               # Environment mode
 FRONTEND_URL=http://localhost:5173 # Frontend URL for CORS
+
+# Real Data Integration
+USE_REAL_DATA=true                 # Enable real government data
+MGNREGA_API_KEY=your_api_key_here  # Your MGNREGA API key
+
+# Cache and Performance
 CACHE_TTL=3600                     # Cache timeout in seconds
+RATE_LIMIT_MAX_REQUESTS=100        # API rate limiting
 ```
 
 ### Frontend Configuration (frontend/.env)
@@ -107,7 +126,29 @@ CACHE_TTL=3600                     # Cache timeout in seconds
 VITE_API_URL=http://localhost:5000/api  # Backend API URL
 VITE_ENABLE_REAL_DATA=true              # Enable real data integration
 VITE_ENABLE_LOCATION_DETECTION=true     # Enable GPS location detection
+VITE_ENABLE_DATA_REFRESH=true           # Enable manual data refresh
 ```
+
+### 🔑 Getting API Keys
+
+**Option 1: data.gov.in (Recommended)**
+1. Visit https://data.gov.in/
+2. Register for an account
+3. Browse MGNREGA datasets
+4. Request API access
+5. Copy your API key
+
+**Option 2: API Setu**
+1. Visit https://apisetu.gov.in/
+2. Register and verify your account
+3. Browse government APIs
+4. Subscribe to MGNREGA data services
+5. Generate API key
+
+**Option 3: Direct Government Portals**
+- Contact Ministry of Rural Development
+- Request developer access to MGNREGA data
+- Follow their API documentation
 
 ## 🌐 API Endpoints
 
@@ -249,4 +290,3 @@ For support and questions:
 **🇮🇳 Made with ❤️ for Digital India Initiative**
 
 *This dashboard helps citizens, officials, and researchers understand MGNREGA implementation at the district level, promoting transparency and accountability in rural employment programs.*
-

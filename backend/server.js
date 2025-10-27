@@ -6,6 +6,7 @@ const rateLimit = require('express-rate-limit');
 const NodeCache = require('node-cache');
 const cron = require('node-cron');
 const axios = require('axios');
+const MGNREGADataProcessor = require('./dataProcessor');
 require('dotenv').config();
 
 const app = express();
@@ -30,12 +31,16 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
-// MGNREGA Data Service
+// Initialize real data processor
+const realDataProcessor = new MGNREGADataProcessor(process.env.MGNREGA_API_KEY);
+
+// MGNREGA Data Service (now uses real data processor)
 class MGNREGADataService {
   constructor() {
     this.dataCache = new Map();
     this.lastUpdated = null;
     this.updateInProgress = false;
+    this.useRealData = process.env.USE_REAL_DATA === 'true';
   }
 
   // Sample real MGNREGA data structure based on government datasets
@@ -163,17 +168,29 @@ class MGNREGADataService {
     ];
   }
 
-  // This would fetch from real government APIs/datasets
+  // Fetch real MGNREGA data using the data processor
   async fetchRealMGNREGAData() {
     try {
       console.log('🔄 Fetching real MGNREGA data...');
       
-      // In a real implementation, this would fetch from:
-      // 1. data.gov.in APIs
-      // 2. dataful.in datasets
-      // 3. Direct government portals
+      if (this.useRealData) {
+        // Use real data processor for actual government data
+        console.log('📊 Using real government API data');
+        const success = await realDataProcessor.fetchRealData();
+        
+        if (success) {
+          // Copy processed data to our cache
+          this.dataCache = new Map(realDataProcessor.dataCache);
+          this.lastUpdated = realDataProcessor.lastUpdated;
+          console.log(`✅ Updated real data for ${this.dataCache.size} districts`);
+          return true;
+        } else {
+          console.log('⚠️ Real data fetch failed, falling back to mock data');
+        }
+      }
       
-      // For now, we'll simulate with realistic data patterns
+      // Fallback to mock data if real data is disabled or fails
+      console.log('🎭 Using mock data patterns');
       const realDistricts = await this.getRealDistrictList();
       
       const districtData = new Map();
@@ -272,11 +289,22 @@ const mgnregaService = new MGNREGADataService();
 
 // API Routes
 app.get('/api/health', (req, res) => {
+  const uptime = process.uptime();
+  const memoryUsage = process.memoryUsage();
+  
   res.json({
     status: 'healthy',
+    uptime: Math.floor(uptime),
+    memory: {
+      used: Math.round(memoryUsage.heapUsed / 1024 / 1024) + ' MB',
+      total: Math.round(memoryUsage.heapTotal / 1024 / 1024) + ' MB'
+    },
     timestamp: new Date().toISOString(),
     lastDataUpdate: mgnregaService.lastUpdated,
-    totalDistricts: mgnregaService.dataCache.size
+    totalDistricts: mgnregaService.dataCache.size,
+    realDataEnabled: mgnregaService.useRealData,
+    dataSource: mgnregaService.useRealData ? 'Government API (Real Data)' : 'Mock Data Patterns',
+    apiKeyConfigured: !!process.env.MGNREGA_API_KEY && process.env.MGNREGA_API_KEY !== 'your_api_key_here'
   });
 });
 
@@ -445,4 +473,3 @@ async function initializeServer() {
 initializeServer().catch(console.error);
 
 module.exports = app;
-
