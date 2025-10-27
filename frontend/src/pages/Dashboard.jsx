@@ -161,12 +161,32 @@ const Dashboard = () => {
 
             {/* Backend Status & Refresh */}
             <div className="flex items-center space-x-4">
+              {/* Data Source Indicator */}
+              <div className="flex items-center space-x-2">
+                {selectedDistrict?.dataSource?.includes('Real Government') ? (
+                  <>
+                    <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm text-green-600 font-medium">🏛️ सरकारी डेटा</span>
+                  </>
+                ) : selectedDistrict?.dataSource?.includes('Government District Database') ? (
+                  <>
+                    <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
+                    <span className="text-sm text-blue-600 font-medium">📊 सरकारी जिला डेटाबेस</span>
+                  </>
+                ) : (
+                  <>
+                    <div className="h-2 w-2 bg-orange-500 rounded-full"></div>
+                    <span className="text-sm text-orange-600 font-medium">📱 स्थानीय डेटा</span>
+                  </>
+                )}
+              </div>
+
               {/* Backend Status Indicator */}
               <div className="flex items-center space-x-2">
                 {backendStatus.available ? (
                   <>
                     <Wifi className="h-4 w-4 text-green-500" />
-                    <span className="text-sm text-green-600 font-medium">लाइव डेटा</span>
+                    <span className="text-sm text-green-600 font-medium">लाइव कनेक्शन</span>
                   </>
                 ) : (
                   <>
@@ -214,8 +234,23 @@ const Dashboard = () => {
             
             <div className="text-right">
               <div className="text-xs text-gray-500 mb-1">डेटा स्रोत</div>
-              <div className="text-sm font-medium text-gray-700">
-                {selectedDistrict.dataSource || 'Ministry of Rural Development'}
+              <div className="flex items-center space-x-2">
+                {selectedDistrict?.dataSource?.includes('Real Government') ? (
+                  <>
+                    <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-green-700">🟢 वास्तविक सरकारी डेटा</span>
+                  </>
+                ) : selectedDistrict?.dataSource?.includes('Government District Database') ? (
+                  <>
+                    <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
+                    <span className="text-sm font-medium text-blue-700">🟡 सरकारी जिला डेटाबेस</span>
+                  </>
+                ) : (
+                  <>
+                    <div className="h-2 w-2 bg-orange-500 rounded-full"></div>
+                    <span className="text-sm font-medium text-orange-700">📱 पैटर्न आधारित डेटा</span>
+                  </>
+                )}
               </div>
               {selectedDistrict.lastUpdated && (
                 <div className="text-xs text-gray-500 mt-1">
@@ -339,4 +374,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard
-

@@ -7,6 +7,7 @@ const NodeCache = require('node-cache');
 const cron = require('node-cron');
 const axios = require('axios');
 const MGNREGADataProcessor = require('./dataProcessor');
+const MPDataService = require('./mpDataService');
 require('dotenv').config();
 
 const app = express();
@@ -14,6 +15,9 @@ const PORT = process.env.PORT || 5000;
 
 // Cache setup - cache for 1 hour
 const cache = new NodeCache({ stdTTL: 3600 });
+
+// Initialize MP Data Service for real government data
+const mpDataService = new MPDataService();
 
 // Middleware
 app.use(helmet());
@@ -291,6 +295,7 @@ const mgnregaService = new MGNREGADataService();
 app.get('/api/health', (req, res) => {
   const uptime = process.uptime();
   const memoryUsage = process.memoryUsage();
+  const mpStatus = mpDataService.getStatus();
   
   res.json({
     status: 'healthy',
@@ -300,28 +305,44 @@ app.get('/api/health', (req, res) => {
       total: Math.round(memoryUsage.heapTotal / 1024 / 1024) + ' MB'
     },
     timestamp: new Date().toISOString(),
-    lastDataUpdate: mgnregaService.lastUpdated,
-    totalDistricts: mgnregaService.dataCache.size,
-    realDataEnabled: mgnregaService.useRealData,
-    dataSource: mgnregaService.useRealData ? 'Government API (Real Data)' : 'Mock Data Patterns',
-    apiKeyConfigured: !!process.env.MGNREGA_API_KEY && process.env.MGNREGA_API_KEY !== 'your_api_key_here'
+    
+    // MP Data Service Status
+    mpDataService: mpStatus,
+    
+    // Service information
+    focusState: 'Madhya Pradesh Only',
+    dataQuality: mpStatus.useRealData && mpStatus.apiKeyConfigured 
+      ? '🟢 Real Government MGNREGA Data' 
+      : '🟡 Government District Database (Pattern-based)',
+    
+    // Legacy compatibility
+    lastDataUpdate: mpStatus.lastUpdated,
+    totalDistricts: mpStatus.totalDistricts,
+    realDataEnabled: mpStatus.useRealData,
+    dataSource: mpStatus.dataSource,
+    apiKeyConfigured: mpStatus.apiKeyConfigured
   });
 });
 
-app.get('/api/districts', (req, res) => {
+app.get('/api/districts', async (req, res) => {
   try {
     const { search, state, limit = 10 } = req.query;
     
-    let districts = mgnregaService.getAllDistricts();
+    // Use MP Data Service for real government data
+    let districts;
     
-    // Filter by search query
     if (search) {
-      districts = mgnregaService.searchDistricts(search);
+      console.log(`🔍 API: Searching districts for "${search}"`);
+      districts = await mpDataService.searchDistricts(search);
+    } else {
+      console.log('📋 API: Getting all MP districts');
+      districts = await mpDataService.getAllDistricts();
     }
     
-    // Filter by state
-    if (state) {
-      districts = districts.filter(d => d.state === state);
+    // Filter by state (should be MP for our service)
+    if (state && state !== 'Madhya Pradesh') {
+      console.log(`⚠️ API: Requested state "${state}" but only MP data available`);
+      districts = []; // Return empty for non-MP states
     }
     
     // Limit results
@@ -333,10 +354,12 @@ app.get('/api/districts', (req, res) => {
         id: d.id,
         name: d.name,
         hindi: d.hindi,
-        state: d.state
+        state: d.state,
+        dataSource: d.dataSource
       })),
       total: districts.length,
-      lastUpdated: mgnregaService.lastUpdated
+      dataSource: mpDataService.getStatus().dataSource,
+      lastUpdated: new Date().toISOString()
     });
   } catch (error) {
     res.status(500).json({
@@ -347,16 +370,18 @@ app.get('/api/districts', (req, res) => {
   }
 });
 
-app.get('/api/districts/:districtId', (req, res) => {
+app.get('/api/districts/:districtId', async (req, res) => {
   try {
     const { districtId } = req.params;
-    const districtData = mgnregaService.getDistrictData(districtId);
+    console.log(`📊 API: Getting data for district ${districtId}`);
+    
+    const districtData = await mpDataService.getDistrictData(districtId);
     
     if (!districtData) {
       return res.status(404).json({
         success: false,
         error: 'District not found',
-        message: `No data available for district ID: ${districtId}`
+        message: `No MP district data available for ID: ${districtId}`
       });
     }
     
