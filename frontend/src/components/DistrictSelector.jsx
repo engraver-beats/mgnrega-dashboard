@@ -8,12 +8,37 @@ const DistrictSelector = ({ onDistrictSelect, selectedDistrict }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [isDetecting, setIsDetecting] = useState(false);
   const [selectedState, setSelectedState] = useState('');
-  const [states] = useState(getAllStates());
+  const [states, setStates] = useState([]);
   const [showStateFilter, setShowStateFilter] = useState(false);
 
+  // Load states on component mount
   useEffect(() => {
-    const results = searchDistricts(searchQuery);
-    setSearchResults(results);
+    const loadStates = async () => {
+      try {
+        const statesList = await getAllStates();
+        setStates(statesList);
+      } catch (error) {
+        console.error('Failed to load states:', error);
+        setStates([]);
+      }
+    };
+    
+    loadStates();
+  }, []);
+
+  // Handle search query changes
+  useEffect(() => {
+    const performSearch = async () => {
+      try {
+        const results = await searchDistricts(searchQuery);
+        setSearchResults(results);
+      } catch (error) {
+        console.error('Search failed:', error);
+        setSearchResults([]);
+      }
+    };
+    
+    performSearch();
   }, [searchQuery]);
 
   const handleLocationDetect = async () => {
@@ -38,17 +63,28 @@ const DistrictSelector = ({ onDistrictSelect, selectedDistrict }) => {
     setSelectedState('');
   };
 
-  const handleStateFilter = (stateName) => {
+  const handleStateFilter = async (stateName) => {
     setSelectedState(stateName);
-    const stateDistricts = getDistrictsByState(stateName);
-    setSearchResults(stateDistricts);
+    try {
+      const stateDistricts = await getDistrictsByState(stateName);
+      setSearchResults(stateDistricts);
+    } catch (error) {
+      console.error('Failed to get districts for state:', error);
+      setSearchResults([]);
+    }
     setShowStateFilter(false);
   };
 
-  const clearFilters = () => {
+  const clearFilters = async () => {
     setSelectedState('');
     setSearchQuery('');
-    setSearchResults(searchDistricts(''));
+    try {
+      const results = await searchDistricts('');
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Failed to clear filters:', error);
+      setSearchResults([]);
+    }
   };
 
   return (
@@ -182,4 +218,3 @@ const DistrictSelector = ({ onDistrictSelect, selectedDistrict }) => {
 };
 
 export default DistrictSelector;
-

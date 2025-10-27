@@ -329,16 +329,23 @@ export const searchDistricts = async (query) => {
 };
 
 const fallbackSearchDistricts = (query) => {
+  console.log(`🔍 Searching districts for query: "${query}"`);
+  
   if (!query || query.length < 2) {
-    return fallbackDistricts.slice(0, 10);
+    const results = fallbackDistricts.slice(0, 10);
+    console.log(`📋 Returning ${results.length} default districts`);
+    return results;
   }
   
   const lowerQuery = query.toLowerCase();
-  return fallbackDistricts.filter(district => 
+  const results = fallbackDistricts.filter(district => 
     district.name.toLowerCase().includes(lowerQuery) ||
     district.hindi.includes(query) ||
     district.state.toLowerCase().includes(lowerQuery)
   ).slice(0, 10);
+  
+  console.log(`🎯 Found ${results.length} districts matching "${query}":`, results.map(d => d.name));
+  return results;
 };
 
 // Get all states
