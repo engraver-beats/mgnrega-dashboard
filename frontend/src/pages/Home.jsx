@@ -1,27 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Users, TrendingUp, Calendar, Award } from 'lucide-react';
+import DistrictSelector from '../components/DistrictSelector';
 
 const Home = () => {
   const navigate = useNavigate();
-  const [isDetectingLocation, setIsDetectingLocation] = useState(false);
+  const [selectedDistrict, setSelectedDistrict] = useState(null);
 
-  const detectLocation = async () => {
-    setIsDetectingLocation(true);
-    
-    try {
-      // Simulate location detection
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // For demo purposes, redirect to dashboard with a sample district
-      navigate('/dashboard?district=sample');
-    } catch (error) {
-      console.error('Location detection failed:', error);
-      // Fallback to manual selection
-      navigate('/dashboard');
-    } finally {
-      setIsDetectingLocation(false);
-    }
+  const handleDistrictSelect = (district) => {
+    setSelectedDistrict(district);
+    // Navigate to dashboard with selected district
+    navigate(`/dashboard/${district.id}`, { 
+      state: { district } 
+    });
   };
 
   const features = [
@@ -108,28 +99,21 @@ const Home = () => {
             <span className="text-blue-700 font-semibold">रोजगार, मजदूरी और काम की जानकारी एक क्लिक में।</span>
           </p>
           
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <button
-              onClick={detectLocation}
-              disabled={isDetectingLocation}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg px-8 py-4 rounded-lg shadow-lg transition-colors duration-200 min-w-[250px] disabled:opacity-50"
-            >
-              <div className="flex items-center justify-center space-x-3">
-                <MapPin className="h-5 w-5" />
-                <span>
-                  {isDetectingLocation ? 'खोज रहे हैं...' : 'मेरा जिला खोजें'}
-                </span>
-              </div>
-            </button>
-            
+          {/* District Selector */}
+          <div className="max-w-md mx-auto">
+            <DistrictSelector 
+              onDistrictSelect={handleDistrictSelect}
+              selectedDistrict={selectedDistrict}
+            />
+          </div>
+          
+          {/* Quick Access Button */}
+          <div className="mt-6">
             <button
               onClick={() => navigate('/dashboard')}
-              className="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold text-lg px-8 py-4 rounded-lg shadow-lg transition-colors duration-200 min-w-[250px]"
+              className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium text-base px-6 py-3 rounded-lg transition-colors duration-200"
             >
-              <div className="flex items-center justify-center space-x-3">
-                <span>डैशबोर्ड देखें</span>
-              </div>
+              या सीधे डैशबोर्ड देखें →
             </button>
           </div>
         </div>
@@ -196,4 +180,3 @@ const Home = () => {
 };
 
 export default Home;
-
