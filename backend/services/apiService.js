@@ -10,6 +10,8 @@ class APIService {
     this.apiKey = process.env.DATA_GOV_API_KEY || 'your-api-key';
     this.retryAttempts = 3;
     this.retryDelay = 1000; // 1 second
+<<<<<<< HEAD
+=======
     
     // MGNREGA API Resource IDs from data.gov.in
     this.resourceIds = {
@@ -18,6 +20,7 @@ class APIService {
       wages: 'b9c3d4e5-f6g7-8901-bcde-f23456789012',      // Wages Data (example)
       works: 'c0d4e5f6-g7h8-9012-cdef-345678901234'       // Works Data (example)
     };
+>>>>>>> origin/main
   }
 
   async fetchWithRetry(url, options = {}, attempt = 1) {
@@ -54,6 +57,27 @@ class APIService {
     }
 
     try {
+<<<<<<< HEAD
+      // Mock API endpoint - replace with actual data.gov.in endpoint
+      const url = `${this.baseURL}/mgnrega-performance`;
+      const params = {
+        'api-key': this.apiKey,
+        'format': 'json',
+        'district_code': districtCode,
+        'month': month,
+        'year': year,
+        'limit': 1000
+      };
+
+      const data = await this.fetchWithRetry(url, { params });
+      
+      // Cache the successful response
+      cache.set(cacheKey, data);
+      
+      return data;
+    } catch (error) {
+      console.error('Failed to fetch MGNREGA data:', error);
+=======
       // Actual MGNREGA API endpoints from data.gov.in
       const url = `${this.baseURL}/${this.resourceIds.performance}`;
       const params = {
@@ -79,12 +103,15 @@ class APIService {
     } catch (error) {
       console.error('❌ Failed to fetch MGNREGA data from data.gov.in:', error.message);
       console.log('🔄 Falling back to mock data for development...');
+>>>>>>> origin/main
       
       // Return mock data if API fails (for development)
       return this.getMockData(districtCode, month, year);
     }
   }
 
+<<<<<<< HEAD
+=======
   // Process and normalize data.gov.in API response
   processAPIResponse(apiData) {
     try {
@@ -138,6 +165,7 @@ class APIService {
     }
   }
 
+>>>>>>> origin/main
   // Mock data for development and API failures
   getMockData(districtCode, month, year) {
     const baseData = {
@@ -215,3 +243,7 @@ class APIService {
 }
 
 module.exports = new APIService();
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/main
