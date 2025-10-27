@@ -6,7 +6,7 @@ const rateLimit = require('express-rate-limit');
 const NodeCache = require('node-cache');
 const cron = require('node-cron');
 const axios = require('axios');
-const MGNREGADataProcessor = require('./dataProcessor');
+// Removed old MGNREGADataProcessor - using MPDataService instead
 const MPDataService = require('./mpDataService');
 require('dotenv').config();
 
@@ -38,258 +38,8 @@ app.use('/api/', limiter);
 // Initialize real data processor
 const realDataProcessor = new MGNREGADataProcessor(process.env.MGNREGA_API_KEY);
 
-// MGNREGA Data Service (now uses real data processor)
-class MGNREGADataService {
-  constructor() {
-    this.dataCache = new Map();
-    this.lastUpdated = null;
-    this.updateInProgress = false;
-    this.useRealData = process.env.USE_REAL_DATA === 'true';
-  }
 
-  // Sample real MGNREGA data structure based on government datasets
-  generateRealDistrictData(districtInfo) {
-    // This would normally fetch from real APIs or datasets
-    // For now, using realistic data patterns based on actual MGNREGA statistics
-    
-    const baseData = {
-      // Basic district info
-      ...districtInfo,
-      currentMonth: 'October 2024',
-      lastUpdated: new Date().toISOString(),
-      dataSource: 'Ministry of Rural Development, Government of India',
-      
-      // Employment statistics (realistic ranges based on actual MGNREGA data)
-      totalJobCards: this.getRealisticJobCards(districtInfo.state),
-      activeJobCards: 0,
-      totalPersonDays: 0,
-      womenPersonDays: 0,
-      
-      // Financial data
-      averageWageRate: this.getStateWageRate(districtInfo.state),
-      totalWagesPaid: 0,
-      
-      // Work statistics
-      worksCompleted: 0,
-      worksOngoing: 0,
-      womenParticipation: 0,
-      
-      // Monthly trends (12 months of data)
-      monthlyData: this.generateMonthlyTrends(),
-      workCategories: this.generateWorkCategories(),
-      paymentStatus: this.generatePaymentStatus(),
-    };
-
-    // Calculate derived values
-    baseData.activeJobCards = Math.floor(baseData.totalJobCards * (0.6 + Math.random() * 0.3));
-    baseData.totalPersonDays = Math.floor(baseData.activeJobCards * (12 + Math.random() * 8)); // 12-20 days avg
-    baseData.womenPersonDays = Math.floor(baseData.totalPersonDays * (0.45 + Math.random() * 0.15)); // 45-60% women
-    baseData.womenParticipation = Math.round((baseData.womenPersonDays / baseData.totalPersonDays) * 100);
-    baseData.totalWagesPaid = baseData.totalPersonDays * baseData.averageWageRate;
-    baseData.worksCompleted = Math.floor(50 + Math.random() * 200);
-    baseData.worksOngoing = Math.floor(20 + Math.random() * 80);
-    baseData.employmentProvided = baseData.totalPersonDays;
-
-    return baseData;
-  }
-
-  getRealisticJobCards(state) {
-    // Based on actual MGNREGA statistics by state
-    const stateJobCards = {
-      'Uttar Pradesh': 50000 + Math.floor(Math.random() * 30000),
-      'Maharashtra': 35000 + Math.floor(Math.random() * 25000),
-      'Bihar': 45000 + Math.floor(Math.random() * 35000),
-      'West Bengal': 40000 + Math.floor(Math.random() * 30000),
-      'Rajasthan': 30000 + Math.floor(Math.random() * 25000),
-      'Madhya Pradesh': 35000 + Math.floor(Math.random() * 25000),
-    };
-    return stateJobCards[state] || (25000 + Math.floor(Math.random() * 20000));
-  }
-
-  getStateWageRate(state) {
-    // Based on actual state-wise wage rates (as of 2024)
-    const stateWages = {
-      'Uttar Pradesh': 220,
-      'Maharashtra': 280,
-      'Bihar': 210,
-      'West Bengal': 230,
-      'Rajasthan': 250,
-      'Madhya Pradesh': 240,
-    };
-    return stateWages[state] || 225;
-  }
-
-  generateMonthlyTrends() {
-    const months = [
-      'जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून',
-      'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'
-    ];
-    
-    // Realistic seasonal patterns - higher employment in lean agricultural seasons
-    const seasonalMultipliers = [1.2, 1.3, 1.1, 0.8, 0.6, 0.7, 0.9, 1.0, 0.8, 1.1, 1.4, 1.3];
-    
-    return months.map((month, index) => {
-      const baseEmployment = 30000 + Math.random() * 20000;
-      const seasonalEmployment = Math.floor(baseEmployment * seasonalMultipliers[index]);
-      
-      return {
-        month,
-        employment: seasonalEmployment,
-        wages: seasonalEmployment * (220 + Math.random() * 60), // wage rate variation
-        works: Math.floor(40 + Math.random() * 60),
-      };
-    });
-  }
-
-  generateWorkCategories() {
-    // Based on actual MGNREGA work categories
-    const categories = [
-      { name: 'Rural Connectivity', hindi: 'सड़क निर्माण', color: '#3b82f6' },
-      { name: 'Water Conservation', hindi: 'जल संरक्षण', color: '#10b981' },
-      { name: 'Agriculture Works', hindi: 'कृषि कार्य', color: '#f59e0b' },
-      { name: 'Rural Infrastructure', hindi: 'ग्रामीण अवसंरचना', color: '#ef4444' },
-      { name: 'Other Works', hindi: 'अन्य कार्य', color: '#8b5cf6' },
-    ];
-    
-    // Realistic distribution based on actual MGNREGA work patterns
-    const distributions = [25, 30, 20, 15, 10]; // percentages
-    
-    return categories.map((category, index) => ({
-      ...category,
-      value: distributions[index] + Math.floor(Math.random() * 10 - 5), // ±5% variation
-      count: Math.floor(20 + Math.random() * 80),
-    }));
-  }
-
-  generatePaymentStatus() {
-    // Based on actual MGNREGA payment statistics
-    const paidPercentage = 75 + Math.random() * 20; // 75-95% typically paid
-    const pendingPercentage = 100 - paidPercentage;
-    
-    return [
-      { name: 'भुगतान हो गया', value: Math.round(paidPercentage), color: '#10b981' },
-      { name: 'भुगतान बाकी', value: Math.round(pendingPercentage), color: '#f59e0b' },
-    ];
-  }
-
-  // Fetch real MGNREGA data using the data processor
-  async fetchRealMGNREGAData() {
-    try {
-      console.log('🔄 Fetching real MGNREGA data...');
-      
-      if (this.useRealData) {
-        // Use real data processor for actual government data
-        console.log('📊 Using real government API data');
-        const success = await realDataProcessor.fetchRealData();
-        
-        if (success) {
-          // Copy processed data to our cache
-          this.dataCache = new Map(realDataProcessor.dataCache);
-          this.lastUpdated = realDataProcessor.lastUpdated;
-          console.log(`✅ Updated real data for ${this.dataCache.size} districts`);
-          return true;
-        } else {
-          console.log('⚠️ Real data fetch failed, falling back to mock data');
-        }
-      }
-      
-      // Fallback to mock data if real data is disabled or fails
-      console.log('🎭 Using mock data patterns');
-      const realDistricts = await this.getRealDistrictList();
-      
-      const districtData = new Map();
-      
-      for (const district of realDistricts) {
-        const data = this.generateRealDistrictData(district);
-        districtData.set(district.id, data);
-      }
-      
-      this.dataCache = districtData;
-      this.lastUpdated = new Date();
-      
-      console.log(`✅ Updated data for ${districtData.size} districts`);
-      return true;
-      
-    } catch (error) {
-      console.error('❌ Error fetching MGNREGA data:', error);
-      return false;
-    }
-  }
-
-  async getRealDistrictList() {
-    // This would normally fetch from a government API
-    // For now, returning a comprehensive list of real Indian districts
-    return [
-      // Uttar Pradesh
-      { id: 'UP001', name: 'Agra', state: 'Uttar Pradesh', hindi: 'आगरा' },
-      { id: 'UP002', name: 'Lucknow', state: 'Uttar Pradesh', hindi: 'लखनऊ' },
-      { id: 'UP003', name: 'Kanpur', state: 'Uttar Pradesh', hindi: 'कानपुर' },
-      { id: 'UP004', name: 'Varanasi', state: 'Uttar Pradesh', hindi: 'वाराणसी' },
-      { id: 'UP005', name: 'Allahabad', state: 'Uttar Pradesh', hindi: 'इलाहाबाद' },
-      { id: 'UP006', name: 'Meerut', state: 'Uttar Pradesh', hindi: 'मेरठ' },
-      { id: 'UP007', name: 'Ghaziabad', state: 'Uttar Pradesh', hindi: 'गाजियाबाद' },
-      { id: 'UP008', name: 'Bareilly', state: 'Uttar Pradesh', hindi: 'बरेली' },
-      
-      // Maharashtra
-      { id: 'MH001', name: 'Mumbai', state: 'Maharashtra', hindi: 'मुंबई' },
-      { id: 'MH002', name: 'Pune', state: 'Maharashtra', hindi: 'पुणे' },
-      { id: 'MH003', name: 'Nagpur', state: 'Maharashtra', hindi: 'नागपुर' },
-      { id: 'MH004', name: 'Nashik', state: 'Maharashtra', hindi: 'नाशिक' },
-      { id: 'MH005', name: 'Aurangabad', state: 'Maharashtra', hindi: 'औरंगाबाद' },
-      { id: 'MH006', name: 'Solapur', state: 'Maharashtra', hindi: 'सोलापुर' },
-      
-      // Bihar
-      { id: 'BR001', name: 'Patna', state: 'Bihar', hindi: 'पटना' },
-      { id: 'BR002', name: 'Gaya', state: 'Bihar', hindi: 'गया' },
-      { id: 'BR003', name: 'Muzaffarpur', state: 'Bihar', hindi: 'मुजफ्फरपुर' },
-      { id: 'BR004', name: 'Darbhanga', state: 'Bihar', hindi: 'दरभंगा' },
-      { id: 'BR005', name: 'Bhagalpur', state: 'Bihar', hindi: 'भागलपुर' },
-      
-      // West Bengal
-      { id: 'WB001', name: 'Kolkata', state: 'West Bengal', hindi: 'कोलकाता' },
-      { id: 'WB002', name: 'Howrah', state: 'West Bengal', hindi: 'हावड़ा' },
-      { id: 'WB003', name: 'Darjeeling', state: 'West Bengal', hindi: 'दार्जिलिंग' },
-      { id: 'WB004', name: 'Malda', state: 'West Bengal', hindi: 'मालदा' },
-      
-      // Rajasthan
-      { id: 'RJ001', name: 'Jaipur', state: 'Rajasthan', hindi: 'जयपुर' },
-      { id: 'RJ002', name: 'Jodhpur', state: 'Rajasthan', hindi: 'जोधपुर' },
-      { id: 'RJ003', name: 'Udaipur', state: 'Rajasthan', hindi: 'उदयपुर' },
-      { id: 'RJ004', name: 'Kota', state: 'Rajasthan', hindi: 'कोटा' },
-      
-      // Madhya Pradesh
-      { id: 'MP001', name: 'Bhopal', state: 'Madhya Pradesh', hindi: 'भोपाल' },
-      { id: 'MP002', name: 'Indore', state: 'Madhya Pradesh', hindi: 'इंदौर' },
-      { id: 'MP003', name: 'Gwalior', state: 'Madhya Pradesh', hindi: 'ग्वालियर' },
-      { id: 'MP004', name: 'Jabalpur', state: 'Madhya Pradesh', hindi: 'जबलपुर' },
-    ];
-  }
-
-  getDistrictData(districtId) {
-    return this.dataCache.get(districtId) || null;
-  }
-
-  getAllDistricts() {
-    return Array.from(this.dataCache.values());
-  }
-
-  searchDistricts(query) {
-    const allDistricts = this.getAllDistricts();
-    if (!query || query.length < 2) {
-      return allDistricts.slice(0, 10);
-    }
-    
-    const lowerQuery = query.toLowerCase();
-    return allDistricts.filter(district => 
-      district.name.toLowerCase().includes(lowerQuery) ||
-      district.hindi.includes(query) ||
-      district.state.toLowerCase().includes(lowerQuery)
-    ).slice(0, 10);
-  }
-}
-
-// Initialize data service
-const mgnregaService = new MGNREGADataService();
+// Note: Using MPDataService initialized above - no need for old MGNREGADataService
 
 // API Routes
 app.get('/api/health', (req, res) => {
@@ -388,7 +138,7 @@ app.get('/api/districts/:districtId', async (req, res) => {
     res.json({
       success: true,
       data: districtData,
-      lastUpdated: mgnregaService.lastUpdated
+      lastUpdated: mpDataService.getStatus().lastUpdated
     });
   } catch (error) {
     res.status(500).json({
@@ -399,15 +149,16 @@ app.get('/api/districts/:districtId', async (req, res) => {
   }
 });
 
-app.get('/api/states', (req, res) => {
+app.get('/api/states', async (req, res) => {
   try {
-    const districts = mgnregaService.getAllDistricts();
+    const districts = await mpDataService.getAllDistricts();
     const states = [...new Set(districts.map(d => d.state))].sort();
     
     res.json({
       success: true,
       data: states,
-      total: states.length
+      total: states.length,
+      dataSource: mpDataService.getStatus().dataSource
     });
   } catch (error) {
     res.status(500).json({
@@ -421,32 +172,23 @@ app.get('/api/states', (req, res) => {
 // Data refresh endpoint (for manual updates)
 app.post('/api/refresh-data', async (req, res) => {
   try {
-    if (mgnregaService.updateInProgress) {
-      return res.status(429).json({
-        success: false,
-        error: 'Data update already in progress'
-      });
-    }
+    console.log('🔄 Manual data refresh requested');
     
-    mgnregaService.updateInProgress = true;
-    const success = await mgnregaService.fetchRealMGNREGAData();
-    mgnregaService.updateInProgress = false;
+    // Force refresh the MP data service
+    await mpDataService.refreshData();
+    const status = mpDataService.getStatus();
     
-    if (success) {
-      res.json({
-        success: true,
-        message: 'Data refreshed successfully',
-        lastUpdated: mgnregaService.lastUpdated,
-        totalDistricts: mgnregaService.dataCache.size
-      });
-    } else {
-      res.status(500).json({
-        success: false,
-        error: 'Failed to refresh data'
-      });
-    }
+    res.json({
+      success: true,
+      message: 'MP data refreshed successfully',
+      dataSource: status.dataSource,
+      lastUpdated: status.lastUpdated,
+      totalDistricts: status.totalDistricts,
+      useRealData: status.useRealData,
+      apiKeyConfigured: status.apiKeyConfigured
+    });
   } catch (error) {
-    mgnregaService.updateInProgress = false;
+    console.error('❌ Data refresh failed:', error.message);
     res.status(500).json({
       success: false,
       error: 'Failed to refresh data',
@@ -478,19 +220,24 @@ app.use('*', (req, res) => {
 async function initializeServer() {
   console.log('🚀 Starting MGNREGA Dashboard Backend...');
   
-  // Load initial data
-  await mgnregaService.fetchRealMGNREGAData();
+  // Initialize MP Data Service
+  console.log('🏛️ Initializing MP Data Service...');
+  await mpDataService.initialize();
   
   // Schedule daily data updates at 6 AM
   cron.schedule('0 6 * * *', async () => {
-    console.log('🔄 Scheduled data update starting...');
-    await mgnregaService.fetchRealMGNREGAData();
+    console.log('🔄 Scheduled MP data update starting...');
+    await mpDataService.refreshData();
   });
+  
+  const status = mpDataService.getStatus();
   
   app.listen(PORT, () => {
     console.log(`✅ Server running on port ${PORT}`);
-    console.log(`📊 Serving data for ${mgnregaService.dataCache.size} districts`);
+    console.log(`🏛️ MP Data Service: ${status.dataSource}`);
+    console.log(`📊 Serving ${status.totalDistricts} MP districts`);
     console.log(`🌐 API available at http://localhost:${PORT}/api`);
+    console.log(`🔍 Health check: http://localhost:${PORT}/api/health`);
   });
 }
 

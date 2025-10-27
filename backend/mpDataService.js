@@ -288,6 +288,36 @@ class MPDataService {
   }
 
   /**
+   * Initialize the service (called on server startup)
+   */
+  async initialize() {
+    console.log('🏛️ Initializing MP Data Service...');
+    this.lastUpdated = new Date().toISOString();
+    
+    if (this.useRealData && this.isApiKeyConfigured()) {
+      console.log('🌐 Real data mode enabled - will fetch from government API when requested');
+    } else {
+      console.log('🟡 Pattern-based mode - using government district database');
+    }
+    
+    console.log(`📊 Loaded ${getAllMPDistricts().length} MP districts`);
+  }
+
+  /**
+   * Refresh data (called manually or on schedule)
+   */
+  async refreshData() {
+    console.log('🔄 Refreshing MP data...');
+    this.lastUpdated = new Date().toISOString();
+    
+    if (this.useRealData && this.isApiKeyConfigured()) {
+      console.log('🌐 Data refresh completed - real API data will be fetched on next request');
+    } else {
+      console.log('🟡 Data refresh completed - using pattern-based data');
+    }
+  }
+
+  /**
    * Get service status
    */
   getStatus() {
@@ -306,4 +336,3 @@ class MPDataService {
 }
 
 module.exports = MPDataService;
-
