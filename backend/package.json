@@ -24,8 +24,13 @@
     "nodemon": "^3.0.1",
     "jest": "^29.6.4"
   },
-  "keywords": ["mgnrega", "government", "dashboard", "rural", "india"],
+  "keywords": [
+    "mgnrega",
+    "government",
+    "dashboard",
+    "rural",
+    "india"
+  ],
   "author": "MGNREGA Dashboard Team",
   "license": "MIT"
 }
-

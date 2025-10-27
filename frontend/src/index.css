@@ -4,6 +4,65 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Government website styling */
+.gov-gradient {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+}
+
+/* Clean card styling */
+.gov-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.gov-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Professional button styling */
+.gov-button-primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.gov-button-primary:hover {
+  background: #1d4ed8;
+}
+
+.gov-button-secondary {
+  background: white;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.gov-button-secondary:hover {
+  background: #eff6ff;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 @layer base {
   html {
     font-family: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif;
@@ -98,4 +157,3 @@
     display: none !important;
   }
 }
-

@@ -11,7 +11,8 @@ function App() {
       <div className="min-h-screen bg-gray-50">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard/:districtCode?" element={<Dashboard />} />
+          <Route path="/dashboard/:districtId?" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/about" element={<About />} />
         </Routes>
         <Toaster 
@@ -30,4 +31,3 @@ function App() {
 }
 
 export default App
-

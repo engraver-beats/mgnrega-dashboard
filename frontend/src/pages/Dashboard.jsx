@@ -1,270 +1,374 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
-import { ArrowLeft, MapPin, Calendar, TrendingUp, Users } from 'lucide-react'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
+import { ArrowLeft, MapPin, Calendar, TrendingUp, Users, IndianRupee, Briefcase, Clock, BarChart3, RefreshCw, Wifi, WifiOff, AlertCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { getDistrictData, checkBackendStatus, refreshData } from '../services/districtService'
+import { 
+  EmploymentTrendChart, 
+  WorkCategoriesChart, 
+  MonthlyWagesChart, 
+  PaymentStatusChart,
+  QuickStatsCard,
+  ProgressBar
+} from '../components/SimpleCharts'
+import DistrictSelector from '../components/DistrictSelector'
 
 const Dashboard = () => {
-  const { districtCode } = useParams()
-  const [searchParams] = useSearchParams()
+  const { districtId } = useParams()
+  const location = useLocation()
+  const navigate = useNavigate()
   const [selectedDistrict, setSelectedDistrict] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [backendStatus, setBackendStatus] = useState({ available: false, status: 'checking' })
+  const [refreshing, setRefreshing] = useState(false)
 
-  // Mock data for now - will be replaced with API calls in Day 2
-  const mockPerformance = {
-    districtName: 'Agra',
-    currentMonth: 'October 2025',
-    totalJobCards: 45000,
-    activeJobCards: 28000,
-    totalPersonDays: 450000,
-    womenPersonDays: 225000,
-    averageWageRate: 220,
-    totalWagesPaid: 9900000,
-    worksCompleted: 450,
-    worksOngoing: 120,
-    womenParticipation: 50,
-    employmentProvided: 450000
+  // Load district data
+  useEffect(() => {
+    const loadDistrictData = async () => {
+      if (!districtId) {
+        setLoading(false)
+        return
+      }
+
+      try {
+        setLoading(true)
+        setError(null)
+        
+        // Check backend status
+        const status = await checkBackendStatus()
+        setBackendStatus(status)
+        
+        // Load district data
+        const data = await getDistrictData(districtId)
+        if (data) {
+          setSelectedDistrict(data)
+        } else {
+          setError('जिले का डेटा नहीं मिला')
+        }
+      } catch (err) {
+        console.error('Error loading district data:', err)
+        setError('डेटा लोड करने में समस्या हुई')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadDistrictData()
+  }, [districtId])
+
+  // Handle district selection
+  const handleDistrictSelect = (district) => {
+    setSelectedDistrict(district)
+    navigate(`/dashboard/${district.id}`)
   }
 
-  useEffect(() => {
-    // Simulate API loading
-    setTimeout(() => {
-      setSelectedDistrict(mockPerformance)
-      setLoading(false)
-    }, 1000)
-  }, [districtCode])
+  // Handle data refresh
+  const handleRefreshData = async () => {
+    try {
+      setRefreshing(true)
+      await refreshData()
+      
+      // Reload current district data
+      if (districtId) {
+        const data = await getDistrictData(districtId)
+        if (data) {
+          setSelectedDistrict(data)
+        }
+      }
+      
+      // Update backend status
+      const status = await checkBackendStatus()
+      setBackendStatus(status)
+      
+    } catch (error) {
+      console.error('Failed to refresh data:', error)
+      alert('डेटा रिफ्रेश करने में समस्या हुई')
+    } finally {
+      setRefreshing(false)
+    }
+  }
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="relative">
-            <div className="loading-spinner mx-auto mb-6 w-16 h-16 border-4 border-orange-500/30 border-t-orange-500"></div>
-            <div className="absolute inset-0 loading-spinner mx-auto w-16 h-16 border-4 border-transparent border-t-pink-500 animate-spin" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">डेटा लोड हो रहा है...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center">
+        <div className="text-center bg-white p-8 rounded-lg shadow-lg">
+          <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+          <h2 className="text-xl font-bold text-gray-800 mb-2">समस्या हुई</h2>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <Link 
+            to="/" 
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            वापस जाएं
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
+  if (!selectedDistrict) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-gray-800 mb-8">जिला चुनें</h1>
+            <div className="max-w-md mx-auto">
+              <DistrictSelector onDistrictSelect={handleDistrictSelect} />
+            </div>
           </div>
-          <p className="text-2xl text-white hindi-text font-semibold mb-2">डेटा लोड हो रहा है...</p>
-          <p className="text-gray-300">कृपया प्रतीक्षा करें</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse-slow"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-green-400 to-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse-slow animation-delay-2000"></div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+      {/* Header */}
+      <div className="bg-white shadow-sm border-b border-gray-200">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Link 
+                to="/" 
+                className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
+              >
+                <ArrowLeft className="h-5 w-5" />
+                <span className="font-medium">वापस</span>
+              </Link>
+              
+              <div className="flex items-center space-x-3">
+                <div className="bg-blue-100 p-2 rounded-lg">
+                  <BarChart3 className="h-6 w-6 text-blue-600" />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold text-gray-800">MGNREGA डैशबोर्ड</h1>
+                  <p className="text-sm text-gray-600">जिला प्रदर्शन विश्लेषण</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Backend Status & Refresh */}
+            <div className="flex items-center space-x-4">
+              {/* Data Source Indicator */}
+              <div className="flex items-center space-x-2">
+                {selectedDistrict?.dataSource?.includes('Real Government') ? (
+                  <>
+                    <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm text-green-600 font-medium">🏛️ सरकारी डेटा</span>
+                  </>
+                ) : selectedDistrict?.dataSource?.includes('Government District Database') ? (
+                  <>
+                    <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
+                    <span className="text-sm text-blue-600 font-medium">📊 सरकारी जिला डेटाबेस</span>
+                  </>
+                ) : (
+                  <>
+                    <div className="h-2 w-2 bg-orange-500 rounded-full"></div>
+                    <span className="text-sm text-orange-600 font-medium">📱 स्थानीय डेटा</span>
+                  </>
+                )}
+              </div>
+
+              {/* Backend Status Indicator */}
+              <div className="flex items-center space-x-2">
+                {backendStatus.available ? (
+                  <>
+                    <Wifi className="h-4 w-4 text-green-500" />
+                    <span className="text-sm text-green-600 font-medium">लाइव कनेक्शन</span>
+                  </>
+                ) : (
+                  <>
+                    <WifiOff className="h-4 w-4 text-orange-500" />
+                    <span className="text-sm text-orange-600 font-medium">ऑफलाइन मोड</span>
+                  </>
+                )}
+              </div>
+
+              {/* Refresh Button */}
+              {backendStatus.available && (
+                <button
+                  onClick={handleRefreshData}
+                  disabled={refreshing}
+                  className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                >
+                  <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
+                  <span className="text-sm font-medium">
+                    {refreshing ? 'रिफ्रेश हो रहा है...' : 'डेटा रिफ्रेश करें'}
+                  </span>
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Header */}
-      <header className="relative bg-white/10 backdrop-blur-md border-b border-white/20 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <Link to="/" className="group bg-white/20 hover:bg-white/30 p-3 rounded-xl transition-all duration-200">
-                <ArrowLeft className="h-6 w-6 text-white group-hover:text-orange-200" />
-              </Link>
+      <div className="container mx-auto px-4 py-8">
+        {/* District Info Header */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-8 border border-gray-200">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center space-x-4">
+              <div className="bg-blue-100 p-3 rounded-lg">
+                <MapPin className="h-8 w-8 text-blue-600" />
+              </div>
               <div>
-                <h1 className="text-3xl font-bold text-white mb-2">
-                  🏛️ {selectedDistrict?.districtName} जिला
-                </h1>
-                <p className="text-lg text-orange-200 flex items-center font-semibold">
-                  <Calendar className="h-5 w-5 mr-2" />
-                  📅 {selectedDistrict?.currentMonth}
-                </p>
-              </div>
-            </div>
-            <button className="bg-gradient-to-r from-orange-500 to-pink-600 hover:from-orange-600 hover:to-pink-700 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center space-x-2">
-              <MapPin className="h-5 w-5" />
-              <span>🔄 जिला बदलें</span>
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Dashboard Content */}
-      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Key Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Total Job Cards */}
-          <div className="group relative bg-gradient-to-br from-blue-500/20 to-blue-600/10 backdrop-blur-md rounded-3xl p-8 border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-blue-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div className="relative">
-              <div className="flex items-center justify-between mb-6">
-                <div className="bg-gradient-to-br from-blue-400 to-blue-600 p-4 rounded-2xl shadow-lg">
-                  <Users className="h-8 w-8 text-white" />
-                </div>
-                <span className="text-4xl font-bold text-blue-300">
-                  {(selectedDistrict?.totalJobCards / 1000).toFixed(0)}K
-                </span>
-              </div>
-              <h3 className="font-bold text-white text-xl mb-2">📋 कुल जॉब कार्ड</h3>
-              <p className="text-blue-200 text-lg">पंजीकृत परिवार</p>
-            </div>
-          </div>
-
-          {/* Active Job Cards */}
-          <div className="group relative bg-gradient-to-br from-green-500/20 to-emerald-600/10 backdrop-blur-md rounded-3xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-green-400/10 to-emerald-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div className="relative">
-              <div className="flex items-center justify-between mb-6">
-                <div className="bg-gradient-to-br from-green-400 to-emerald-600 p-4 rounded-2xl shadow-lg">
-                  <TrendingUp className="h-8 w-8 text-white" />
-                </div>
-                <span className="text-4xl font-bold text-green-300">
-                  {(selectedDistrict?.activeJobCards / 1000).toFixed(0)}K
-                </span>
-              </div>
-              <h3 className="font-bold text-white text-xl mb-2">✅ सक्रिय जॉब कार्ड</h3>
-              <p className="text-green-200 text-lg">काम पाने वाले परिवार</p>
-            </div>
-          </div>
-
-          {/* Person Days */}
-          <div className="group relative bg-gradient-to-br from-purple-500/20 to-pink-600/10 backdrop-blur-md rounded-3xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-400/10 to-pink-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div className="relative">
-              <div className="flex items-center justify-between mb-6">
-                <div className="bg-gradient-to-br from-purple-400 to-pink-600 p-4 rounded-2xl shadow-lg">
-                  <Calendar className="h-8 w-8 text-white" />
-                </div>
-                <span className="text-4xl font-bold text-purple-300">
-                  {(selectedDistrict?.totalPersonDays / 1000).toFixed(0)}K
-                </span>
-              </div>
-              <h3 className="font-bold text-white text-xl mb-2">📅 कुल व्यक्ति दिवस</h3>
-              <p className="text-purple-200 text-lg">रोजगार के दिन</p>
-            </div>
-          </div>
-
-          {/* Average Wage */}
-          <div className="group relative bg-gradient-to-br from-yellow-500/20 to-orange-600/10 backdrop-blur-md rounded-3xl p-8 border border-yellow-400/30 hover:border-yellow-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/10 to-orange-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div className="relative">
-              <div className="flex items-center justify-between mb-6">
-                <div className="bg-gradient-to-br from-yellow-400 to-orange-600 p-4 rounded-2xl shadow-lg">
-                  <span className="text-white font-bold text-2xl">₹</span>
-                </div>
-                <span className="text-4xl font-bold text-yellow-300">
-                  ₹{selectedDistrict?.averageWageRate}
-                </span>
-              </div>
-              <h3 className="font-bold text-white text-xl mb-2">💰 औसत मजदूरी</h3>
-              <p className="text-yellow-200 text-lg">प्रति दिन</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Performance Indicators */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {/* Women Participation */}
-          <div className="relative bg-gradient-to-br from-pink-500/20 to-rose-600/10 backdrop-blur-md rounded-3xl p-8 border border-pink-400/30 shadow-xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-pink-400/5 to-rose-600/5 rounded-3xl"></div>
-            <div className="relative">
-              <div className="flex items-center mb-6">
-                <div className="bg-gradient-to-br from-pink-400 to-rose-600 p-3 rounded-2xl mr-4">
-                  <span className="text-white text-2xl">👩‍💼</span>
-                </div>
-                <h3 className="text-2xl font-bold text-white">महिला भागीदारी</h3>
-              </div>
-              
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-pink-200 text-lg">महिला कामगार</span>
-                <span className="font-bold text-3xl text-pink-300">{selectedDistrict?.womenParticipation}%</span>
-              </div>
-              
-              <div className="w-full bg-white/20 rounded-full h-4 mb-4 overflow-hidden">
-                <div 
-                  className="bg-gradient-to-r from-pink-400 to-rose-500 h-4 rounded-full transition-all duration-1000 shadow-lg"
-                  style={{ width: `${selectedDistrict?.womenParticipation}%` }}
-                ></div>
-              </div>
-              
-              <div className="bg-white/10 rounded-2xl p-4">
-                <p className="text-pink-200 text-lg font-semibold">
-                  📊 {(selectedDistrict?.womenPersonDays / 1000).toFixed(0)}K महिला व्यक्ति दिवस
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Works Progress */}
-          <div className="relative bg-gradient-to-br from-emerald-500/20 to-teal-600/10 backdrop-blur-md rounded-3xl p-8 border border-emerald-400/30 shadow-xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/5 to-teal-600/5 rounded-3xl"></div>
-            <div className="relative">
-              <div className="flex items-center mb-6">
-                <div className="bg-gradient-to-br from-emerald-400 to-teal-600 p-3 rounded-2xl mr-4">
-                  <span className="text-white text-2xl">🏗️</span>
-                </div>
-                <h3 className="text-2xl font-bold text-white">कार्य प्रगति</h3>
-              </div>
-              
-              <div className="space-y-6">
-                <div className="bg-white/10 rounded-2xl p-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-emerald-200 text-lg">✅ पूरे हुए कार्य</span>
-                    <span className="font-bold text-3xl text-emerald-300">
-                      {selectedDistrict?.worksCompleted}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="bg-white/10 rounded-2xl p-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-blue-200 text-lg">🔄 चालू कार्य</span>
-                    <span className="font-bold text-3xl text-blue-300">
-                      {selectedDistrict?.worksOngoing}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-2xl p-4 border border-emerald-400/30">
-                  <div className="text-center">
-                    <span className="text-white text-lg font-semibold">
-                      📊 कुल: {selectedDistrict?.worksCompleted + selectedDistrict?.worksOngoing} कार्य
-                    </span>
-                  </div>
+                <h2 className="text-2xl font-bold text-gray-800">{selectedDistrict.hindi}</h2>
+                <p className="text-gray-600">{selectedDistrict.name}, {selectedDistrict.state}</p>
+                <div className="flex items-center space-x-2 mt-1">
+                  <Calendar className="h-4 w-4 text-gray-400" />
+                  <span className="text-sm text-gray-500">{selectedDistrict.currentMonth}</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Summary Card */}
-        <div className="relative bg-gradient-to-r from-indigo-500/20 to-purple-600/20 backdrop-blur-md rounded-3xl p-10 border border-indigo-400/30 shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-400/10 to-purple-600/10 rounded-3xl"></div>
-          <div className="relative">
-            <div className="text-center mb-8">
-              <span className="text-4xl mb-4 block">🎯</span>
-              <h3 className="text-3xl font-bold text-white mb-2">महीने की खास बातें</h3>
-              <p className="text-indigo-200">प्रमुख उपलब्धियां और आंकड़े</p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white/10 rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all duration-300">
-                <div className="text-4xl font-bold text-blue-300 mb-3">
-                  💰 ₹{(selectedDistrict?.totalWagesPaid / 10000000).toFixed(1)}Cr
-                </div>
-                <div className="text-blue-200 text-lg font-semibold">कुल मजदूरी भुगतान</div>
+            <div className="text-right">
+              <div className="text-xs text-gray-500 mb-1">डेटा स्रोत</div>
+              <div className="flex items-center space-x-2">
+                {selectedDistrict?.dataSource?.includes('Real Government') ? (
+                  <>
+                    <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-green-700">🟢 वास्तविक सरकारी डेटा</span>
+                  </>
+                ) : selectedDistrict?.dataSource?.includes('Government District Database') ? (
+                  <>
+                    <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
+                    <span className="text-sm font-medium text-blue-700">🟡 सरकारी जिला डेटाबेस</span>
+                  </>
+                ) : (
+                  <>
+                    <div className="h-2 w-2 bg-orange-500 rounded-full"></div>
+                    <span className="text-sm font-medium text-orange-700">📱 पैटर्न आधारित डेटा</span>
+                  </>
+                )}
               </div>
-              
-              <div className="bg-white/10 rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all duration-300">
-                <div className="text-4xl font-bold text-green-300 mb-3">
-                  📊 {Math.round(selectedDistrict?.totalPersonDays / selectedDistrict?.activeJobCards)}
+              {selectedDistrict.lastUpdated && (
+                <div className="text-xs text-gray-500 mt-1">
+                  अपडेट: {new Date(selectedDistrict.lastUpdated).toLocaleDateString('hi-IN')}
                 </div>
-                <div className="text-green-200 text-lg font-semibold">औसत दिन प्रति परिवार</div>
-              </div>
-              
-              <div className="bg-white/10 rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all duration-300">
-                <div className="text-4xl font-bold text-purple-300 mb-3">
-                  📈 {Math.round((selectedDistrict?.activeJobCards / selectedDistrict?.totalJobCards) * 100)}%
-                </div>
-                <div className="text-purple-200 text-lg font-semibold">जॉब कार्ड उपयोग</div>
-              </div>
+              )}
             </div>
           </div>
+
+          {/* District Selector */}
+          <div className="mb-6">
+            <DistrictSelector 
+              onDistrictSelect={handleDistrictSelect} 
+              selectedDistrict={selectedDistrict}
+            />
+          </div>
+
+          {/* Quick Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <QuickStatsCard
+              icon={<Users className="h-6 w-6" />}
+              title="कुल जॉब कार्ड"
+              value={selectedDistrict.totalJobCards?.toLocaleString('hi-IN') || '0'}
+              subtitle={`${selectedDistrict.activeJobCards?.toLocaleString('hi-IN') || '0'} सक्रिय`}
+              color="bg-blue-100 text-blue-600"
+              bgColor="bg-blue-50"
+            />
+            
+            <QuickStatsCard
+              icon={<Briefcase className="h-6 w-6" />}
+              title="रोजगार प्रदान"
+              value={selectedDistrict.employmentProvided?.toLocaleString('hi-IN') || '0'}
+              subtitle="व्यक्ति दिवस"
+              color="bg-green-100 text-green-600"
+              bgColor="bg-green-50"
+            />
+            
+            <QuickStatsCard
+              icon={<IndianRupee className="h-6 w-6" />}
+              title="कुल मजदूरी"
+              value={`₹${(selectedDistrict.totalWagesPaid / 1000000)?.toFixed(1) || '0'}L`}
+              subtitle={`औसत ₹${selectedDistrict.averageWageRate || '0'}/दिन`}
+              color="bg-yellow-100 text-yellow-600"
+              bgColor="bg-yellow-50"
+            />
+            
+            <QuickStatsCard
+              icon={<TrendingUp className="h-6 w-6" />}
+              title="महिला भागीदारी"
+              value={`${selectedDistrict.womenParticipation || '0'}%`}
+              subtitle={`${selectedDistrict.womenPersonDays?.toLocaleString('hi-IN') || '0'} व्यक्ति दिवस`}
+              color="bg-purple-100 text-purple-600"
+              bgColor="bg-purple-50"
+            />
+          </div>
         </div>
-      </main>
+
+        {/* Progress Indicators */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-8 border border-gray-200">
+          <h3 className="text-xl font-bold text-gray-800 mb-6">प्रगति सूचक</h3>
+          <div className="space-y-4">
+            <ProgressBar
+              label="सक्रिय जॉब कार्ड"
+              value={selectedDistrict.activeJobCards || 0}
+              maxValue={selectedDistrict.totalJobCards || 1}
+              color="#3b82f6"
+              unit=""
+            />
+            <ProgressBar
+              label="पूर्ण कार्य"
+              value={selectedDistrict.worksCompleted || 0}
+              maxValue={(selectedDistrict.worksCompleted || 0) + (selectedDistrict.worksOngoing || 0)}
+              color="#10b981"
+              unit=" कार्य"
+            />
+            <ProgressBar
+              label="महिला भागीदारी"
+              value={selectedDistrict.womenPersonDays || 0}
+              maxValue={selectedDistrict.totalPersonDays || 1}
+              color="#8b5cf6"
+              unit=" दिन"
+            />
+          </div>
+        </div>
+
+        {/* Charts Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          {/* Employment Trend */}
+          <EmploymentTrendChart data={selectedDistrict.monthlyData || []} />
+          
+          {/* Work Categories */}
+          <WorkCategoriesChart data={selectedDistrict.workCategories || []} />
+          
+          {/* Monthly Wages */}
+          <MonthlyWagesChart data={selectedDistrict.monthlyData || []} />
+          
+          {/* Payment Status */}
+          <PaymentStatusChart data={selectedDistrict.paymentStatus || []} />
+        </div>
+
+        {/* Footer Info */}
+        <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+          <div className="text-center">
+            <p className="text-sm text-gray-600 mb-2">
+              📊 यह डैशबोर्ड महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार गारंटी अधिनियम (MGNREGA) के तहत जिला स्तरीय प्रदर्शन दिखाता है
+            </p>
+            <p className="text-xs text-gray-500">
+              डेटा स्रोत: ग्रामीण विकास मंत्रालय, भारत सरकार | 
+              {backendStatus.available ? ' 🟢 लाइव डेटा' : ' 🟡 ऑफलाइन मोड'}
+            </p>
+            {backendStatus.lastUpdated && (
+              <p className="text-xs text-gray-500 mt-1">
+                अंतिम अपडेट: {new Date(backendStatus.lastUpdated).toLocaleString('hi-IN')}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
