@@ -6,7 +6,10 @@
  */
 
 const axios = require('axios');
-require('dotenv').config();
+const path = require('path');
+
+// Load .env from backend directory
+require('dotenv').config({ path: path.join(__dirname, 'backend', '.env') });
 
 async function testGovernmentAPI() {
   console.log('🧪 Testing Government MGNREGA API Integration');
@@ -109,4 +112,3 @@ async function testGovernmentAPI() {
 
 // Run the test
 testGovernmentAPI().catch(console.error);
-
