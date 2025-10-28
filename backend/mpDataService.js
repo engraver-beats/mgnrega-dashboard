@@ -102,6 +102,8 @@ class MPDataService {
     const resourceIds = [
       '9ef84268-d588-465a-a308-a864a43d0070', // From LOCAL_TESTING_GUIDE
       '603001422', // Found in search results
+      'district-wise-mgnrega-data-glance', // Direct resource name from URL
+      'mgnrega-district-wise-data', // Alternative naming
       'b012f2e1-3b8e-4b8e-8b8e-8b8e8b8e8b8e' // Alternative ID
     ];
     
@@ -144,7 +146,7 @@ class MPDataService {
           
           // Check what states are available - handle different field names
           const states = [...new Set(records.map(r => 
-            r.state_name || r.State || r['State Name'] || r.state || 'Unknown'
+            r.state_name || r.State || r['State Name'] || r.state || r.STATE || 'Unknown'
           ))];
           console.log(`🗺️ Available states:`, states.slice(0, 10));
           
@@ -155,7 +157,7 @@ class MPDataService {
           
           // Filter for Madhya Pradesh records - handle different variations
           const mpRecords = records.filter(record => {
-            const state = (record.state_name || record.State || record['State Name'] || record.state || '').toUpperCase();
+            const state = (record.state_name || record.State || record['State Name'] || record.state || record.STATE || '').toUpperCase();
             return state.includes('MADHYA PRADESH') || 
                    state.includes('MP') || 
                    state.includes('MADHYA') ||
