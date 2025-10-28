@@ -10,13 +10,14 @@ class MPDataService {
   constructor() {
     this.useRealData = process.env.USE_REAL_DATA === 'true';
     this.apiKey = process.env.MGNREGA_API_KEY;
-    this.baseUrl = 'https://mnregaweb4.nic.in/netnrega/api'; // Official MGNREGA API base
+    this.baseUrl = process.env.MGNREGA_API_BASE_URL || 'https://api.data.gov.in/resource'; // Use data.gov.in as default
     this.dataCache = new Map();
     this.lastUpdated = null;
     
     console.log(`🏛️ MP Data Service initialized:`);
     console.log(`   Real Data: ${this.useRealData ? '✅ Enabled' : '❌ Disabled'}`);
     console.log(`   API Key: ${this.apiKey && this.apiKey !== 'your_api_key_here' ? '✅ Configured' : '❌ Not Configured'}`);
+    console.log(`   Base URL: ${this.baseUrl}`);
     console.log(`   Districts: ${getAllMPDistricts().length} MP districts loaded`);
   }
 
@@ -97,22 +98,42 @@ class MPDataService {
    * Fetch real MP districts from government API
    */
   async fetchRealMPDistricts() {
-    const url = `${this.baseUrl}/districts/17`; // State code 17 for MP
+    // Use data.gov.in MGNREGA dataset endpoint
+    const url = `${this.baseUrl}/9ef84268-d588-465a-a308-a864a43d0070`;
     
+    console.log(`🧪 Testing government API connection...`);
     const response = await axios.get(url, {
-      headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
-        'Content-Type': 'application/json'
+      params: {
+        'api-key': this.apiKey,
+        'format': 'json',
+        'limit': 1000,
+        'filters[state_name]': 'MADHYA PRADESH'
       },
       timeout: 10000
     });
     
-    if (response.data && response.data.districts) {
-      console.log(`✅ Fetched ${response.data.districts.length} real MP districts`);
-      return this.transformRealDistrictData(response.data.districts);
+    console.log(`✅ API Test Success: Status ${response.status}`);
+    console.log(`✅ Government API connection successful!`);
+    
+    // Handle data.gov.in response format
+    let districts = [];
+    if (response.data && response.data.records && Array.isArray(response.data.records)) {
+      districts = response.data.records;
+    } else if (response.data && Array.isArray(response.data)) {
+      districts = response.data;
     }
     
-    throw new Error('Invalid response format from government API');
+    console.log(`📊 API returned ${districts.length} records in test`);
+    
+    if (districts.length > 0) {
+      console.log(`✅ Fetched ${districts.length} real MP districts`);
+      // Extract unique districts from the records
+      const uniqueDistricts = this.extractUniqueDistricts(districts);
+      return this.transformDataGovDistrictData(uniqueDistricts);
+    }
+    
+    // If no districts found, throw error to trigger fallback
+    throw new Error(`Government API returned ${districts.length} districts - using fallback data`);
   }
 
   /**
@@ -164,7 +185,47 @@ class MPDataService {
   }
 
   /**
-   * Transform real government district data to our format
+   * Extract unique districts from data.gov.in records
+   */
+  extractUniqueDistricts(records) {
+    const districtMap = new Map();
+    
+    records.forEach(record => {
+      const districtCode = record.district_code;
+      const districtName = record.district_name;
+      
+      if (districtCode && districtName && !districtMap.has(districtCode)) {
+        districtMap.set(districtCode, {
+          district_code: districtCode,
+          district_name: districtName,
+          state_name: record.state_name || 'MADHYA PRADESH',
+          state_code: record.state_code || '17'
+        });
+      }
+    });
+    
+    return Array.from(districtMap.values());
+  }
+
+  /**
+   * Transform data.gov.in district data to our format
+   */
+  transformDataGovDistrictData(districts) {
+    return districts.map(district => ({
+      id: `17_${district.district_code}`,
+      name: district.district_name,
+      hindi: this.getHindiDistrictName(district.district_name),
+      state: 'Madhya Pradesh',
+      stateCode: '17',
+      districtCode: district.district_code,
+      lat: 23.0, // Default MP center - could be enhanced with actual coordinates
+      lng: 77.0,
+      dataSource: 'Real Government MGNREGA API (data.gov.in)'
+    }));
+  }
+
+  /**
+   * Transform real government district data to our format (legacy method)
    */
   transformRealDistrictData(districts) {
     return districts.map(district => ({
@@ -275,6 +336,67 @@ class MPDataService {
   }
 
   /**
+   * Get Hindi name for district
+   */
+  getHindiDistrictName(englishName) {
+    const nameMap = {
+      'SHEOPUR': 'श्योपुर',
+      'MORENA': 'मुरैना', 
+      'BHIND': 'भिंड',
+      'GWALIOR': 'ग्वालियर',
+      'DATIA': 'दतिया',
+      'SHIVPURI': 'शिवपुरी',
+      'TIKAMGARH': 'टीकमगढ़',
+      'CHHATARPUR': 'छतरपुर',
+      'PANNA': 'पन्ना',
+      'SAGAR': 'सागर',
+      'DAMOH': 'दमोह',
+      'SATNA': 'सतना',
+      'REWA': 'रीवा',
+      'UMARIA': 'उमरिया',
+      'NEEMUCH': 'नीमच',
+      'MANDSAUR': 'मंदसौर',
+      'RATLAM': 'रतलाम',
+      'UJJAIN': 'उज्जैन',
+      'SHAJAPUR': 'शाजापुर',
+      'DEWAS': 'देवास',
+      'JHABUA': 'झाबुआ',
+      'DHAR': 'धार',
+      'INDORE': 'इंदौर',
+      'KHARGONE': 'खरगोन',
+      'BARWANI': 'बड़वानी',
+      'RAJGARH': 'राजगढ़',
+      'VIDISHA': 'विदिशा',
+      'BHOPAL': 'भोपाल',
+      'SEHORE': 'सीहोर',
+      'RAISEN': 'रायसेन',
+      'BETUL': 'बैतूल',
+      'HARDA': 'हरदा',
+      'HOSHANGABAD': 'होशंगाबाद',
+      'KATNI': 'कटनी',
+      'JABALPUR': 'जबलपुर',
+      'NARSINGHPUR': 'नरसिंहपुर',
+      'DINDORI': 'डिंडोरी',
+      'MANDLA': 'मंडला',
+      'CHHINDWARA': 'छिंदवाड़ा',
+      'SEONI': 'सिवनी',
+      'BALAGHAT': 'बालाघाट',
+      'GUNA': 'गुना',
+      'ASHOKNAGAR': 'अशोकनगर',
+      'KHANDWA': 'खंडवा',
+      'BURHANPUR': 'बुरहानपुर',
+      'ALIRAJPUR': 'अलीराजपुर',
+      'ANUPPUR': 'अनूपपुर',
+      'SINGRAULI': 'सिंगरौली',
+      'SIDHI': 'सीधी',
+      'SHAHDOL': 'शहडोल',
+      'AGAR MALWA': 'आगर मालवा'
+    };
+    
+    return nameMap[englishName?.toUpperCase()] || englishName;
+  }
+
+  /**
    * Get current month in Hindi
    */
   getCurrentMonth() {
@@ -295,7 +417,15 @@ class MPDataService {
     this.lastUpdated = new Date().toISOString();
     
     if (this.useRealData && this.isApiKeyConfigured()) {
-      console.log('🌐 Real data mode enabled - will fetch from government API when requested');
+      console.log('🌐 Real data mode enabled - testing government API connection...');
+      try {
+        // Test the API connection during initialization
+        await this.fetchRealMPDistricts();
+        console.log('✅ Government API connection verified - will use real data');
+      } catch (error) {
+        console.log('⚠️ Government API test failed - will use fallback data when requested');
+        console.log(`   Error: ${error.message}`);
+      }
     } else {
       console.log('🟡 Pattern-based mode - using government district database');
     }
