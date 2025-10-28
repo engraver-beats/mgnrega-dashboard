@@ -142,20 +142,26 @@ class MPDataService {
           console.log(`✅ Found working resource ID: ${resourceId}`);
           console.log(`📋 Sample record structure:`, Object.keys(records[0] || {}));
           
-          // Check what states are available
+          // Check what states are available - handle different field names
           const states = [...new Set(records.map(r => 
-            r.state_name || r.State || r['State Name'] || 'Unknown'
+            r.state_name || r.State || r['State Name'] || r.state || 'Unknown'
           ))];
           console.log(`🗺️ Available states:`, states.slice(0, 10));
           
-          // Filter for Madhya Pradesh records
-          const mpRecords = records.filter(record => 
-            record.state_name === 'MADHYA PRADESH' || 
-            record.State === 'MADHYA PRADESH' ||
-            record['State Name'] === 'MADHYA PRADESH' ||
-            record.state_code === '17' ||
-            record['State Code'] === '17'
-          );
+          // Show sample record to understand the data structure
+          if (records.length > 0) {
+            console.log(`📋 Sample record:`, JSON.stringify(records[0], null, 2));
+          }
+          
+          // Filter for Madhya Pradesh records - handle different variations
+          const mpRecords = records.filter(record => {
+            const state = (record.state_name || record.State || record['State Name'] || record.state || '').toUpperCase();
+            return state.includes('MADHYA PRADESH') || 
+                   state.includes('MP') || 
+                   state.includes('MADHYA') ||
+                   record.state_code === '17' ||
+                   record['State Code'] === '17';
+          });
           
           console.log(`🏛️ Found ${mpRecords.length} MP records out of ${records.length} total`);
           
@@ -234,7 +240,7 @@ class MPDataService {
     records.forEach(record => {
       // Handle different possible field names for district code and name
       const districtCode = record.district_code || record['District Code'] || record.districtCode;
-      const districtName = record.district_name || record['District Name'] || record.districtName || record.District;
+      const districtName = record.district_name || record['District Name'] || record.districtName || record.District || record.district;
       
       if (districtCode && districtName && !districtMap.has(districtCode)) {
         districtMap.set(districtCode, {
