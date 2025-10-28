@@ -101,6 +101,7 @@ class MPDataService {
     // Try multiple possible resource IDs for MGNREGA data
     const resourceIds = [
       'ee03643a-ee4c-48c2-ac30-9f2ff26ab722', // CORRECT MGNREGA Resource ID (District-wise MGNREGA Data at a Glance)
+      'ee03643a-ee4c-48c2-ac30-9f2ff26ab722', // CORRECT MGNREGA Resource ID (District-wise MGNREGA Data at a Glance)
       '9ef84268-d588-465a-a308-a864a43d0070', // From LOCAL_TESTING_GUIDE
       '603001422', // Found in search results
       'district-wise-mgnrega-data-glance', // Direct resource name from URL
@@ -140,6 +141,46 @@ class MPDataService {
         }
         
         console.log(`📊 API returned ${records.length} records for resource ${resourceId}`);
+        
+        // If no records found, try with different financial years
+        if (records.length === 0 && resourceId === 'ee03643a-ee4c-48c2-ac30-9f2ff26ab722') {
+          console.log(`🔄 No records found, trying with different financial years...`);
+          const financialYears = ['2024', '2023', '2022', '2021', '2020'];
+          
+          for (const year of financialYears) {
+            try {
+              console.log(`🗓️ Trying financial year: ${year}`);
+              const yearResponse = await axios.get(url, {
+                params: {
+                  'api-key': this.apiKey,
+                  'format': 'json',
+                  'limit': 100,
+                  'filters[state_name]': 'MADHYA PRADESH',
+                  'filters[fin_year]': year
+                },
+                timeout: 10000
+              });
+              
+              let yearRecords = [];
+              if (yearResponse.data && yearResponse.data.records && Array.isArray(yearResponse.data.records)) {
+                yearRecords = yearResponse.data.records;
+              } else if (yearResponse.data && Array.isArray(yearResponse.data)) {
+                yearRecords = yearResponse.data;
+              } else if (yearResponse.data && yearResponse.data.data && Array.isArray(yearResponse.data.data)) {
+                yearRecords = yearResponse.data.data;
+              }
+              
+              if (yearRecords.length > 0) {
+                console.log(`✅ Found ${yearRecords.length} records for financial year ${year}`);
+                records = yearRecords;
+                break;
+              }
+            } catch (yearError) {
+              console.log(`❌ Failed to fetch data for year ${year}: ${yearError.message}`);
+            }
+          }
+        }
+
         
         if (records.length > 0) {
           console.log(`✅ Found working resource ID: ${resourceId}`);
