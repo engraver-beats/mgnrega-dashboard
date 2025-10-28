@@ -36,8 +36,8 @@ export const EmploymentTrendChart = ({ data }) => {
         </div>
       </div>
       
-      <div className="h-80">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="h-80 min-h-[320px]">
+        <ResponsiveContainer width="100%" height="100%" minHeight={320}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis 
@@ -108,8 +108,8 @@ export const WorkCategoriesChart = ({ data }) => {
         </div>
       </div>
 
-      <div className="h-80">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="h-80 min-h-[320px]">
+        <ResponsiveContainer width="100%" height="100%" minHeight={320}>
           <PieChart>
             <Pie
               data={data}
@@ -160,8 +160,8 @@ export const MonthlyWagesChart = ({ data }) => {
         </div>
       </div>
 
-      <div className="h-80">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="h-80 min-h-[320px]">
+        <ResponsiveContainer width="100%" height="100%" minHeight={320}>
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis 
@@ -209,8 +209,8 @@ export const PaymentStatusChart = ({ data }) => {
       </div>
 
       <div className="flex items-center justify-center">
-        <div className="h-48 w-48">
-          <ResponsiveContainer width="100%" height="100%">
+        <div className="h-48 w-48 min-h-[192px] min-w-[192px]">
+          <ResponsiveContainer width="100%" height="100%" minHeight={192}>
             <PieChart>
               <Pie
                 data={data}
@@ -291,4 +291,3 @@ export const QuickStatsCard = ({ icon, title, value, subtitle, color, bgColor })
     </div>
   );
 };
-
