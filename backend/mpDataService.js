@@ -100,6 +100,7 @@ class MPDataService {
   async fetchRealMPDistricts() {
     // Try multiple possible resource IDs for MGNREGA data
     const resourceIds = [
+      'ee03643a-ee4c-48c2-ac30-9f2ff26ab722', // CORRECT MGNREGA Resource ID (District-wise MGNREGA Data at a Glance)
       '9ef84268-d588-465a-a308-a864a43d0070', // From LOCAL_TESTING_GUIDE
       '603001422', // Found in search results
       'district-wise-mgnrega-data-glance', // Direct resource name from URL
