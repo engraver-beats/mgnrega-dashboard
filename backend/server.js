@@ -35,8 +35,7 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
-// Initialize real data processor
-const realDataProcessor = new MGNREGADataProcessor(process.env.MGNREGA_API_KEY);
+// Note: Using MPDataService initialized above for all data processing
 
 
 // Note: Using MPDataService initialized above - no need for old MGNREGADataService
