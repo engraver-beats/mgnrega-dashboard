@@ -29,6 +29,11 @@ class APIService {
 
       const data = await response.json();
       
+      // Special handling for health endpoint
+      if (endpoint === '/health') {
+        return data; // Health endpoint has different response format
+      }
+      
       if (!data.success) {
         throw new Error(data.error || 'API request failed');
       }
@@ -246,9 +251,17 @@ class APIService {
   // Utility method to check if backend is available
   async isBackendAvailable() {
     try {
+      console.log(`🔍 Checking backend health at: ${this.baseURL}/health`);
       const health = await this.checkHealth();
-      return health.status === 'healthy';
+      console.log('🏥 Health check response:', health);
+      
+      const isHealthy = health.status === 'healthy';
+      console.log(`🎯 Backend available: ${isHealthy}`);
+      
+      return isHealthy;
     } catch (error) {
+      console.error('❌ Backend health check failed:', error.message);
+      console.log('📱 Falling back to offline mode');
       return false;
     }
   }
@@ -271,4 +284,3 @@ export const {
   checkHealth,
   isBackendAvailable,
 } = apiService;
-

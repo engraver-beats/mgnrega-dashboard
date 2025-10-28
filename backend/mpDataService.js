@@ -98,42 +98,91 @@ class MPDataService {
    * Fetch real MP districts from government API
    */
   async fetchRealMPDistricts() {
-    // Use data.gov.in MGNREGA dataset endpoint
-    const url = `${this.baseUrl}/9ef84268-d588-465a-a308-a864a43d0070`;
+    // Try multiple possible resource IDs for MGNREGA data
+    const resourceIds = [
+      '9ef84268-d588-465a-a308-a864a43d0070', // From LOCAL_TESTING_GUIDE
+      '603001422', // Found in search results
+      'district-wise-mgnrega-data-glance', // Direct resource name from URL
+      'mgnrega-district-wise-data', // Alternative naming
+      'b012f2e1-3b8e-4b8e-8b8e-8b8e8b8e8b8e' // Alternative ID
+    ];
     
     console.log(`🧪 Testing government API connection...`);
-    const response = await axios.get(url, {
-      params: {
-        'api-key': this.apiKey,
-        'format': 'json',
-        'limit': 1000,
-        'filters[state_name]': 'MADHYA PRADESH'
-      },
-      timeout: 10000
-    });
     
-    console.log(`✅ API Test Success: Status ${response.status}`);
-    console.log(`✅ Government API connection successful!`);
-    
-    // Handle data.gov.in response format
-    let districts = [];
-    if (response.data && response.data.records && Array.isArray(response.data.records)) {
-      districts = response.data.records;
-    } else if (response.data && Array.isArray(response.data)) {
-      districts = response.data;
+    for (const resourceId of resourceIds) {
+      try {
+        const url = `${this.baseUrl}/${resourceId}`;
+        console.log(`🔍 Trying resource ID: ${resourceId}`);
+        
+        // First try without filters to see what's available
+        const response = await axios.get(url, {
+          params: {
+            'api-key': this.apiKey,
+            'format': 'json',
+            'limit': 100
+          },
+          timeout: 10000
+        });
+        
+        console.log(`✅ API Test Success: Status ${response.status}`);
+        console.log(`✅ Government API connection successful!`);
+        console.log(`📋 Response structure:`, Object.keys(response.data || {}));
+        
+        // Handle different possible response formats
+        let records = [];
+        if (response.data && response.data.records && Array.isArray(response.data.records)) {
+          records = response.data.records;
+        } else if (response.data && Array.isArray(response.data)) {
+          records = response.data;
+        } else if (response.data && response.data.data && Array.isArray(response.data.data)) {
+          records = response.data.data;
+        }
+        
+        console.log(`📊 API returned ${records.length} records for resource ${resourceId}`);
+        
+        if (records.length > 0) {
+          console.log(`✅ Found working resource ID: ${resourceId}`);
+          console.log(`📋 Sample record structure:`, Object.keys(records[0] || {}));
+          
+          // Check what states are available - handle different field names
+          const states = [...new Set(records.map(r => 
+            r.state_name || r.State || r['State Name'] || r.state || r.STATE || 'Unknown'
+          ))];
+          console.log(`🗺️ Available states:`, states.slice(0, 10));
+          
+          // Show sample record to understand the data structure
+          if (records.length > 0) {
+            console.log(`📋 Sample record:`, JSON.stringify(records[0], null, 2));
+          }
+          
+          // Filter for Madhya Pradesh records - handle different variations
+          const mpRecords = records.filter(record => {
+            const state = (record.state_name || record.State || record['State Name'] || record.state || record.STATE || '').toUpperCase();
+            return state.includes('MADHYA PRADESH') || 
+                   state.includes('MP') || 
+                   state.includes('MADHYA') ||
+                   record.state_code === '17' ||
+                   record['State Code'] === '17';
+          });
+          
+          console.log(`🏛️ Found ${mpRecords.length} MP records out of ${records.length} total`);
+          
+          if (mpRecords.length > 0) {
+            // Extract unique districts from the records
+            const uniqueDistricts = this.extractUniqueDistricts(mpRecords);
+            console.log(`📍 Extracted ${uniqueDistricts.length} unique MP districts`);
+            return this.transformDataGovDistrictData(uniqueDistricts);
+          }
+        }
+        
+      } catch (error) {
+        console.log(`❌ Resource ID ${resourceId} failed: ${error.message}`);
+        continue; // Try next resource ID
+      }
     }
     
-    console.log(`📊 API returned ${districts.length} records in test`);
-    
-    if (districts.length > 0) {
-      console.log(`✅ Fetched ${districts.length} real MP districts`);
-      // Extract unique districts from the records
-      const uniqueDistricts = this.extractUniqueDistricts(districts);
-      return this.transformDataGovDistrictData(uniqueDistricts);
-    }
-    
-    // If no districts found, throw error to trigger fallback
-    throw new Error(`Government API returned ${districts.length} districts - using fallback data`);
+    // If no working resource ID found, throw error to trigger fallback
+    throw new Error(`All resource IDs failed - using fallback data`);
   }
 
   /**
@@ -191,16 +240,28 @@ class MPDataService {
     const districtMap = new Map();
     
     records.forEach(record => {
-      const districtCode = record.district_code;
-      const districtName = record.district_name;
+      // Handle different possible field names for district code and name
+      const districtCode = record.district_code || record['District Code'] || record.districtCode;
+      const districtName = record.district_name || record['District Name'] || record.districtName || record.District || record.district;
       
       if (districtCode && districtName && !districtMap.has(districtCode)) {
         districtMap.set(districtCode, {
           district_code: districtCode,
           district_name: districtName,
-          state_name: record.state_name || 'MADHYA PRADESH',
-          state_code: record.state_code || '17'
+          state_name: record.state_name || record['State Name'] || record.State || 'MADHYA PRADESH',
+          state_code: record.state_code || record['State Code'] || record.stateCode || '17'
         });
+      } else if (districtName && !districtCode) {
+        // If we have district name but no code, use name as key
+        const key = districtName.toUpperCase().replace(/\s+/g, '_');
+        if (!districtMap.has(key)) {
+          districtMap.set(key, {
+            district_code: key,
+            district_name: districtName,
+            state_name: record.state_name || record['State Name'] || record.State || 'MADHYA PRADESH',
+            state_code: record.state_code || record['State Code'] || record.stateCode || '17'
+          });
+        }
       }
     });
     
