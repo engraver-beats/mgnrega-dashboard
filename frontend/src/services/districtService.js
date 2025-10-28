@@ -279,14 +279,14 @@ const findNearestFallbackDistrict = (userLat, userLng) => {
 };
 
 // Get district data by ID
-export const getDistrictData = async (districtId) => {
+export const getDistrictData = async (districtId, year = null) => {
   try {
     // Try to use real API first
     const isBackendAvailable = await apiService.isBackendAvailable();
     
     if (isBackendAvailable) {
-      console.log(`🌐 Fetching real data for district ${districtId}`);
-      const response = await apiService.getDistrictData(districtId);
+      console.log(`🌐 Fetching real data for district ${districtId}${year ? `, year: ${year}` : ''}`);
+      const response = await apiService.getDistrictData(districtId, year);
       return response.data;
     } else {
       console.log(`📱 Backend unavailable, using fallback data for district ${districtId}`);
@@ -297,7 +297,7 @@ export const getDistrictData = async (districtId) => {
       return generateFallbackData(district);
     }
   } catch (error) {
-    console.error(`Failed to get district data for ${districtId}:`, error);
+    console.error(`Failed to get district data for ${districtId}${year ? ` (year: ${year})` : ''}:`, error);
     
     // Fallback to mock data
     const district = fallbackDistricts.find(d => d.id === districtId);
@@ -408,6 +408,38 @@ export const refreshData = async () => {
   }
 };
 
+// Get available financial years
+export const getAvailableFinancialYears = async () => {
+  try {
+    // Try to use real API first
+    const isBackendAvailable = await apiService.isBackendAvailable();
+    
+    if (isBackendAvailable) {
+      console.log('🌐 Fetching available financial years from API');
+      const response = await apiService.getFinancialYears();
+      return {
+        years: response.data,
+        currentYear: response.currentFinancialYear,
+        dataSource: response.dataSource
+      };
+    } else {
+      console.log('📱 Backend unavailable, using fallback years');
+      return {
+        years: ['2024', '2023', '2022', '2021', '2020'],
+        currentYear: '2024',
+        dataSource: 'Offline Mode'
+      };
+    }
+  } catch (error) {
+    console.error('Failed to get financial years:', error);
+    return {
+      years: ['2024', '2023', '2022', '2021', '2020'],
+      currentYear: '2024',
+      dataSource: 'Fallback'
+    };
+  }
+};
+
 // Check backend status
 export const checkBackendStatus = async () => {
   try {
@@ -416,7 +448,9 @@ export const checkBackendStatus = async () => {
       available: health.status === 'healthy',
       lastUpdated: health.lastDataUpdate,
       totalDistricts: health.totalDistricts,
-      status: health.status
+      status: health.status,
+      availableFinancialYears: health.availableFinancialYears,
+      currentFinancialYear: health.currentFinancialYear
     };
   } catch (error) {
     return {
