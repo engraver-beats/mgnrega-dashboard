@@ -102,12 +102,12 @@ class APIService {
   }
 
   // Get specific district data
-  async getDistrictData(districtId) {
+  async getDistrictData(districtId, year = null) {
     if (!districtId) {
       throw new Error('District ID is required');
     }
 
-    const cacheKey = `district_${districtId}`;
+    const cacheKey = `district_${districtId}_${year || 'auto'}`;
     
     // Check cache first
     const cached = this.getCached(cacheKey);
@@ -116,14 +116,20 @@ class APIService {
     }
 
     try {
-      const response = await this.request(`/districts/${districtId}`);
+      const params = new URLSearchParams();
+      if (year) {
+        params.append('year', year);
+      }
+      
+      const url = `/districts/${districtId}${params.toString() ? `?${params.toString()}` : ''}`;
+      const response = await this.request(url);
       
       // Cache the result
       this.setCache(cacheKey, response);
       
       return response;
     } catch (error) {
-      console.error(`Failed to fetch district data for ${districtId}:`, error);
+      console.error(`Failed to fetch district data for ${districtId}${year ? ` (year: ${year})` : ''}:`, error);
       throw error;
     }
   }
@@ -248,6 +254,29 @@ class APIService {
     }
   }
 
+  // Get available financial years
+  async getFinancialYears() {
+    const cacheKey = 'financial_years';
+    
+    // Check cache first
+    const cached = this.getCached(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
+    try {
+      const response = await this.request('/financial-years');
+      
+      // Cache the result
+      this.setCache(cacheKey, response);
+      
+      return response;
+    } catch (error) {
+      console.error('Failed to fetch financial years:', error);
+      throw error;
+    }
+  }
+
   // Utility method to check if backend is available
   async isBackendAvailable() {
     try {
@@ -283,4 +312,5 @@ export const {
   refreshData,
   checkHealth,
   isBackendAvailable,
+  getFinancialYears,
 } = apiService;
