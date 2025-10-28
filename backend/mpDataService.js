@@ -13,6 +13,8 @@ class MPDataService {
     this.baseUrl = process.env.MGNREGA_API_BASE_URL || 'https://api.data.gov.in/resource'; // Use data.gov.in as default
     this.dataCache = new Map();
     this.lastUpdated = null;
+    this.availableFinancialYears = ['2024', '2023', '2022', '2021', '2020'];
+    this.currentFinancialYear = '2024';
     
     console.log(`🏛️ MP Data Service initialized:`);
     console.log(`   Real Data: ${this.useRealData ? '✅ Enabled' : '❌ Disabled'}`);
@@ -173,6 +175,7 @@ class MPDataService {
               if (yearRecords.length > 0) {
                 console.log(`✅ Found ${yearRecords.length} records for financial year ${year}`);
                 records = yearRecords;
+                this.currentFinancialYear = year; // Track which year was successful
                 break;
               }
             } catch (yearError) {
@@ -551,6 +554,67 @@ class MPDataService {
   }
 
   /**
+   * Get district data for a specific financial year
+   */
+  async getDistrictDataForYear(districtId, financialYear = null) {
+    console.log(`📊 Getting district data for ${districtId}, year: ${financialYear || 'auto-detect'}`);
+    
+    if (financialYear) {
+      // Set the requested year as current
+      this.currentFinancialYear = financialYear;
+    }
+    
+    return await this.getDistrictData(districtId);
+  }
+
+  /**
+   * Get available financial years with data
+   */
+  async getAvailableFinancialYears() {
+    console.log('📅 Checking available financial years...');
+    
+    if (!this.useRealData || !this.isApiKeyConfigured()) {
+      return this.availableFinancialYears;
+    }
+    
+    const yearsWithData = [];
+    const testResourceId = 'ee03643a-ee4c-48c2-ac30-9f2ff26ab722';
+    
+    for (const year of this.availableFinancialYears) {
+      try {
+        const url = `${this.baseUrl}/${testResourceId}`;
+        const response = await axios.get(url, {
+          params: {
+            'api-key': this.apiKey,
+            'format': 'json',
+            'limit': 1,
+            'filters[state_name]': 'MADHYA PRADESH',
+            'filters[fin_year]': year
+          },
+          timeout: 5000
+        });
+        
+        let records = [];
+        if (response.data && response.data.records && Array.isArray(response.data.records)) {
+          records = response.data.records;
+        } else if (response.data && Array.isArray(response.data)) {
+          records = response.data;
+        }
+        
+        if (records.length > 0) {
+          yearsWithData.push(year);
+          console.log(`✅ Year ${year} has data (${records.length} records)`);
+        }
+      } catch (error) {
+        console.log(`❌ Year ${year} check failed: ${error.message}`);
+      }
+    }
+    
+    console.log(`📊 Available years with data: ${yearsWithData.join(', ')}`);
+    return yearsWithData.length > 0 ? yearsWithData : this.availableFinancialYears;
+  }
+
+  /**
    * Get service status
    */
   getStatus() {
@@ -563,7 +627,9 @@ class MPDataService {
         ? 'Real Government MGNREGA API' 
         : 'Government District Database (Pattern-based)',
       state: 'Madhya Pradesh',
-      stateCode: '17'
+      stateCode: '17',
+      availableFinancialYears: this.availableFinancialYears || ['2024', '2023', '2022', '2021', '2020'],
+      currentFinancialYear: this.currentFinancialYear || '2024'
     };
   }
 }

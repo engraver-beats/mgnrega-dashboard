@@ -122,22 +122,31 @@ app.get('/api/districts', async (req, res) => {
 app.get('/api/districts/:districtId', async (req, res) => {
   try {
     const { districtId } = req.params;
-    console.log(`📊 API: Getting data for district ${districtId}`);
+    const { year } = req.query;
+    console.log(`📊 API: Getting data for district ${districtId}${year ? `, year: ${year}` : ''}`);
     
-    const districtData = await mpDataService.getDistrictData(districtId);
+    let districtData;
+    if (year) {
+      districtData = await mpDataService.getDistrictDataForYear(districtId, year);
+    } else {
+      districtData = await mpDataService.getDistrictData(districtId);
+    }
     
     if (!districtData) {
       return res.status(404).json({
         success: false,
         error: 'District not found',
-        message: `No MP district data available for ID: ${districtId}`
+        message: `No MP district data available for ID: ${districtId}${year ? ` in year ${year}` : ''}`
       });
     }
     
+    const status = mpDataService.getStatus();
     res.json({
       success: true,
       data: districtData,
-      lastUpdated: mpDataService.getStatus().lastUpdated
+      lastUpdated: status.lastUpdated,
+      currentFinancialYear: status.currentFinancialYear,
+      availableFinancialYears: status.availableFinancialYears
     });
   } catch (error) {
     res.status(500).json({
@@ -163,6 +172,30 @@ app.get('/api/states', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Failed to fetch states',
+      message: error.message
+    });
+  }
+});
+
+// Get available financial years
+app.get('/api/financial-years', async (req, res) => {
+  try {
+    console.log('📅 API: Getting available financial years');
+    
+    const availableYears = await mpDataService.getAvailableFinancialYears();
+    const status = mpDataService.getStatus();
+    
+    res.json({
+      success: true,
+      data: availableYears,
+      currentFinancialYear: status.currentFinancialYear,
+      total: availableYears.length,
+      dataSource: status.dataSource
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: 'Failed to fetch financial years',
       message: error.message
     });
   }
