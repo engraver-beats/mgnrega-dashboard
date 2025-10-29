@@ -57,27 +57,6 @@ app.get('/api/districts', (req, res) => {
   });
 });
 
-// Get specific district real data
-app.get('/api/districts/:districtId', (req, res) => {
-  const { districtId } = req.params;
-  const district = realData.districts?.[districtId];
-  
-  if (!district) {
-    return res.status(404).json({
-      success: false,
-      error: 'District not found',
-      message: `No real government data available for district: ${districtId}`,
-      availableDistricts: Object.keys(realData.districts || {})
-    });
-  }
-  
-  res.json({
-    ...district,
-    dataQuality: '🟢 Real Government Data',
-    apiVerified: true
-  });
-});
-
 // Get states endpoint (required by frontend)
 app.get('/api/states', (req, res) => {
   res.json({
@@ -95,7 +74,7 @@ app.get('/api/states', (req, res) => {
   });
 });
 
-// Search districts endpoint
+// Search districts endpoint (must come before :districtId route)
 app.get('/api/districts/search', (req, res) => {
   const { q, state } = req.query;
   
@@ -118,6 +97,27 @@ app.get('/api/districts/search', (req, res) => {
     data: filteredDistricts,
     total: filteredDistricts.length,
     searchTerm: q
+  });
+});
+
+// Get specific district real data (must come after search route)
+app.get('/api/districts/:districtId', (req, res) => {
+  const { districtId } = req.params;
+  const district = realData.districts?.[districtId];
+  
+  if (!district) {
+    return res.status(404).json({
+      success: false,
+      error: 'District not found',
+      message: `No real government data available for district: ${districtId}`,
+      availableDistricts: Object.keys(realData.districts || {})
+    });
+  }
+  
+  res.json({
+    ...district,
+    dataQuality: '🟢 Real Government Data',
+    apiVerified: true
   });
 });
 
