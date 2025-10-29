@@ -1,0 +1,6999 @@
+{
+  "metadata": {
+    "generated": "2025-10-29T10:24:06.498Z",
+    "totalDistricts": 51,
+    "dataSource": "Generated (Realistic)",
+    "version": "1.0",
+    "state": "Madhya Pradesh",
+    "stateCode": "17"
+  },
+  "districts": {
+    "17_1701": {
+      "id": "17_1701",
+      "name": "Sheopur",
+      "hindi": "श्योपुर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1701",
+      "totalJobCards": 29695,
+      "activeJobCards": 23756,
+      "totalWorkers": 32576,
+      "activeWorkers": 25059,
+      "totalHouseholdsWorked": 17541,
+      "totalIndividualsWorked": 25059,
+      "averageWageRate": 226,
+      "averageDaysEmployment": 74,
+      "completedWorks": 2295,
+      "ongoingWorks": 2049,
+      "totalWorksUndertaken": 4344,
+      "totalExpenditure": 2548.5003,
+      "wageExpenditure": 2265.3336,
+      "materialExpenditure": 283.1667,
+      "scWorkers": 3758,
+      "stWorkers": 2004,
+      "womenWorkers": 13030,
+      "differentlyAbledWorkers": 501,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 24018,
+          "wages": 256,
+          "works": 625
+        },
+        {
+          "month": "May",
+          "employment": 30670,
+          "wages": 264,
+          "works": 543
+        },
+        {
+          "month": "Jun",
+          "employment": 24036,
+          "wages": 184,
+          "works": 534
+        },
+        {
+          "month": "Jul",
+          "employment": 21941,
+          "wages": 219,
+          "works": 301
+        },
+        {
+          "month": "Aug",
+          "employment": 31005,
+          "wages": 223,
+          "works": 367
+        },
+        {
+          "month": "Sep",
+          "employment": 29183,
+          "wages": 264,
+          "works": 441
+        },
+        {
+          "month": "Oct",
+          "employment": 30969,
+          "wages": 235,
+          "works": 293
+        },
+        {
+          "month": "Nov",
+          "employment": 19241,
+          "wages": 188,
+          "works": 686
+        },
+        {
+          "month": "Dec",
+          "employment": 21044,
+          "wages": 254,
+          "works": 568
+        },
+        {
+          "month": "Jan",
+          "employment": 24042,
+          "wages": 244,
+          "works": 283
+        },
+        {
+          "month": "Feb",
+          "employment": 30132,
+          "wages": 262,
+          "works": 239
+        },
+        {
+          "month": "Mar",
+          "employment": 22280,
+          "wages": 231,
+          "works": 603
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 47,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 30,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 28,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 17,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 8,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 88,
+        "within30Days": 19,
+        "beyond30Days": 14
+      },
+      "lastUpdated": "2025-10-29T10:24:06.496Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1702": {
+      "id": "17_1702",
+      "name": "Morena",
+      "hindi": "मुरैना",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1702",
+      "totalJobCards": 45292,
+      "activeJobCards": 36233,
+      "totalWorkers": 43477,
+      "activeWorkers": 33444,
+      "totalHouseholdsWorked": 23410,
+      "totalIndividualsWorked": 33444,
+      "averageWageRate": 252,
+      "averageDaysEmployment": 55,
+      "completedWorks": 2987,
+      "ongoingWorks": 2454,
+      "totalWorksUndertaken": 5441,
+      "totalExpenditure": 3792.5496,
+      "wageExpenditure": 3371.1552,
+      "materialExpenditure": 421.3944,
+      "scWorkers": 5016,
+      "stWorkers": 2675,
+      "womenWorkers": 17390,
+      "differentlyAbledWorkers": 668,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 41944,
+          "wages": 285,
+          "works": 542
+        },
+        {
+          "month": "May",
+          "employment": 31608,
+          "wages": 301,
+          "works": 378
+        },
+        {
+          "month": "Jun",
+          "employment": 23859,
+          "wages": 210,
+          "works": 583
+        },
+        {
+          "month": "Jul",
+          "employment": 24288,
+          "wages": 233,
+          "works": 670
+        },
+        {
+          "month": "Aug",
+          "employment": 33412,
+          "wages": 263,
+          "works": 242
+        },
+        {
+          "month": "Sep",
+          "employment": 39507,
+          "wages": 226,
+          "works": 430
+        },
+        {
+          "month": "Oct",
+          "employment": 35781,
+          "wages": 301,
+          "works": 521
+        },
+        {
+          "month": "Nov",
+          "employment": 32415,
+          "wages": 219,
+          "works": 609
+        },
+        {
+          "month": "Dec",
+          "employment": 31131,
+          "wages": 301,
+          "works": 245
+        },
+        {
+          "month": "Jan",
+          "employment": 36897,
+          "wages": 228,
+          "works": 281
+        },
+        {
+          "month": "Feb",
+          "employment": 25031,
+          "wages": 272,
+          "works": 483
+        },
+        {
+          "month": "Mar",
+          "employment": 35365,
+          "wages": 218,
+          "works": 607
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 31,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 32,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 13,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 10,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 10,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 91,
+        "within30Days": 20,
+        "beyond30Days": 14
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1703": {
+      "id": "17_1703",
+      "name": "Bhind",
+      "hindi": "भिंड",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1703",
+      "totalJobCards": 49083,
+      "activeJobCards": 39266,
+      "totalWorkers": 55056,
+      "activeWorkers": 42351,
+      "totalHouseholdsWorked": 29645,
+      "totalIndividualsWorked": 42351,
+      "averageWageRate": 266,
+      "averageDaysEmployment": 65,
+      "completedWorks": 3354,
+      "ongoingWorks": 1174,
+      "totalWorksUndertaken": 4528,
+      "totalExpenditure": 5069.4147,
+      "wageExpenditure": 4506.1464,
+      "materialExpenditure": 563.2683,
+      "scWorkers": 6352,
+      "stWorkers": 3388,
+      "womenWorkers": 22022,
+      "differentlyAbledWorkers": 847,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 51889,
+          "wages": 234,
+          "works": 279
+        },
+        {
+          "month": "May",
+          "employment": 45619,
+          "wages": 314,
+          "works": 334
+        },
+        {
+          "month": "Jun",
+          "employment": 30277,
+          "wages": 279,
+          "works": 525
+        },
+        {
+          "month": "Jul",
+          "employment": 35642,
+          "wages": 244,
+          "works": 260
+        },
+        {
+          "month": "Aug",
+          "employment": 35902,
+          "wages": 229,
+          "works": 493
+        },
+        {
+          "month": "Sep",
+          "employment": 50783,
+          "wages": 299,
+          "works": 569
+        },
+        {
+          "month": "Oct",
+          "employment": 43817,
+          "wages": 256,
+          "works": 304
+        },
+        {
+          "month": "Nov",
+          "employment": 30524,
+          "wages": 271,
+          "works": 330
+        },
+        {
+          "month": "Dec",
+          "employment": 38475,
+          "wages": 230,
+          "works": 602
+        },
+        {
+          "month": "Jan",
+          "employment": 32475,
+          "wages": 289,
+          "works": 653
+        },
+        {
+          "month": "Feb",
+          "employment": 36417,
+          "wages": 278,
+          "works": 676
+        },
+        {
+          "month": "Mar",
+          "employment": 35681,
+          "wages": 233,
+          "works": 429
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 25,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 34,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 21,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 14,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 5,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 89,
+        "within30Days": 26,
+        "beyond30Days": 13
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1704": {
+      "id": "17_1704",
+      "name": "Gwalior",
+      "hindi": "ग्वालियर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1704",
+      "totalJobCards": 23749,
+      "activeJobCards": 18999,
+      "totalWorkers": 23787,
+      "activeWorkers": 18298,
+      "totalHouseholdsWorked": 12808,
+      "totalIndividualsWorked": 18298,
+      "averageWageRate": 255,
+      "averageDaysEmployment": 83,
+      "completedWorks": 3234,
+      "ongoingWorks": 1730,
+      "totalWorksUndertaken": 4964,
+      "totalExpenditure": 2099.6955,
+      "wageExpenditure": 1866.396,
+      "materialExpenditure": 233.2995,
+      "scWorkers": 2744,
+      "stWorkers": 1463,
+      "womenWorkers": 9514,
+      "differentlyAbledWorkers": 365,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 15026,
+          "wages": 305,
+          "works": 277
+        },
+        {
+          "month": "May",
+          "employment": 22184,
+          "wages": 257,
+          "works": 269
+        },
+        {
+          "month": "Jun",
+          "employment": 21411,
+          "wages": 250,
+          "works": 430
+        },
+        {
+          "month": "Jul",
+          "employment": 16251,
+          "wages": 288,
+          "works": 413
+        },
+        {
+          "month": "Aug",
+          "employment": 13745,
+          "wages": 289,
+          "works": 469
+        },
+        {
+          "month": "Sep",
+          "employment": 21475,
+          "wages": 271,
+          "works": 370
+        },
+        {
+          "month": "Oct",
+          "employment": 17982,
+          "wages": 269,
+          "works": 238
+        },
+        {
+          "month": "Nov",
+          "employment": 16797,
+          "wages": 240,
+          "works": 421
+        },
+        {
+          "month": "Dec",
+          "employment": 19505,
+          "wages": 245,
+          "works": 561
+        },
+        {
+          "month": "Jan",
+          "employment": 19439,
+          "wages": 286,
+          "works": 570
+        },
+        {
+          "month": "Feb",
+          "employment": 12881,
+          "wages": 301,
+          "works": 595
+        },
+        {
+          "month": "Mar",
+          "employment": 18313,
+          "wages": 210,
+          "works": 254
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 48,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 17,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 16,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 14,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 5,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 90,
+        "within30Days": 21,
+        "beyond30Days": 7
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1705": {
+      "id": "17_1705",
+      "name": "Datia",
+      "hindi": "दतिया",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1705",
+      "totalJobCards": 37050,
+      "activeJobCards": 29640,
+      "totalWorkers": 37905,
+      "activeWorkers": 29158,
+      "totalHouseholdsWorked": 20410,
+      "totalIndividualsWorked": 29158,
+      "averageWageRate": 260,
+      "averageDaysEmployment": 77,
+      "completedWorks": 1335,
+      "ongoingWorks": 739,
+      "totalWorksUndertaken": 2074,
+      "totalExpenditure": 3411.486,
+      "wageExpenditure": 3032.432,
+      "materialExpenditure": 379.054,
+      "scWorkers": 4373,
+      "stWorkers": 2332,
+      "womenWorkers": 15162,
+      "differentlyAbledWorkers": 583,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 22795,
+          "wages": 263,
+          "works": 676
+        },
+        {
+          "month": "May",
+          "employment": 22119,
+          "wages": 249,
+          "works": 698
+        },
+        {
+          "month": "Jun",
+          "employment": 36582,
+          "wages": 249,
+          "works": 585
+        },
+        {
+          "month": "Jul",
+          "employment": 33505,
+          "wages": 310,
+          "works": 311
+        },
+        {
+          "month": "Aug",
+          "employment": 23136,
+          "wages": 293,
+          "works": 269
+        },
+        {
+          "month": "Sep",
+          "employment": 23665,
+          "wages": 295,
+          "works": 254
+        },
+        {
+          "month": "Oct",
+          "employment": 27773,
+          "wages": 218,
+          "works": 647
+        },
+        {
+          "month": "Nov",
+          "employment": 22902,
+          "wages": 291,
+          "works": 655
+        },
+        {
+          "month": "Dec",
+          "employment": 24517,
+          "wages": 237,
+          "works": 483
+        },
+        {
+          "month": "Jan",
+          "employment": 32365,
+          "wages": 307,
+          "works": 352
+        },
+        {
+          "month": "Feb",
+          "employment": 33084,
+          "wages": 232,
+          "works": 350
+        },
+        {
+          "month": "Mar",
+          "employment": 29751,
+          "wages": 214,
+          "works": 330
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 30,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 18,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 22,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 15,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 14,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 76,
+        "within30Days": 29,
+        "beyond30Days": 6
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1706": {
+      "id": "17_1706",
+      "name": "Shivpuri",
+      "hindi": "शिवपुरी",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1706",
+      "totalJobCards": 49806,
+      "activeJobCards": 39844,
+      "totalWorkers": 52590,
+      "activeWorkers": 40454,
+      "totalHouseholdsWorked": 28317,
+      "totalIndividualsWorked": 40454,
+      "averageWageRate": 262,
+      "averageDaysEmployment": 71,
+      "completedWorks": 3422,
+      "ongoingWorks": 1717,
+      "totalWorksUndertaken": 5139,
+      "totalExpenditure": 4769.5266,
+      "wageExpenditure": 4239.5792,
+      "materialExpenditure": 529.9474,
+      "scWorkers": 6068,
+      "stWorkers": 3236,
+      "womenWorkers": 21036,
+      "differentlyAbledWorkers": 809,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 38631,
+          "wages": 257,
+          "works": 577
+        },
+        {
+          "month": "May",
+          "employment": 31197,
+          "wages": 241,
+          "works": 569
+        },
+        {
+          "month": "Jun",
+          "employment": 46706,
+          "wages": 251,
+          "works": 223
+        },
+        {
+          "month": "Jul",
+          "employment": 42768,
+          "wages": 222,
+          "works": 607
+        },
+        {
+          "month": "Aug",
+          "employment": 35333,
+          "wages": 241,
+          "works": 463
+        },
+        {
+          "month": "Sep",
+          "employment": 35620,
+          "wages": 283,
+          "works": 403
+        },
+        {
+          "month": "Oct",
+          "employment": 51957,
+          "wages": 312,
+          "works": 613
+        },
+        {
+          "month": "Nov",
+          "employment": 46742,
+          "wages": 209,
+          "works": 308
+        },
+        {
+          "month": "Dec",
+          "employment": 47624,
+          "wages": 298,
+          "works": 504
+        },
+        {
+          "month": "Jan",
+          "employment": 42298,
+          "wages": 217,
+          "works": 580
+        },
+        {
+          "month": "Feb",
+          "employment": 51358,
+          "wages": 218,
+          "works": 377
+        },
+        {
+          "month": "Mar",
+          "employment": 50592,
+          "wages": 238,
+          "works": 359
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 39,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 35,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 10,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 24,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 10,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 84,
+        "within30Days": 26,
+        "beyond30Days": 14
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1707": {
+      "id": "17_1707",
+      "name": "Tikamgarh",
+      "hindi": "टीकमगढ़",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1707",
+      "totalJobCards": 62736,
+      "activeJobCards": 50188,
+      "totalWorkers": 50637,
+      "activeWorkers": 38952,
+      "totalHouseholdsWorked": 27266,
+      "totalIndividualsWorked": 38952,
+      "averageWageRate": 261,
+      "averageDaysEmployment": 68,
+      "completedWorks": 3850,
+      "ongoingWorks": 2252,
+      "totalWorksUndertaken": 6102,
+      "totalExpenditure": 4574.9124,
+      "wageExpenditure": 4066.5888,
+      "materialExpenditure": 508.3236,
+      "scWorkers": 5842,
+      "stWorkers": 3116,
+      "womenWorkers": 20255,
+      "differentlyAbledWorkers": 779,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 32538,
+          "wages": 309,
+          "works": 212
+        },
+        {
+          "month": "May",
+          "employment": 48239,
+          "wages": 213,
+          "works": 636
+        },
+        {
+          "month": "Jun",
+          "employment": 35268,
+          "wages": 273,
+          "works": 433
+        },
+        {
+          "month": "Jul",
+          "employment": 40982,
+          "wages": 268,
+          "works": 625
+        },
+        {
+          "month": "Aug",
+          "employment": 28273,
+          "wages": 302,
+          "works": 692
+        },
+        {
+          "month": "Sep",
+          "employment": 28714,
+          "wages": 270,
+          "works": 696
+        },
+        {
+          "month": "Oct",
+          "employment": 38366,
+          "wages": 288,
+          "works": 370
+        },
+        {
+          "month": "Nov",
+          "employment": 47653,
+          "wages": 226,
+          "works": 654
+        },
+        {
+          "month": "Dec",
+          "employment": 28619,
+          "wages": 264,
+          "works": 527
+        },
+        {
+          "month": "Jan",
+          "employment": 33799,
+          "wages": 228,
+          "works": 690
+        },
+        {
+          "month": "Feb",
+          "employment": 33138,
+          "wages": 285,
+          "works": 245
+        },
+        {
+          "month": "Mar",
+          "employment": 36886,
+          "wages": 265,
+          "works": 221
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 34,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 25,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 12,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 15,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 6,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 84,
+        "within30Days": 28,
+        "beyond30Days": 9
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1708": {
+      "id": "17_1708",
+      "name": "Chhatarpur",
+      "hindi": "छतरपुर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1708",
+      "totalJobCards": 37760,
+      "activeJobCards": 30208,
+      "totalWorkers": 35118,
+      "activeWorkers": 27014,
+      "totalHouseholdsWorked": 18909,
+      "totalIndividualsWorked": 27014,
+      "averageWageRate": 253,
+      "averageDaysEmployment": 59,
+      "completedWorks": 2193,
+      "ongoingWorks": 756,
+      "totalWorksUndertaken": 2949,
+      "totalExpenditure": 3075.5439,
+      "wageExpenditure": 2733.8168,
+      "materialExpenditure": 341.7271,
+      "scWorkers": 4052,
+      "stWorkers": 2161,
+      "womenWorkers": 14047,
+      "differentlyAbledWorkers": 540,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 30834,
+          "wages": 232,
+          "works": 371
+        },
+        {
+          "month": "May",
+          "employment": 19701,
+          "wages": 284,
+          "works": 264
+        },
+        {
+          "month": "Jun",
+          "employment": 19560,
+          "wages": 294,
+          "works": 517
+        },
+        {
+          "month": "Jul",
+          "employment": 34939,
+          "wages": 232,
+          "works": 534
+        },
+        {
+          "month": "Aug",
+          "employment": 20961,
+          "wages": 285,
+          "works": 330
+        },
+        {
+          "month": "Sep",
+          "employment": 19165,
+          "wages": 232,
+          "works": 201
+        },
+        {
+          "month": "Oct",
+          "employment": 33811,
+          "wages": 206,
+          "works": 564
+        },
+        {
+          "month": "Nov",
+          "employment": 23624,
+          "wages": 270,
+          "works": 538
+        },
+        {
+          "month": "Dec",
+          "employment": 30113,
+          "wages": 249,
+          "works": 555
+        },
+        {
+          "month": "Jan",
+          "employment": 21718,
+          "wages": 262,
+          "works": 528
+        },
+        {
+          "month": "Feb",
+          "employment": 25117,
+          "wages": 210,
+          "works": 436
+        },
+        {
+          "month": "Mar",
+          "employment": 32981,
+          "wages": 213,
+          "works": 427
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 46,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 19,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 15,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 17,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 12,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 81,
+        "within30Days": 23,
+        "beyond30Days": 5
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1709": {
+      "id": "17_1709",
+      "name": "Panna",
+      "hindi": "पन्ना",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1709",
+      "totalJobCards": 40079,
+      "activeJobCards": 32063,
+      "totalWorkers": 43707,
+      "activeWorkers": 33621,
+      "totalHouseholdsWorked": 23534,
+      "totalIndividualsWorked": 33621,
+      "averageWageRate": 255,
+      "averageDaysEmployment": 75,
+      "completedWorks": 1735,
+      "ongoingWorks": 841,
+      "totalWorksUndertaken": 2576,
+      "totalExpenditure": 3858.00975,
+      "wageExpenditure": 3429.342,
+      "materialExpenditure": 428.66775,
+      "scWorkers": 5043,
+      "stWorkers": 2689,
+      "womenWorkers": 17482,
+      "differentlyAbledWorkers": 672,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 29658,
+          "wages": 272,
+          "works": 316
+        },
+        {
+          "month": "May",
+          "employment": 25582,
+          "wages": 227,
+          "works": 475
+        },
+        {
+          "month": "Jun",
+          "employment": 29774,
+          "wages": 276,
+          "works": 307
+        },
+        {
+          "month": "Jul",
+          "employment": 27765,
+          "wages": 263,
+          "works": 452
+        },
+        {
+          "month": "Aug",
+          "employment": 35320,
+          "wages": 305,
+          "works": 299
+        },
+        {
+          "month": "Sep",
+          "employment": 27587,
+          "wages": 247,
+          "works": 654
+        },
+        {
+          "month": "Oct",
+          "employment": 36751,
+          "wages": 218,
+          "works": 615
+        },
+        {
+          "month": "Nov",
+          "employment": 27547,
+          "wages": 230,
+          "works": 377
+        },
+        {
+          "month": "Dec",
+          "employment": 35309,
+          "wages": 295,
+          "works": 693
+        },
+        {
+          "month": "Jan",
+          "employment": 37078,
+          "wages": 271,
+          "works": 232
+        },
+        {
+          "month": "Feb",
+          "employment": 40060,
+          "wages": 258,
+          "works": 523
+        },
+        {
+          "month": "Mar",
+          "employment": 32046,
+          "wages": 293,
+          "works": 377
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 47,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 30,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 17,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 14,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 7,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 82,
+        "within30Days": 24,
+        "beyond30Days": 5
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1710": {
+      "id": "17_1710",
+      "name": "Sagar",
+      "hindi": "सागर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1710",
+      "totalJobCards": 38274,
+      "activeJobCards": 30619,
+      "totalWorkers": 39275,
+      "activeWorkers": 30212,
+      "totalHouseholdsWorked": 21148,
+      "totalIndividualsWorked": 30212,
+      "averageWageRate": 242,
+      "averageDaysEmployment": 64,
+      "completedWorks": 2868,
+      "ongoingWorks": 690,
+      "totalWorksUndertaken": 3558,
+      "totalExpenditure": 3290.0868,
+      "wageExpenditure": 2924.5216,
+      "materialExpenditure": 365.5652,
+      "scWorkers": 4531,
+      "stWorkers": 2416,
+      "womenWorkers": 15710,
+      "differentlyAbledWorkers": 604,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 30108,
+          "wages": 222,
+          "works": 605
+        },
+        {
+          "month": "May",
+          "employment": 22731,
+          "wages": 257,
+          "works": 688
+        },
+        {
+          "month": "Jun",
+          "employment": 25500,
+          "wages": 280,
+          "works": 516
+        },
+        {
+          "month": "Jul",
+          "employment": 31710,
+          "wages": 267,
+          "works": 525
+        },
+        {
+          "month": "Aug",
+          "employment": 30096,
+          "wages": 274,
+          "works": 368
+        },
+        {
+          "month": "Sep",
+          "employment": 38107,
+          "wages": 241,
+          "works": 689
+        },
+        {
+          "month": "Oct",
+          "employment": 29338,
+          "wages": 278,
+          "works": 299
+        },
+        {
+          "month": "Nov",
+          "employment": 25509,
+          "wages": 195,
+          "works": 492
+        },
+        {
+          "month": "Dec",
+          "employment": 34469,
+          "wages": 229,
+          "works": 601
+        },
+        {
+          "month": "Jan",
+          "employment": 21304,
+          "wages": 288,
+          "works": 281
+        },
+        {
+          "month": "Feb",
+          "employment": 26928,
+          "wages": 290,
+          "works": 438
+        },
+        {
+          "month": "Mar",
+          "employment": 31840,
+          "wages": 236,
+          "works": 232
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 46,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 31,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 29,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 13,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 11,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 93,
+        "within30Days": 25,
+        "beyond30Days": 6
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1711": {
+      "id": "17_1711",
+      "name": "Damoh",
+      "hindi": "दमोह",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1711",
+      "totalJobCards": 68872,
+      "activeJobCards": 55097,
+      "totalWorkers": 58947,
+      "activeWorkers": 45344,
+      "totalHouseholdsWorked": 31740,
+      "totalIndividualsWorked": 45344,
+      "averageWageRate": 232,
+      "averageDaysEmployment": 75,
+      "completedWorks": 3650,
+      "ongoingWorks": 1219,
+      "totalWorksUndertaken": 4869,
+      "totalExpenditure": 4733.9136,
+      "wageExpenditure": 4207.9232,
+      "materialExpenditure": 525.9904,
+      "scWorkers": 6801,
+      "stWorkers": 3627,
+      "womenWorkers": 23578,
+      "differentlyAbledWorkers": 906,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 45668,
+          "wages": 227,
+          "works": 329
+        },
+        {
+          "month": "May",
+          "employment": 53768,
+          "wages": 231,
+          "works": 457
+        },
+        {
+          "month": "Jun",
+          "employment": 52443,
+          "wages": 271,
+          "works": 486
+        },
+        {
+          "month": "Jul",
+          "employment": 52132,
+          "wages": 229,
+          "works": 424
+        },
+        {
+          "month": "Aug",
+          "employment": 58712,
+          "wages": 199,
+          "works": 603
+        },
+        {
+          "month": "Sep",
+          "employment": 50943,
+          "wages": 248,
+          "works": 200
+        },
+        {
+          "month": "Oct",
+          "employment": 36412,
+          "wages": 191,
+          "works": 382
+        },
+        {
+          "month": "Nov",
+          "employment": 56264,
+          "wages": 209,
+          "works": 222
+        },
+        {
+          "month": "Dec",
+          "employment": 34698,
+          "wages": 230,
+          "works": 344
+        },
+        {
+          "month": "Jan",
+          "employment": 35904,
+          "wages": 252,
+          "works": 547
+        },
+        {
+          "month": "Feb",
+          "employment": 48128,
+          "wages": 269,
+          "works": 625
+        },
+        {
+          "month": "Mar",
+          "employment": 46876,
+          "wages": 271,
+          "works": 216
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 34,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 24,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 22,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 23,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 10,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 76,
+        "within30Days": 25,
+        "beyond30Days": 7
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1712": {
+      "id": "17_1712",
+      "name": "Satna",
+      "hindi": "सतना",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1712",
+      "totalJobCards": 37686,
+      "activeJobCards": 30148,
+      "totalWorkers": 38481,
+      "activeWorkers": 29601,
+      "totalHouseholdsWorked": 20720,
+      "totalIndividualsWorked": 29601,
+      "averageWageRate": 237,
+      "averageDaysEmployment": 78,
+      "completedWorks": 2952,
+      "ongoingWorks": 953,
+      "totalWorksUndertaken": 3905,
+      "totalExpenditure": 3156.94665,
+      "wageExpenditure": 2806.1748,
+      "materialExpenditure": 350.77185,
+      "scWorkers": 4440,
+      "stWorkers": 2368,
+      "womenWorkers": 15392,
+      "differentlyAbledWorkers": 592,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 35712,
+          "wages": 200,
+          "works": 248
+        },
+        {
+          "month": "May",
+          "employment": 37305,
+          "wages": 221,
+          "works": 493
+        },
+        {
+          "month": "Jun",
+          "employment": 29856,
+          "wages": 264,
+          "works": 652
+        },
+        {
+          "month": "Jul",
+          "employment": 37593,
+          "wages": 199,
+          "works": 389
+        },
+        {
+          "month": "Aug",
+          "employment": 30461,
+          "wages": 234,
+          "works": 590
+        },
+        {
+          "month": "Sep",
+          "employment": 34657,
+          "wages": 233,
+          "works": 427
+        },
+        {
+          "month": "Oct",
+          "employment": 36409,
+          "wages": 203,
+          "works": 433
+        },
+        {
+          "month": "Nov",
+          "employment": 34674,
+          "wages": 252,
+          "works": 639
+        },
+        {
+          "month": "Dec",
+          "employment": 36492,
+          "wages": 234,
+          "works": 476
+        },
+        {
+          "month": "Jan",
+          "employment": 28449,
+          "wages": 247,
+          "works": 413
+        },
+        {
+          "month": "Feb",
+          "employment": 28445,
+          "wages": 226,
+          "works": 641
+        },
+        {
+          "month": "Mar",
+          "employment": 37340,
+          "wages": 271,
+          "works": 341
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 38,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 34,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 12,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 13,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 6,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 87,
+        "within30Days": 25,
+        "beyond30Days": 8
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1713": {
+      "id": "17_1713",
+      "name": "Rewa",
+      "hindi": "रीवा",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1713",
+      "totalJobCards": 49416,
+      "activeJobCards": 39532,
+      "totalWorkers": 46797,
+      "activeWorkers": 35998,
+      "totalHouseholdsWorked": 25198,
+      "totalIndividualsWorked": 35998,
+      "averageWageRate": 222,
+      "averageDaysEmployment": 41,
+      "completedWorks": 3981,
+      "ongoingWorks": 1068,
+      "totalWorksUndertaken": 5049,
+      "totalExpenditure": 3596.2002,
+      "wageExpenditure": 3196.6224,
+      "materialExpenditure": 399.5778,
+      "scWorkers": 5399,
+      "stWorkers": 2879,
+      "womenWorkers": 18718,
+      "differentlyAbledWorkers": 719,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 27627,
+          "wages": 185,
+          "works": 583
+        },
+        {
+          "month": "May",
+          "employment": 32620,
+          "wages": 251,
+          "works": 476
+        },
+        {
+          "month": "Jun",
+          "employment": 38332,
+          "wages": 224,
+          "works": 439
+        },
+        {
+          "month": "Jul",
+          "employment": 27444,
+          "wages": 188,
+          "works": 318
+        },
+        {
+          "month": "Aug",
+          "employment": 38292,
+          "wages": 263,
+          "works": 561
+        },
+        {
+          "month": "Sep",
+          "employment": 25818,
+          "wages": 256,
+          "works": 558
+        },
+        {
+          "month": "Oct",
+          "employment": 35178,
+          "wages": 245,
+          "works": 275
+        },
+        {
+          "month": "Nov",
+          "employment": 34625,
+          "wages": 236,
+          "works": 289
+        },
+        {
+          "month": "Dec",
+          "employment": 41930,
+          "wages": 205,
+          "works": 351
+        },
+        {
+          "month": "Jan",
+          "employment": 38213,
+          "wages": 266,
+          "works": 368
+        },
+        {
+          "month": "Feb",
+          "employment": 33796,
+          "wages": 264,
+          "works": 368
+        },
+        {
+          "month": "Mar",
+          "employment": 43352,
+          "wages": 222,
+          "works": 601
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 45,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 23,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 16,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 21,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 13,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 81,
+        "within30Days": 22,
+        "beyond30Days": 11
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1714": {
+      "id": "17_1714",
+      "name": "Umaria",
+      "hindi": "उमरिया",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1714",
+      "totalJobCards": 38502,
+      "activeJobCards": 30801,
+      "totalWorkers": 33815,
+      "activeWorkers": 26012,
+      "totalHouseholdsWorked": 18208,
+      "totalIndividualsWorked": 26012,
+      "averageWageRate": 256,
+      "averageDaysEmployment": 66,
+      "completedWorks": 3372,
+      "ongoingWorks": 2027,
+      "totalWorksUndertaken": 5399,
+      "totalExpenditure": 2996.5824,
+      "wageExpenditure": 2663.6288,
+      "materialExpenditure": 332.9536,
+      "scWorkers": 3901,
+      "stWorkers": 2080,
+      "womenWorkers": 13526,
+      "differentlyAbledWorkers": 520,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 22726,
+          "wages": 300,
+          "works": 695
+        },
+        {
+          "month": "May",
+          "employment": 20631,
+          "wages": 270,
+          "works": 478
+        },
+        {
+          "month": "Jun",
+          "employment": 21274,
+          "wages": 207,
+          "works": 345
+        },
+        {
+          "month": "Jul",
+          "employment": 30087,
+          "wages": 255,
+          "works": 274
+        },
+        {
+          "month": "Aug",
+          "employment": 25281,
+          "wages": 252,
+          "works": 222
+        },
+        {
+          "month": "Sep",
+          "employment": 22886,
+          "wages": 232,
+          "works": 366
+        },
+        {
+          "month": "Oct",
+          "employment": 26924,
+          "wages": 274,
+          "works": 210
+        },
+        {
+          "month": "Nov",
+          "employment": 30092,
+          "wages": 280,
+          "works": 643
+        },
+        {
+          "month": "Dec",
+          "employment": 32610,
+          "wages": 221,
+          "works": 599
+        },
+        {
+          "month": "Jan",
+          "employment": 30430,
+          "wages": 227,
+          "works": 641
+        },
+        {
+          "month": "Feb",
+          "employment": 28626,
+          "wages": 276,
+          "works": 230
+        },
+        {
+          "month": "Mar",
+          "employment": 18619,
+          "wages": 227,
+          "works": 589
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 45,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 20,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 28,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 11,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 8,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 85,
+        "within30Days": 19,
+        "beyond30Days": 11
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1715": {
+      "id": "17_1715",
+      "name": "Neemuch",
+      "hindi": "नीमच",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1715",
+      "totalJobCards": 47779,
+      "activeJobCards": 38223,
+      "totalWorkers": 45929,
+      "activeWorkers": 35330,
+      "totalHouseholdsWorked": 24731,
+      "totalIndividualsWorked": 35330,
+      "averageWageRate": 257,
+      "averageDaysEmployment": 54,
+      "completedWorks": 2199,
+      "ongoingWorks": 1561,
+      "totalWorksUndertaken": 3760,
+      "totalExpenditure": 4085.9145,
+      "wageExpenditure": 3631.924,
+      "materialExpenditure": 453.9905,
+      "scWorkers": 5299,
+      "stWorkers": 2826,
+      "womenWorkers": 18371,
+      "differentlyAbledWorkers": 706,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 35901,
+          "wages": 215,
+          "works": 667
+        },
+        {
+          "month": "May",
+          "employment": 36318,
+          "wages": 282,
+          "works": 676
+        },
+        {
+          "month": "Jun",
+          "employment": 28501,
+          "wages": 288,
+          "works": 351
+        },
+        {
+          "month": "Jul",
+          "employment": 35355,
+          "wages": 244,
+          "works": 542
+        },
+        {
+          "month": "Aug",
+          "employment": 35186,
+          "wages": 273,
+          "works": 594
+        },
+        {
+          "month": "Sep",
+          "employment": 40999,
+          "wages": 277,
+          "works": 336
+        },
+        {
+          "month": "Oct",
+          "employment": 29108,
+          "wages": 265,
+          "works": 689
+        },
+        {
+          "month": "Nov",
+          "employment": 32634,
+          "wages": 295,
+          "works": 419
+        },
+        {
+          "month": "Dec",
+          "employment": 33475,
+          "wages": 229,
+          "works": 315
+        },
+        {
+          "month": "Jan",
+          "employment": 40605,
+          "wages": 234,
+          "works": 306
+        },
+        {
+          "month": "Feb",
+          "employment": 34573,
+          "wages": 215,
+          "works": 614
+        },
+        {
+          "month": "Mar",
+          "employment": 26999,
+          "wages": 296,
+          "works": 221
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 26,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 15,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 10,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 13,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 14,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 77,
+        "within30Days": 26,
+        "beyond30Days": 8
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1716": {
+      "id": "17_1716",
+      "name": "Mandsaur",
+      "hindi": "मंदसौर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1716",
+      "totalJobCards": 40439,
+      "activeJobCards": 32351,
+      "totalWorkers": 35019,
+      "activeWorkers": 26938,
+      "totalHouseholdsWorked": 18856,
+      "totalIndividualsWorked": 26938,
+      "averageWageRate": 250,
+      "averageDaysEmployment": 70,
+      "completedWorks": 1602,
+      "ongoingWorks": 2498,
+      "totalWorksUndertaken": 4100,
+      "totalExpenditure": 3030.525,
+      "wageExpenditure": 2693.8,
+      "materialExpenditure": 336.725,
+      "scWorkers": 4040,
+      "stWorkers": 2155,
+      "womenWorkers": 14007,
+      "differentlyAbledWorkers": 538,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 19322,
+          "wages": 247,
+          "works": 435
+        },
+        {
+          "month": "May",
+          "employment": 21009,
+          "wages": 244,
+          "works": 336
+        },
+        {
+          "month": "Jun",
+          "employment": 24964,
+          "wages": 226,
+          "works": 411
+        },
+        {
+          "month": "Jul",
+          "employment": 28373,
+          "wages": 292,
+          "works": 516
+        },
+        {
+          "month": "Aug",
+          "employment": 29201,
+          "wages": 277,
+          "works": 520
+        },
+        {
+          "month": "Sep",
+          "employment": 20236,
+          "wages": 293,
+          "works": 299
+        },
+        {
+          "month": "Oct",
+          "employment": 24645,
+          "wages": 241,
+          "works": 616
+        },
+        {
+          "month": "Nov",
+          "employment": 24546,
+          "wages": 253,
+          "works": 528
+        },
+        {
+          "month": "Dec",
+          "employment": 22765,
+          "wages": 217,
+          "works": 525
+        },
+        {
+          "month": "Jan",
+          "employment": 28016,
+          "wages": 276,
+          "works": 414
+        },
+        {
+          "month": "Feb",
+          "employment": 30927,
+          "wages": 249,
+          "works": 367
+        },
+        {
+          "month": "Mar",
+          "employment": 22791,
+          "wages": 269,
+          "works": 675
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 25,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 23,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 25,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 12,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 10,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 89,
+        "within30Days": 22,
+        "beyond30Days": 5
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1717": {
+      "id": "17_1717",
+      "name": "Ratlam",
+      "hindi": "रतलाम",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1717",
+      "totalJobCards": 57310,
+      "activeJobCards": 45848,
+      "totalWorkers": 44731,
+      "activeWorkers": 34409,
+      "totalHouseholdsWorked": 24086,
+      "totalIndividualsWorked": 34409,
+      "averageWageRate": 226,
+      "averageDaysEmployment": 63,
+      "completedWorks": 2743,
+      "ongoingWorks": 2406,
+      "totalWorksUndertaken": 5149,
+      "totalExpenditure": 3499.3953,
+      "wageExpenditure": 3110.5736,
+      "materialExpenditure": 388.8217,
+      "scWorkers": 5161,
+      "stWorkers": 2752,
+      "womenWorkers": 17892,
+      "differentlyAbledWorkers": 688,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 31033,
+          "wages": 187,
+          "works": 234
+        },
+        {
+          "month": "May",
+          "employment": 28215,
+          "wages": 207,
+          "works": 298
+        },
+        {
+          "month": "Jun",
+          "employment": 44618,
+          "wages": 182,
+          "works": 204
+        },
+        {
+          "month": "Jul",
+          "employment": 29722,
+          "wages": 234,
+          "works": 595
+        },
+        {
+          "month": "Aug",
+          "employment": 31517,
+          "wages": 253,
+          "works": 350
+        },
+        {
+          "month": "Sep",
+          "employment": 28550,
+          "wages": 230,
+          "works": 551
+        },
+        {
+          "month": "Oct",
+          "employment": 29681,
+          "wages": 240,
+          "works": 560
+        },
+        {
+          "month": "Nov",
+          "employment": 33897,
+          "wages": 237,
+          "works": 517
+        },
+        {
+          "month": "Dec",
+          "employment": 29643,
+          "wages": 227,
+          "works": 576
+        },
+        {
+          "month": "Jan",
+          "employment": 40780,
+          "wages": 208,
+          "works": 354
+        },
+        {
+          "month": "Feb",
+          "employment": 32671,
+          "wages": 215,
+          "works": 614
+        },
+        {
+          "month": "Mar",
+          "employment": 35533,
+          "wages": 253,
+          "works": 222
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 21,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 16,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 17,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 22,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 11,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 78,
+        "within30Days": 27,
+        "beyond30Days": 6
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1718": {
+      "id": "17_1718",
+      "name": "Ujjain",
+      "hindi": "उज्जैन",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1718",
+      "totalJobCards": 49696,
+      "activeJobCards": 39756,
+      "totalWorkers": 52063,
+      "activeWorkers": 40049,
+      "totalHouseholdsWorked": 28034,
+      "totalIndividualsWorked": 40049,
+      "averageWageRate": 269,
+      "averageDaysEmployment": 99,
+      "completedWorks": 3521,
+      "ongoingWorks": 2143,
+      "totalWorksUndertaken": 5664,
+      "totalExpenditure": 4847.93145,
+      "wageExpenditure": 4309.2724,
+      "materialExpenditure": 538.65905,
+      "scWorkers": 6007,
+      "stWorkers": 3203,
+      "womenWorkers": 20825,
+      "differentlyAbledWorkers": 800,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 33227,
+          "wages": 278,
+          "works": 314
+        },
+        {
+          "month": "May",
+          "employment": 32246,
+          "wages": 249,
+          "works": 308
+        },
+        {
+          "month": "Jun",
+          "employment": 32331,
+          "wages": 250,
+          "works": 461
+        },
+        {
+          "month": "Jul",
+          "employment": 41274,
+          "wages": 272,
+          "works": 400
+        },
+        {
+          "month": "Aug",
+          "employment": 38109,
+          "wages": 319,
+          "works": 561
+        },
+        {
+          "month": "Sep",
+          "employment": 42315,
+          "wages": 292,
+          "works": 621
+        },
+        {
+          "month": "Oct",
+          "employment": 43751,
+          "wages": 314,
+          "works": 336
+        },
+        {
+          "month": "Nov",
+          "employment": 30342,
+          "wages": 319,
+          "works": 347
+        },
+        {
+          "month": "Dec",
+          "employment": 48114,
+          "wages": 250,
+          "works": 205
+        },
+        {
+          "month": "Jan",
+          "employment": 33381,
+          "wages": 219,
+          "works": 269
+        },
+        {
+          "month": "Feb",
+          "employment": 28115,
+          "wages": 319,
+          "works": 567
+        },
+        {
+          "month": "Mar",
+          "employment": 40823,
+          "wages": 270,
+          "works": 221
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 46,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 24,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 22,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 18,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 11,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 77,
+        "within30Days": 20,
+        "beyond30Days": 12
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1719": {
+      "id": "17_1719",
+      "name": "Shajapur",
+      "hindi": "शाजापुर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1719",
+      "totalJobCards": 37316,
+      "activeJobCards": 29852,
+      "totalWorkers": 40896,
+      "activeWorkers": 31459,
+      "totalHouseholdsWorked": 22021,
+      "totalIndividualsWorked": 31459,
+      "averageWageRate": 262,
+      "averageDaysEmployment": 43,
+      "completedWorks": 3233,
+      "ongoingWorks": 623,
+      "totalWorksUndertaken": 3856,
+      "totalExpenditure": 3709.0161,
+      "wageExpenditure": 3296.9032,
+      "materialExpenditure": 412.1129,
+      "scWorkers": 4718,
+      "stWorkers": 2516,
+      "womenWorkers": 16358,
+      "differentlyAbledWorkers": 629,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 30041,
+          "wages": 313,
+          "works": 333
+        },
+        {
+          "month": "May",
+          "employment": 31503,
+          "wages": 252,
+          "works": 297
+        },
+        {
+          "month": "Jun",
+          "employment": 29651,
+          "wages": 213,
+          "works": 211
+        },
+        {
+          "month": "Jul",
+          "employment": 31594,
+          "wages": 212,
+          "works": 671
+        },
+        {
+          "month": "Aug",
+          "employment": 27238,
+          "wages": 283,
+          "works": 652
+        },
+        {
+          "month": "Sep",
+          "employment": 26027,
+          "wages": 218,
+          "works": 313
+        },
+        {
+          "month": "Oct",
+          "employment": 40693,
+          "wages": 233,
+          "works": 458
+        },
+        {
+          "month": "Nov",
+          "employment": 36811,
+          "wages": 259,
+          "works": 601
+        },
+        {
+          "month": "Dec",
+          "employment": 35748,
+          "wages": 296,
+          "works": 653
+        },
+        {
+          "month": "Jan",
+          "employment": 23868,
+          "wages": 300,
+          "works": 299
+        },
+        {
+          "month": "Feb",
+          "employment": 26429,
+          "wages": 256,
+          "works": 413
+        },
+        {
+          "month": "Mar",
+          "employment": 28552,
+          "wages": 249,
+          "works": 608
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 46,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 30,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 21,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 17,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 11,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 75,
+        "within30Days": 24,
+        "beyond30Days": 10
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1720": {
+      "id": "17_1720",
+      "name": "Dewas",
+      "hindi": "देवास",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1720",
+      "totalJobCards": 68747,
+      "activeJobCards": 54997,
+      "totalWorkers": 66359,
+      "activeWorkers": 51046,
+      "totalHouseholdsWorked": 35732,
+      "totalIndividualsWorked": 51046,
+      "averageWageRate": 262,
+      "averageDaysEmployment": 81,
+      "completedWorks": 1029,
+      "ongoingWorks": 1665,
+      "totalWorksUndertaken": 2694,
+      "totalExpenditure": 6018.3234,
+      "wageExpenditure": 5349.6208,
+      "materialExpenditure": 668.7026,
+      "scWorkers": 7656,
+      "stWorkers": 4083,
+      "womenWorkers": 26543,
+      "differentlyAbledWorkers": 1020,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 64835,
+          "wages": 240,
+          "works": 555
+        },
+        {
+          "month": "May",
+          "employment": 53749,
+          "wages": 269,
+          "works": 223
+        },
+        {
+          "month": "Jun",
+          "employment": 64464,
+          "wages": 297,
+          "works": 264
+        },
+        {
+          "month": "Jul",
+          "employment": 62229,
+          "wages": 226,
+          "works": 685
+        },
+        {
+          "month": "Aug",
+          "employment": 59241,
+          "wages": 279,
+          "works": 405
+        },
+        {
+          "month": "Sep",
+          "employment": 39488,
+          "wages": 258,
+          "works": 561
+        },
+        {
+          "month": "Oct",
+          "employment": 43553,
+          "wages": 234,
+          "works": 628
+        },
+        {
+          "month": "Nov",
+          "employment": 39157,
+          "wages": 210,
+          "works": 233
+        },
+        {
+          "month": "Dec",
+          "employment": 39582,
+          "wages": 285,
+          "works": 431
+        },
+        {
+          "month": "Jan",
+          "employment": 39366,
+          "wages": 271,
+          "works": 653
+        },
+        {
+          "month": "Feb",
+          "employment": 36634,
+          "wages": 242,
+          "works": 363
+        },
+        {
+          "month": "Mar",
+          "employment": 52870,
+          "wages": 230,
+          "works": 355
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 35,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 27,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 17,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 13,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 11,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 77,
+        "within30Days": 17,
+        "beyond30Days": 10
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1721": {
+      "id": "17_1721",
+      "name": "Jhabua",
+      "hindi": "झाबुआ",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1721",
+      "totalJobCards": 23840,
+      "activeJobCards": 19072,
+      "totalWorkers": 19229,
+      "activeWorkers": 14792,
+      "totalHouseholdsWorked": 10354,
+      "totalIndividualsWorked": 14792,
+      "averageWageRate": 268,
+      "averageDaysEmployment": 77,
+      "completedWorks": 3249,
+      "ongoingWorks": 1261,
+      "totalWorksUndertaken": 4510,
+      "totalExpenditure": 1783.9152,
+      "wageExpenditure": 1585.7024,
+      "materialExpenditure": 198.2128,
+      "scWorkers": 2218,
+      "stWorkers": 1183,
+      "womenWorkers": 7691,
+      "differentlyAbledWorkers": 295,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 16606,
+          "wages": 226,
+          "works": 291
+        },
+        {
+          "month": "May",
+          "employment": 11029,
+          "wages": 220,
+          "works": 253
+        },
+        {
+          "month": "Jun",
+          "employment": 16187,
+          "wages": 310,
+          "works": 338
+        },
+        {
+          "month": "Jul",
+          "employment": 11091,
+          "wages": 293,
+          "works": 347
+        },
+        {
+          "month": "Aug",
+          "employment": 18683,
+          "wages": 243,
+          "works": 488
+        },
+        {
+          "month": "Sep",
+          "employment": 16688,
+          "wages": 318,
+          "works": 213
+        },
+        {
+          "month": "Oct",
+          "employment": 18416,
+          "wages": 260,
+          "works": 423
+        },
+        {
+          "month": "Nov",
+          "employment": 12454,
+          "wages": 250,
+          "works": 290
+        },
+        {
+          "month": "Dec",
+          "employment": 14621,
+          "wages": 238,
+          "works": 390
+        },
+        {
+          "month": "Jan",
+          "employment": 13466,
+          "wages": 271,
+          "works": 351
+        },
+        {
+          "month": "Feb",
+          "employment": 18503,
+          "wages": 304,
+          "works": 426
+        },
+        {
+          "month": "Mar",
+          "employment": 15862,
+          "wages": 315,
+          "works": 517
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 48,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 22,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 24,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 21,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 8,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 90,
+        "within30Days": 28,
+        "beyond30Days": 10
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1722": {
+      "id": "17_1722",
+      "name": "Dhar",
+      "hindi": "धार",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1722",
+      "totalJobCards": 55089,
+      "activeJobCards": 44071,
+      "totalWorkers": 57840,
+      "activeWorkers": 44493,
+      "totalHouseholdsWorked": 31145,
+      "totalIndividualsWorked": 44493,
+      "averageWageRate": 243,
+      "averageDaysEmployment": 62,
+      "completedWorks": 3281,
+      "ongoingWorks": 812,
+      "totalWorksUndertaken": 4093,
+      "totalExpenditure": 4865.30955,
+      "wageExpenditure": 4324.7196,
+      "materialExpenditure": 540.58995,
+      "scWorkers": 6673,
+      "stWorkers": 3559,
+      "womenWorkers": 23136,
+      "differentlyAbledWorkers": 889,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 56543,
+          "wages": 251,
+          "works": 277
+        },
+        {
+          "month": "May",
+          "employment": 32890,
+          "wages": 230,
+          "works": 455
+        },
+        {
+          "month": "Jun",
+          "employment": 40849,
+          "wages": 260,
+          "works": 407
+        },
+        {
+          "month": "Jul",
+          "employment": 51913,
+          "wages": 231,
+          "works": 656
+        },
+        {
+          "month": "Aug",
+          "employment": 44049,
+          "wages": 229,
+          "works": 622
+        },
+        {
+          "month": "Sep",
+          "employment": 48661,
+          "wages": 206,
+          "works": 552
+        },
+        {
+          "month": "Oct",
+          "employment": 36246,
+          "wages": 288,
+          "works": 512
+        },
+        {
+          "month": "Nov",
+          "employment": 55205,
+          "wages": 206,
+          "works": 278
+        },
+        {
+          "month": "Dec",
+          "employment": 33736,
+          "wages": 233,
+          "works": 446
+        },
+        {
+          "month": "Jan",
+          "employment": 38107,
+          "wages": 249,
+          "works": 224
+        },
+        {
+          "month": "Feb",
+          "employment": 52542,
+          "wages": 199,
+          "works": 576
+        },
+        {
+          "month": "Mar",
+          "employment": 38231,
+          "wages": 267,
+          "works": 502
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 25,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 15,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 28,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 13,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 7,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 89,
+        "within30Days": 18,
+        "beyond30Days": 5
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1723": {
+      "id": "17_1723",
+      "name": "Indore",
+      "hindi": "इंदौर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1723",
+      "totalJobCards": 35528,
+      "activeJobCards": 28422,
+      "totalWorkers": 34489,
+      "activeWorkers": 26530,
+      "totalHouseholdsWorked": 18571,
+      "totalIndividualsWorked": 26530,
+      "averageWageRate": 247,
+      "averageDaysEmployment": 60,
+      "completedWorks": 2900,
+      "ongoingWorks": 1514,
+      "totalWorksUndertaken": 4414,
+      "totalExpenditure": 2948.8095,
+      "wageExpenditure": 2621.164,
+      "materialExpenditure": 327.6455,
+      "scWorkers": 3979,
+      "stWorkers": 2122,
+      "womenWorkers": 13795,
+      "differentlyAbledWorkers": 530,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 24628,
+          "wages": 232,
+          "works": 671
+        },
+        {
+          "month": "May",
+          "employment": 26670,
+          "wages": 292,
+          "works": 269
+        },
+        {
+          "month": "Jun",
+          "employment": 33249,
+          "wages": 247,
+          "works": 437
+        },
+        {
+          "month": "Jul",
+          "employment": 30642,
+          "wages": 290,
+          "works": 618
+        },
+        {
+          "month": "Aug",
+          "employment": 27045,
+          "wages": 251,
+          "works": 627
+        },
+        {
+          "month": "Sep",
+          "employment": 19838,
+          "wages": 222,
+          "works": 640
+        },
+        {
+          "month": "Oct",
+          "employment": 19282,
+          "wages": 200,
+          "works": 431
+        },
+        {
+          "month": "Nov",
+          "employment": 25227,
+          "wages": 218,
+          "works": 482
+        },
+        {
+          "month": "Dec",
+          "employment": 21544,
+          "wages": 210,
+          "works": 460
+        },
+        {
+          "month": "Jan",
+          "employment": 30416,
+          "wages": 292,
+          "works": 658
+        },
+        {
+          "month": "Feb",
+          "employment": 31032,
+          "wages": 210,
+          "works": 660
+        },
+        {
+          "month": "Mar",
+          "employment": 29453,
+          "wages": 262,
+          "works": 646
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 36,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 22,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 21,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 19,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 5,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 94,
+        "within30Days": 16,
+        "beyond30Days": 13
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1724": {
+      "id": "17_1724",
+      "name": "West Nimar",
+      "hindi": "पश्चिम निमाड़",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1724",
+      "totalJobCards": 49802,
+      "activeJobCards": 39841,
+      "totalWorkers": 39744,
+      "activeWorkers": 30573,
+      "totalHouseholdsWorked": 21401,
+      "totalIndividualsWorked": 30573,
+      "averageWageRate": 225,
+      "averageDaysEmployment": 55,
+      "completedWorks": 2313,
+      "ongoingWorks": 2249,
+      "totalWorksUndertaken": 4562,
+      "totalExpenditure": 3095.51625,
+      "wageExpenditure": 2751.57,
+      "materialExpenditure": 343.94625,
+      "scWorkers": 4585,
+      "stWorkers": 2445,
+      "womenWorkers": 15897,
+      "differentlyAbledWorkers": 611,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 35871,
+          "wages": 190,
+          "works": 408
+        },
+        {
+          "month": "May",
+          "employment": 37015,
+          "wages": 181,
+          "works": 448
+        },
+        {
+          "month": "Jun",
+          "employment": 30744,
+          "wages": 210,
+          "works": 327
+        },
+        {
+          "month": "Jul",
+          "employment": 22682,
+          "wages": 268,
+          "works": 315
+        },
+        {
+          "month": "Aug",
+          "employment": 34708,
+          "wages": 205,
+          "works": 352
+        },
+        {
+          "month": "Sep",
+          "employment": 33641,
+          "wages": 253,
+          "works": 228
+        },
+        {
+          "month": "Oct",
+          "employment": 24462,
+          "wages": 244,
+          "works": 508
+        },
+        {
+          "month": "Nov",
+          "employment": 26360,
+          "wages": 214,
+          "works": 557
+        },
+        {
+          "month": "Dec",
+          "employment": 39534,
+          "wages": 259,
+          "works": 403
+        },
+        {
+          "month": "Jan",
+          "employment": 30252,
+          "wages": 180,
+          "works": 547
+        },
+        {
+          "month": "Feb",
+          "employment": 33143,
+          "wages": 208,
+          "works": 488
+        },
+        {
+          "month": "Mar",
+          "employment": 30769,
+          "wages": 211,
+          "works": 639
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 41,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 24,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 20,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 19,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 14,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 76,
+        "within30Days": 22,
+        "beyond30Days": 5
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1725": {
+      "id": "17_1725",
+      "name": "Barwani",
+      "hindi": "बड़वानी",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1725",
+      "totalJobCards": 37783,
+      "activeJobCards": 30226,
+      "totalWorkers": 42160,
+      "activeWorkers": 32431,
+      "totalHouseholdsWorked": 22701,
+      "totalIndividualsWorked": 32431,
+      "averageWageRate": 259,
+      "averageDaysEmployment": 83,
+      "completedWorks": 2705,
+      "ongoingWorks": 1098,
+      "totalWorksUndertaken": 3803,
+      "totalExpenditure": 3779.83305,
+      "wageExpenditure": 3359.8516,
+      "materialExpenditure": 419.98145,
+      "scWorkers": 4864,
+      "stWorkers": 2594,
+      "womenWorkers": 16864,
+      "differentlyAbledWorkers": 648,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 25206,
+          "wages": 214,
+          "works": 284
+        },
+        {
+          "month": "May",
+          "employment": 37331,
+          "wages": 252,
+          "works": 252
+        },
+        {
+          "month": "Jun",
+          "employment": 34734,
+          "wages": 295,
+          "works": 436
+        },
+        {
+          "month": "Jul",
+          "employment": 27169,
+          "wages": 267,
+          "works": 659
+        },
+        {
+          "month": "Aug",
+          "employment": 25627,
+          "wages": 218,
+          "works": 644
+        },
+        {
+          "month": "Sep",
+          "employment": 28934,
+          "wages": 275,
+          "works": 631
+        },
+        {
+          "month": "Oct",
+          "employment": 27026,
+          "wages": 305,
+          "works": 505
+        },
+        {
+          "month": "Nov",
+          "employment": 41133,
+          "wages": 274,
+          "works": 410
+        },
+        {
+          "month": "Dec",
+          "employment": 28367,
+          "wages": 237,
+          "works": 338
+        },
+        {
+          "month": "Jan",
+          "employment": 29914,
+          "wages": 297,
+          "works": 512
+        },
+        {
+          "month": "Feb",
+          "employment": 37703,
+          "wages": 295,
+          "works": 389
+        },
+        {
+          "month": "Mar",
+          "employment": 32428,
+          "wages": 267,
+          "works": 655
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 40,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 19,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 29,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 21,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 7,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 86,
+        "within30Days": 27,
+        "beyond30Days": 14
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1726": {
+      "id": "17_1726",
+      "name": "Rajgarh",
+      "hindi": "राजगढ़",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1726",
+      "totalJobCards": 36165,
+      "activeJobCards": 28932,
+      "totalWorkers": 38593,
+      "activeWorkers": 29687,
+      "totalHouseholdsWorked": 20780,
+      "totalIndividualsWorked": 29687,
+      "averageWageRate": 263,
+      "averageDaysEmployment": 54,
+      "completedWorks": 1718,
+      "ongoingWorks": 1739,
+      "totalWorksUndertaken": 3457,
+      "totalExpenditure": 3513.45645,
+      "wageExpenditure": 3123.0724,
+      "materialExpenditure": 390.38405,
+      "scWorkers": 4453,
+      "stWorkers": 2374,
+      "womenWorkers": 15437,
+      "differentlyAbledWorkers": 593,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 33113,
+          "wages": 216,
+          "works": 614
+        },
+        {
+          "month": "May",
+          "employment": 23274,
+          "wages": 309,
+          "works": 404
+        },
+        {
+          "month": "Jun",
+          "employment": 31012,
+          "wages": 288,
+          "works": 223
+        },
+        {
+          "month": "Jul",
+          "employment": 21418,
+          "wages": 311,
+          "works": 674
+        },
+        {
+          "month": "Aug",
+          "employment": 21817,
+          "wages": 274,
+          "works": 391
+        },
+        {
+          "month": "Sep",
+          "employment": 34824,
+          "wages": 233,
+          "works": 621
+        },
+        {
+          "month": "Oct",
+          "employment": 22235,
+          "wages": 227,
+          "works": 429
+        },
+        {
+          "month": "Nov",
+          "employment": 29722,
+          "wages": 279,
+          "works": 395
+        },
+        {
+          "month": "Dec",
+          "employment": 29612,
+          "wages": 248,
+          "works": 300
+        },
+        {
+          "month": "Jan",
+          "employment": 24516,
+          "wages": 296,
+          "works": 563
+        },
+        {
+          "month": "Feb",
+          "employment": 24101,
+          "wages": 311,
+          "works": 659
+        },
+        {
+          "month": "Mar",
+          "employment": 21702,
+          "wages": 287,
+          "works": 304
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 44,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 20,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 29,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 24,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 7,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 87,
+        "within30Days": 28,
+        "beyond30Days": 12
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1727": {
+      "id": "17_1727",
+      "name": "Vidisha",
+      "hindi": "विदिशा",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1727",
+      "totalJobCards": 59417,
+      "activeJobCards": 47533,
+      "totalWorkers": 68133,
+      "activeWorkers": 52410,
+      "totalHouseholdsWorked": 36687,
+      "totalIndividualsWorked": 52410,
+      "averageWageRate": 247,
+      "averageDaysEmployment": 48,
+      "completedWorks": 3489,
+      "ongoingWorks": 1237,
+      "totalWorksUndertaken": 4726,
+      "totalExpenditure": 5825.3715,
+      "wageExpenditure": 5178.108,
+      "materialExpenditure": 647.2635,
+      "scWorkers": 7861,
+      "stWorkers": 4192,
+      "womenWorkers": 27253,
+      "differentlyAbledWorkers": 1048,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 56763,
+          "wages": 245,
+          "works": 211
+        },
+        {
+          "month": "May",
+          "employment": 41550,
+          "wages": 246,
+          "works": 289
+        },
+        {
+          "month": "Jun",
+          "employment": 45001,
+          "wages": 250,
+          "works": 623
+        },
+        {
+          "month": "Jul",
+          "employment": 61274,
+          "wages": 209,
+          "works": 233
+        },
+        {
+          "month": "Aug",
+          "employment": 67296,
+          "wages": 265,
+          "works": 217
+        },
+        {
+          "month": "Sep",
+          "employment": 51855,
+          "wages": 204,
+          "works": 495
+        },
+        {
+          "month": "Oct",
+          "employment": 62843,
+          "wages": 268,
+          "works": 613
+        },
+        {
+          "month": "Nov",
+          "employment": 50361,
+          "wages": 254,
+          "works": 584
+        },
+        {
+          "month": "Dec",
+          "employment": 60821,
+          "wages": 215,
+          "works": 419
+        },
+        {
+          "month": "Jan",
+          "employment": 53461,
+          "wages": 242,
+          "works": 300
+        },
+        {
+          "month": "Feb",
+          "employment": 53482,
+          "wages": 242,
+          "works": 343
+        },
+        {
+          "month": "Mar",
+          "employment": 40505,
+          "wages": 237,
+          "works": 233
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 22,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 34,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 10,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 13,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 7,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 79,
+        "within30Days": 27,
+        "beyond30Days": 7
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1728": {
+      "id": "17_1728",
+      "name": "Bhopal",
+      "hindi": "भोपाल",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1728",
+      "totalJobCards": 47211,
+      "activeJobCards": 37768,
+      "totalWorkers": 49961,
+      "activeWorkers": 38432,
+      "totalHouseholdsWorked": 26902,
+      "totalIndividualsWorked": 38432,
+      "averageWageRate": 229,
+      "averageDaysEmployment": 61,
+      "completedWorks": 1425,
+      "ongoingWorks": 616,
+      "totalWorksUndertaken": 2041,
+      "totalExpenditure": 3960.4176,
+      "wageExpenditure": 3520.3712,
+      "materialExpenditure": 440.0464,
+      "scWorkers": 5764,
+      "stWorkers": 3074,
+      "womenWorkers": 19984,
+      "differentlyAbledWorkers": 768,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 31640,
+          "wages": 260,
+          "works": 268
+        },
+        {
+          "month": "May",
+          "employment": 41253,
+          "wages": 215,
+          "works": 693
+        },
+        {
+          "month": "Jun",
+          "employment": 38505,
+          "wages": 266,
+          "works": 300
+        },
+        {
+          "month": "Jul",
+          "employment": 40899,
+          "wages": 204,
+          "works": 241
+        },
+        {
+          "month": "Aug",
+          "employment": 48309,
+          "wages": 263,
+          "works": 294
+        },
+        {
+          "month": "Sep",
+          "employment": 41577,
+          "wages": 245,
+          "works": 502
+        },
+        {
+          "month": "Oct",
+          "employment": 49562,
+          "wages": 232,
+          "works": 425
+        },
+        {
+          "month": "Nov",
+          "employment": 32926,
+          "wages": 203,
+          "works": 624
+        },
+        {
+          "month": "Dec",
+          "employment": 30586,
+          "wages": 207,
+          "works": 275
+        },
+        {
+          "month": "Jan",
+          "employment": 44497,
+          "wages": 217,
+          "works": 406
+        },
+        {
+          "month": "Feb",
+          "employment": 33553,
+          "wages": 183,
+          "works": 385
+        },
+        {
+          "month": "Mar",
+          "employment": 49572,
+          "wages": 270,
+          "works": 366
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 41,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 15,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 11,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 24,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 14,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 89,
+        "within30Days": 19,
+        "beyond30Days": 10
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1729": {
+      "id": "17_1729",
+      "name": "Sehore",
+      "hindi": "सीहोर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1729",
+      "totalJobCards": 49673,
+      "activeJobCards": 39738,
+      "totalWorkers": 39834,
+      "activeWorkers": 30642,
+      "totalHouseholdsWorked": 21449,
+      "totalIndividualsWorked": 30642,
+      "averageWageRate": 237,
+      "averageDaysEmployment": 76,
+      "completedWorks": 2226,
+      "ongoingWorks": 1570,
+      "totalWorksUndertaken": 3796,
+      "totalExpenditure": 3267.9693,
+      "wageExpenditure": 2904.8616,
+      "materialExpenditure": 363.1077,
+      "scWorkers": 4596,
+      "stWorkers": 2451,
+      "womenWorkers": 15933,
+      "differentlyAbledWorkers": 612,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 33624,
+          "wages": 223,
+          "works": 441
+        },
+        {
+          "month": "May",
+          "employment": 34259,
+          "wages": 220,
+          "works": 597
+        },
+        {
+          "month": "Jun",
+          "employment": 36619,
+          "wages": 223,
+          "works": 660
+        },
+        {
+          "month": "Jul",
+          "employment": 39623,
+          "wages": 228,
+          "works": 511
+        },
+        {
+          "month": "Aug",
+          "employment": 36349,
+          "wages": 192,
+          "works": 687
+        },
+        {
+          "month": "Sep",
+          "employment": 25411,
+          "wages": 251,
+          "works": 360
+        },
+        {
+          "month": "Oct",
+          "employment": 26789,
+          "wages": 222,
+          "works": 350
+        },
+        {
+          "month": "Nov",
+          "employment": 37166,
+          "wages": 238,
+          "works": 428
+        },
+        {
+          "month": "Dec",
+          "employment": 39259,
+          "wages": 243,
+          "works": 239
+        },
+        {
+          "month": "Jan",
+          "employment": 39185,
+          "wages": 200,
+          "works": 464
+        },
+        {
+          "month": "Feb",
+          "employment": 29987,
+          "wages": 199,
+          "works": 506
+        },
+        {
+          "month": "Mar",
+          "employment": 32501,
+          "wages": 222,
+          "works": 389
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 24,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 34,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 12,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 10,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 5,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 86,
+        "within30Days": 17,
+        "beyond30Days": 5
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1730": {
+      "id": "17_1730",
+      "name": "Raisen",
+      "hindi": "रायसेन",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1730",
+      "totalJobCards": 33106,
+      "activeJobCards": 26484,
+      "totalWorkers": 27315,
+      "activeWorkers": 21012,
+      "totalHouseholdsWorked": 14708,
+      "totalIndividualsWorked": 21012,
+      "averageWageRate": 261,
+      "averageDaysEmployment": 66,
+      "completedWorks": 3253,
+      "ongoingWorks": 1556,
+      "totalWorksUndertaken": 4809,
+      "totalExpenditure": 2467.8594,
+      "wageExpenditure": 2193.6528,
+      "materialExpenditure": 274.2066,
+      "scWorkers": 3151,
+      "stWorkers": 1680,
+      "womenWorkers": 10926,
+      "differentlyAbledWorkers": 420,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 18420,
+          "wages": 261,
+          "works": 600
+        },
+        {
+          "month": "May",
+          "employment": 18396,
+          "wages": 271,
+          "works": 539
+        },
+        {
+          "month": "Jun",
+          "employment": 21380,
+          "wages": 290,
+          "works": 360
+        },
+        {
+          "month": "Jul",
+          "employment": 22811,
+          "wages": 233,
+          "works": 581
+        },
+        {
+          "month": "Aug",
+          "employment": 15185,
+          "wages": 222,
+          "works": 295
+        },
+        {
+          "month": "Sep",
+          "employment": 23509,
+          "wages": 286,
+          "works": 377
+        },
+        {
+          "month": "Oct",
+          "employment": 18433,
+          "wages": 262,
+          "works": 289
+        },
+        {
+          "month": "Nov",
+          "employment": 23039,
+          "wages": 261,
+          "works": 663
+        },
+        {
+          "month": "Dec",
+          "employment": 20997,
+          "wages": 223,
+          "works": 422
+        },
+        {
+          "month": "Jan",
+          "employment": 20147,
+          "wages": 211,
+          "works": 251
+        },
+        {
+          "month": "Feb",
+          "employment": 21460,
+          "wages": 217,
+          "works": 212
+        },
+        {
+          "month": "Mar",
+          "employment": 16782,
+          "wages": 283,
+          "works": 338
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 43,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 25,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 19,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 11,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 9,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 80,
+        "within30Days": 17,
+        "beyond30Days": 5
+      },
+      "lastUpdated": "2025-10-29T10:24:06.497Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1731": {
+      "id": "17_1731",
+      "name": "Betul",
+      "hindi": "बैतूल",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1731",
+      "totalJobCards": 28488,
+      "activeJobCards": 22790,
+      "totalWorkers": 26067,
+      "activeWorkers": 20052,
+      "totalHouseholdsWorked": 14036,
+      "totalIndividualsWorked": 20052,
+      "averageWageRate": 248,
+      "averageDaysEmployment": 90,
+      "completedWorks": 1149,
+      "ongoingWorks": 2174,
+      "totalWorksUndertaken": 3323,
+      "totalExpenditure": 2237.8032,
+      "wageExpenditure": 1989.1584,
+      "materialExpenditure": 248.6448,
+      "scWorkers": 3007,
+      "stWorkers": 1604,
+      "womenWorkers": 10427,
+      "differentlyAbledWorkers": 401,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 22924,
+          "wages": 213,
+          "works": 614
+        },
+        {
+          "month": "May",
+          "employment": 15701,
+          "wages": 280,
+          "works": 464
+        },
+        {
+          "month": "Jun",
+          "employment": 24637,
+          "wages": 215,
+          "works": 605
+        },
+        {
+          "month": "Jul",
+          "employment": 21199,
+          "wages": 262,
+          "works": 674
+        },
+        {
+          "month": "Aug",
+          "employment": 23285,
+          "wages": 199,
+          "works": 240
+        },
+        {
+          "month": "Sep",
+          "employment": 26022,
+          "wages": 275,
+          "works": 408
+        },
+        {
+          "month": "Oct",
+          "employment": 23023,
+          "wages": 268,
+          "works": 456
+        },
+        {
+          "month": "Nov",
+          "employment": 23188,
+          "wages": 237,
+          "works": 374
+        },
+        {
+          "month": "Dec",
+          "employment": 22841,
+          "wages": 215,
+          "works": 693
+        },
+        {
+          "month": "Jan",
+          "employment": 24819,
+          "wages": 276,
+          "works": 466
+        },
+        {
+          "month": "Feb",
+          "employment": 16599,
+          "wages": 217,
+          "works": 274
+        },
+        {
+          "month": "Mar",
+          "employment": 17166,
+          "wages": 259,
+          "works": 650
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 35,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 35,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 16,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 23,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 13,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 89,
+        "within30Days": 26,
+        "beyond30Days": 14
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1732": {
+      "id": "17_1732",
+      "name": "Harda",
+      "hindi": "हरदा",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1732",
+      "totalJobCards": 63060,
+      "activeJobCards": 50448,
+      "totalWorkers": 68568,
+      "activeWorkers": 52745,
+      "totalHouseholdsWorked": 36921,
+      "totalIndividualsWorked": 52745,
+      "averageWageRate": 240,
+      "averageDaysEmployment": 64,
+      "completedWorks": 1337,
+      "ongoingWorks": 1752,
+      "totalWorksUndertaken": 3089,
+      "totalExpenditure": 5696.46,
+      "wageExpenditure": 5063.52,
+      "materialExpenditure": 632.94,
+      "scWorkers": 7911,
+      "stWorkers": 4219,
+      "womenWorkers": 27427,
+      "differentlyAbledWorkers": 1054,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 60251,
+          "wages": 267,
+          "works": 506
+        },
+        {
+          "month": "May",
+          "employment": 56276,
+          "wages": 219,
+          "works": 327
+        },
+        {
+          "month": "Jun",
+          "employment": 64766,
+          "wages": 203,
+          "works": 574
+        },
+        {
+          "month": "Jul",
+          "employment": 44141,
+          "wages": 252,
+          "works": 575
+        },
+        {
+          "month": "Aug",
+          "employment": 52590,
+          "wages": 213,
+          "works": 381
+        },
+        {
+          "month": "Sep",
+          "employment": 52647,
+          "wages": 255,
+          "works": 615
+        },
+        {
+          "month": "Oct",
+          "employment": 54290,
+          "wages": 247,
+          "works": 563
+        },
+        {
+          "month": "Nov",
+          "employment": 40106,
+          "wages": 227,
+          "works": 317
+        },
+        {
+          "month": "Dec",
+          "employment": 59809,
+          "wages": 255,
+          "works": 471
+        },
+        {
+          "month": "Jan",
+          "employment": 45449,
+          "wages": 221,
+          "works": 561
+        },
+        {
+          "month": "Feb",
+          "employment": 38287,
+          "wages": 241,
+          "works": 395
+        },
+        {
+          "month": "Mar",
+          "employment": 43613,
+          "wages": 265,
+          "works": 329
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 42,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 35,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 19,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 17,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 14,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 93,
+        "within30Days": 26,
+        "beyond30Days": 14
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1733": {
+      "id": "17_1733",
+      "name": "Hoshangabad",
+      "hindi": "होशंगाबाद",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1733",
+      "totalJobCards": 42461,
+      "activeJobCards": 33968,
+      "totalWorkers": 48317,
+      "activeWorkers": 37167,
+      "totalHouseholdsWorked": 26016,
+      "totalIndividualsWorked": 37167,
+      "averageWageRate": 226,
+      "averageDaysEmployment": 55,
+      "completedWorks": 3451,
+      "ongoingWorks": 1278,
+      "totalWorksUndertaken": 4729,
+      "totalExpenditure": 3779.8839,
+      "wageExpenditure": 3359.8968,
+      "materialExpenditure": 419.9871,
+      "scWorkers": 5575,
+      "stWorkers": 2973,
+      "womenWorkers": 19326,
+      "differentlyAbledWorkers": 743,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 27480,
+          "wages": 225,
+          "works": 521
+        },
+        {
+          "month": "May",
+          "employment": 39156,
+          "wages": 181,
+          "works": 360
+        },
+        {
+          "month": "Jun",
+          "employment": 38218,
+          "wages": 188,
+          "works": 404
+        },
+        {
+          "month": "Jul",
+          "employment": 45554,
+          "wages": 195,
+          "works": 323
+        },
+        {
+          "month": "Aug",
+          "employment": 28825,
+          "wages": 220,
+          "works": 578
+        },
+        {
+          "month": "Sep",
+          "employment": 29745,
+          "wages": 226,
+          "works": 696
+        },
+        {
+          "month": "Oct",
+          "employment": 41867,
+          "wages": 191,
+          "works": 385
+        },
+        {
+          "month": "Nov",
+          "employment": 46736,
+          "wages": 186,
+          "works": 500
+        },
+        {
+          "month": "Dec",
+          "employment": 45588,
+          "wages": 258,
+          "works": 585
+        },
+        {
+          "month": "Jan",
+          "employment": 28431,
+          "wages": 234,
+          "works": 501
+        },
+        {
+          "month": "Feb",
+          "employment": 30319,
+          "wages": 220,
+          "works": 331
+        },
+        {
+          "month": "Mar",
+          "employment": 35773,
+          "wages": 199,
+          "works": 291
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 48,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 15,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 17,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 16,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 14,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 84,
+        "within30Days": 26,
+        "beyond30Days": 10
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1734": {
+      "id": "17_1734",
+      "name": "Katni",
+      "hindi": "कटनी",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1734",
+      "totalJobCards": 64410,
+      "activeJobCards": 51528,
+      "totalWorkers": 52197,
+      "activeWorkers": 40152,
+      "totalHouseholdsWorked": 28106,
+      "totalIndividualsWorked": 40152,
+      "averageWageRate": 261,
+      "averageDaysEmployment": 54,
+      "completedWorks": 1481,
+      "ongoingWorks": 1104,
+      "totalWorksUndertaken": 2585,
+      "totalExpenditure": 4715.8524,
+      "wageExpenditure": 4191.8688,
+      "materialExpenditure": 523.9836,
+      "scWorkers": 6022,
+      "stWorkers": 3212,
+      "womenWorkers": 20879,
+      "differentlyAbledWorkers": 803,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 43878,
+          "wages": 230,
+          "works": 485
+        },
+        {
+          "month": "May",
+          "employment": 40370,
+          "wages": 312,
+          "works": 663
+        },
+        {
+          "month": "Jun",
+          "employment": 32814,
+          "wages": 242,
+          "works": 378
+        },
+        {
+          "month": "Jul",
+          "employment": 45012,
+          "wages": 276,
+          "works": 354
+        },
+        {
+          "month": "Aug",
+          "employment": 50610,
+          "wages": 244,
+          "works": 360
+        },
+        {
+          "month": "Sep",
+          "employment": 51688,
+          "wages": 271,
+          "works": 337
+        },
+        {
+          "month": "Oct",
+          "employment": 36435,
+          "wages": 224,
+          "works": 489
+        },
+        {
+          "month": "Nov",
+          "employment": 40500,
+          "wages": 296,
+          "works": 429
+        },
+        {
+          "month": "Dec",
+          "employment": 36866,
+          "wages": 236,
+          "works": 225
+        },
+        {
+          "month": "Jan",
+          "employment": 37850,
+          "wages": 219,
+          "works": 628
+        },
+        {
+          "month": "Feb",
+          "employment": 31822,
+          "wages": 220,
+          "works": 298
+        },
+        {
+          "month": "Mar",
+          "employment": 44236,
+          "wages": 264,
+          "works": 694
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 23,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 35,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 28,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 10,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 12,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 77,
+        "within30Days": 20,
+        "beyond30Days": 8
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1735": {
+      "id": "17_1735",
+      "name": "Jabalpur",
+      "hindi": "जबलपुर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1735",
+      "totalJobCards": 65125,
+      "activeJobCards": 52100,
+      "totalWorkers": 63451,
+      "activeWorkers": 48809,
+      "totalHouseholdsWorked": 34166,
+      "totalIndividualsWorked": 48809,
+      "averageWageRate": 251,
+      "averageDaysEmployment": 69,
+      "completedWorks": 2841,
+      "ongoingWorks": 1092,
+      "totalWorksUndertaken": 3933,
+      "totalExpenditure": 5512.97655,
+      "wageExpenditure": 4900.4236,
+      "materialExpenditure": 612.55295,
+      "scWorkers": 7321,
+      "stWorkers": 3904,
+      "womenWorkers": 25380,
+      "differentlyAbledWorkers": 976,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 53930,
+          "wages": 203,
+          "works": 241
+        },
+        {
+          "month": "May",
+          "employment": 56023,
+          "wages": 274,
+          "works": 467
+        },
+        {
+          "month": "Jun",
+          "employment": 52027,
+          "wages": 245,
+          "works": 402
+        },
+        {
+          "month": "Jul",
+          "employment": 44457,
+          "wages": 261,
+          "works": 370
+        },
+        {
+          "month": "Aug",
+          "employment": 60202,
+          "wages": 222,
+          "works": 479
+        },
+        {
+          "month": "Sep",
+          "employment": 34269,
+          "wages": 216,
+          "works": 343
+        },
+        {
+          "month": "Oct",
+          "employment": 45257,
+          "wages": 294,
+          "works": 316
+        },
+        {
+          "month": "Nov",
+          "employment": 60053,
+          "wages": 250,
+          "works": 451
+        },
+        {
+          "month": "Dec",
+          "employment": 49814,
+          "wages": 212,
+          "works": 245
+        },
+        {
+          "month": "Jan",
+          "employment": 46633,
+          "wages": 263,
+          "works": 552
+        },
+        {
+          "month": "Feb",
+          "employment": 59695,
+          "wages": 227,
+          "works": 657
+        },
+        {
+          "month": "Mar",
+          "employment": 34922,
+          "wages": 233,
+          "works": 242
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 41,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 29,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 25,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 10,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 5,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 82,
+        "within30Days": 15,
+        "beyond30Days": 6
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1736": {
+      "id": "17_1736",
+      "name": "Narsinghpur",
+      "hindi": "नरसिंहपुर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1736",
+      "totalJobCards": 62338,
+      "activeJobCards": 49870,
+      "totalWorkers": 56717,
+      "activeWorkers": 43629,
+      "totalHouseholdsWorked": 30540,
+      "totalIndividualsWorked": 43629,
+      "averageWageRate": 223,
+      "averageDaysEmployment": 61,
+      "completedWorks": 1604,
+      "ongoingWorks": 706,
+      "totalWorksUndertaken": 2310,
+      "totalExpenditure": 4378.17015,
+      "wageExpenditure": 3891.7068,
+      "materialExpenditure": 486.46335,
+      "scWorkers": 6544,
+      "stWorkers": 3490,
+      "womenWorkers": 22687,
+      "differentlyAbledWorkers": 872,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 53431,
+          "wages": 200,
+          "works": 455
+        },
+        {
+          "month": "May",
+          "employment": 40424,
+          "wages": 235,
+          "works": 690
+        },
+        {
+          "month": "Jun",
+          "employment": 32855,
+          "wages": 238,
+          "works": 679
+        },
+        {
+          "month": "Jul",
+          "employment": 53824,
+          "wages": 182,
+          "works": 621
+        },
+        {
+          "month": "Aug",
+          "employment": 49078,
+          "wages": 261,
+          "works": 652
+        },
+        {
+          "month": "Sep",
+          "employment": 45659,
+          "wages": 221,
+          "works": 562
+        },
+        {
+          "month": "Oct",
+          "employment": 33828,
+          "wages": 209,
+          "works": 313
+        },
+        {
+          "month": "Nov",
+          "employment": 41847,
+          "wages": 195,
+          "works": 584
+        },
+        {
+          "month": "Dec",
+          "employment": 32757,
+          "wages": 191,
+          "works": 278
+        },
+        {
+          "month": "Jan",
+          "employment": 50419,
+          "wages": 183,
+          "works": 206
+        },
+        {
+          "month": "Feb",
+          "employment": 50348,
+          "wages": 199,
+          "works": 428
+        },
+        {
+          "month": "Mar",
+          "employment": 36782,
+          "wages": 261,
+          "works": 472
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 33,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 32,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 12,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 16,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 8,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 89,
+        "within30Days": 29,
+        "beyond30Days": 12
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1737": {
+      "id": "17_1737",
+      "name": "Dindori",
+      "hindi": "डिंडोरी",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1737",
+      "totalJobCards": 47148,
+      "activeJobCards": 37718,
+      "totalWorkers": 52559,
+      "activeWorkers": 40430,
+      "totalHouseholdsWorked": 28301,
+      "totalIndividualsWorked": 40430,
+      "averageWageRate": 224,
+      "averageDaysEmployment": 72,
+      "completedWorks": 1127,
+      "ongoingWorks": 1843,
+      "totalWorksUndertaken": 2970,
+      "totalExpenditure": 4075.344,
+      "wageExpenditure": 3622.528,
+      "materialExpenditure": 452.816,
+      "scWorkers": 6064,
+      "stWorkers": 3234,
+      "womenWorkers": 21023,
+      "differentlyAbledWorkers": 808,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 49684,
+          "wages": 225,
+          "works": 472
+        },
+        {
+          "month": "May",
+          "employment": 33183,
+          "wages": 247,
+          "works": 441
+        },
+        {
+          "month": "Jun",
+          "employment": 48829,
+          "wages": 219,
+          "works": 469
+        },
+        {
+          "month": "Jul",
+          "employment": 28530,
+          "wages": 261,
+          "works": 397
+        },
+        {
+          "month": "Aug",
+          "employment": 39374,
+          "wages": 247,
+          "works": 270
+        },
+        {
+          "month": "Sep",
+          "employment": 35060,
+          "wages": 264,
+          "works": 445
+        },
+        {
+          "month": "Oct",
+          "employment": 40115,
+          "wages": 224,
+          "works": 495
+        },
+        {
+          "month": "Nov",
+          "employment": 28884,
+          "wages": 246,
+          "works": 439
+        },
+        {
+          "month": "Dec",
+          "employment": 33953,
+          "wages": 230,
+          "works": 275
+        },
+        {
+          "month": "Jan",
+          "employment": 32662,
+          "wages": 254,
+          "works": 509
+        },
+        {
+          "month": "Feb",
+          "employment": 29329,
+          "wages": 265,
+          "works": 440
+        },
+        {
+          "month": "Mar",
+          "employment": 29152,
+          "wages": 200,
+          "works": 603
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 43,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 19,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 17,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 13,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 12,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 78,
+        "within30Days": 24,
+        "beyond30Days": 11
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1738": {
+      "id": "17_1738",
+      "name": "Mandla",
+      "hindi": "मंडला",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1738",
+      "totalJobCards": 41047,
+      "activeJobCards": 32837,
+      "totalWorkers": 42354,
+      "activeWorkers": 32580,
+      "totalHouseholdsWorked": 22806,
+      "totalIndividualsWorked": 32580,
+      "averageWageRate": 225,
+      "averageDaysEmployment": 81,
+      "completedWorks": 1880,
+      "ongoingWorks": 828,
+      "totalWorksUndertaken": 2708,
+      "totalExpenditure": 3298.725,
+      "wageExpenditure": 2932.2,
+      "materialExpenditure": 366.525,
+      "scWorkers": 4887,
+      "stWorkers": 2606,
+      "womenWorkers": 16941,
+      "differentlyAbledWorkers": 651,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 25355,
+          "wages": 236,
+          "works": 301
+        },
+        {
+          "month": "May",
+          "employment": 24653,
+          "wages": 183,
+          "works": 298
+        },
+        {
+          "month": "Jun",
+          "employment": 32556,
+          "wages": 219,
+          "works": 391
+        },
+        {
+          "month": "Jul",
+          "employment": 22996,
+          "wages": 180,
+          "works": 408
+        },
+        {
+          "month": "Aug",
+          "employment": 26189,
+          "wages": 205,
+          "works": 327
+        },
+        {
+          "month": "Sep",
+          "employment": 27995,
+          "wages": 218,
+          "works": 653
+        },
+        {
+          "month": "Oct",
+          "employment": 38795,
+          "wages": 247,
+          "works": 619
+        },
+        {
+          "month": "Nov",
+          "employment": 26620,
+          "wages": 266,
+          "works": 655
+        },
+        {
+          "month": "Dec",
+          "employment": 41508,
+          "wages": 197,
+          "works": 616
+        },
+        {
+          "month": "Jan",
+          "employment": 37844,
+          "wages": 181,
+          "works": 554
+        },
+        {
+          "month": "Feb",
+          "employment": 31139,
+          "wages": 196,
+          "works": 262
+        },
+        {
+          "month": "Mar",
+          "employment": 40316,
+          "wages": 201,
+          "works": 656
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 49,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 21,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 20,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 12,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 8,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 78,
+        "within30Days": 19,
+        "beyond30Days": 10
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1739": {
+      "id": "17_1739",
+      "name": "Chhindwara",
+      "hindi": "छिंदवाड़ा",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1739",
+      "totalJobCards": 25818,
+      "activeJobCards": 20654,
+      "totalWorkers": 28122,
+      "activeWorkers": 21633,
+      "totalHouseholdsWorked": 15143,
+      "totalIndividualsWorked": 21633,
+      "averageWageRate": 251,
+      "averageDaysEmployment": 65,
+      "completedWorks": 2204,
+      "ongoingWorks": 707,
+      "totalWorksUndertaken": 2911,
+      "totalExpenditure": 2443.44735,
+      "wageExpenditure": 2171.9532,
+      "materialExpenditure": 271.49415,
+      "scWorkers": 3244,
+      "stWorkers": 1730,
+      "womenWorkers": 11249,
+      "differentlyAbledWorkers": 432,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 27728,
+          "wages": 228,
+          "works": 398
+        },
+        {
+          "month": "May",
+          "employment": 18714,
+          "wages": 214,
+          "works": 661
+        },
+        {
+          "month": "Jun",
+          "employment": 21848,
+          "wages": 259,
+          "works": 363
+        },
+        {
+          "month": "Jul",
+          "employment": 18303,
+          "wages": 227,
+          "works": 324
+        },
+        {
+          "month": "Aug",
+          "employment": 27622,
+          "wages": 300,
+          "works": 571
+        },
+        {
+          "month": "Sep",
+          "employment": 28032,
+          "wages": 212,
+          "works": 263
+        },
+        {
+          "month": "Oct",
+          "employment": 24572,
+          "wages": 202,
+          "works": 437
+        },
+        {
+          "month": "Nov",
+          "employment": 25259,
+          "wages": 267,
+          "works": 225
+        },
+        {
+          "month": "Dec",
+          "employment": 17981,
+          "wages": 288,
+          "works": 603
+        },
+        {
+          "month": "Jan",
+          "employment": 16549,
+          "wages": 266,
+          "works": 304
+        },
+        {
+          "month": "Feb",
+          "employment": 16598,
+          "wages": 269,
+          "works": 254
+        },
+        {
+          "month": "Mar",
+          "employment": 27218,
+          "wages": 214,
+          "works": 230
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 39,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 26,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 15,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 12,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 13,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 78,
+        "within30Days": 27,
+        "beyond30Days": 10
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1740": {
+      "id": "17_1740",
+      "name": "Seoni",
+      "hindi": "सिवनी",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1740",
+      "totalJobCards": 24355,
+      "activeJobCards": 19484,
+      "totalWorkers": 20442,
+      "activeWorkers": 15725,
+      "totalHouseholdsWorked": 11007,
+      "totalIndividualsWorked": 15725,
+      "averageWageRate": 269,
+      "averageDaysEmployment": 51,
+      "completedWorks": 3454,
+      "ongoingWorks": 1370,
+      "totalWorksUndertaken": 4824,
+      "totalExpenditure": 1903.51125,
+      "wageExpenditure": 1692.01,
+      "materialExpenditure": 211.50125,
+      "scWorkers": 2358,
+      "stWorkers": 1258,
+      "womenWorkers": 8177,
+      "differentlyAbledWorkers": 314,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 19980,
+          "wages": 268,
+          "works": 649
+        },
+        {
+          "month": "May",
+          "employment": 15818,
+          "wages": 224,
+          "works": 679
+        },
+        {
+          "month": "Jun",
+          "employment": 18680,
+          "wages": 308,
+          "works": 581
+        },
+        {
+          "month": "Jul",
+          "employment": 13293,
+          "wages": 286,
+          "works": 265
+        },
+        {
+          "month": "Aug",
+          "employment": 14321,
+          "wages": 245,
+          "works": 379
+        },
+        {
+          "month": "Sep",
+          "employment": 18326,
+          "wages": 254,
+          "works": 639
+        },
+        {
+          "month": "Oct",
+          "employment": 14956,
+          "wages": 312,
+          "works": 580
+        },
+        {
+          "month": "Nov",
+          "employment": 11845,
+          "wages": 267,
+          "works": 580
+        },
+        {
+          "month": "Dec",
+          "employment": 15641,
+          "wages": 254,
+          "works": 558
+        },
+        {
+          "month": "Jan",
+          "employment": 14965,
+          "wages": 285,
+          "works": 220
+        },
+        {
+          "month": "Feb",
+          "employment": 13234,
+          "wages": 289,
+          "works": 233
+        },
+        {
+          "month": "Mar",
+          "employment": 20158,
+          "wages": 274,
+          "works": 223
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 43,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 33,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 27,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 11,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 5,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 86,
+        "within30Days": 28,
+        "beyond30Days": 5
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1741": {
+      "id": "17_1741",
+      "name": "Balaghat",
+      "hindi": "बालाघाट",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1741",
+      "totalJobCards": 65605,
+      "activeJobCards": 52484,
+      "totalWorkers": 59614,
+      "activeWorkers": 45857,
+      "totalHouseholdsWorked": 32099,
+      "totalIndividualsWorked": 45857,
+      "averageWageRate": 253,
+      "averageDaysEmployment": 69,
+      "completedWorks": 3063,
+      "ongoingWorks": 1129,
+      "totalWorksUndertaken": 4192,
+      "totalExpenditure": 5220.81945,
+      "wageExpenditure": 4640.7284,
+      "materialExpenditure": 580.09105,
+      "scWorkers": 6878,
+      "stWorkers": 3668,
+      "womenWorkers": 23845,
+      "differentlyAbledWorkers": 917,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 34099,
+          "wages": 210,
+          "works": 677
+        },
+        {
+          "month": "May",
+          "employment": 43394,
+          "wages": 241,
+          "works": 256
+        },
+        {
+          "month": "Jun",
+          "employment": 42163,
+          "wages": 270,
+          "works": 329
+        },
+        {
+          "month": "Jul",
+          "employment": 55489,
+          "wages": 249,
+          "works": 547
+        },
+        {
+          "month": "Aug",
+          "employment": 57819,
+          "wages": 236,
+          "works": 279
+        },
+        {
+          "month": "Sep",
+          "employment": 34313,
+          "wages": 230,
+          "works": 609
+        },
+        {
+          "month": "Oct",
+          "employment": 56118,
+          "wages": 224,
+          "works": 543
+        },
+        {
+          "month": "Nov",
+          "employment": 36667,
+          "wages": 261,
+          "works": 462
+        },
+        {
+          "month": "Dec",
+          "employment": 47441,
+          "wages": 211,
+          "works": 213
+        },
+        {
+          "month": "Jan",
+          "employment": 56816,
+          "wages": 211,
+          "works": 657
+        },
+        {
+          "month": "Feb",
+          "employment": 32221,
+          "wages": 239,
+          "works": 394
+        },
+        {
+          "month": "Mar",
+          "employment": 40531,
+          "wages": 266,
+          "works": 491
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 23,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 32,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 18,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 15,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 9,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 78,
+        "within30Days": 24,
+        "beyond30Days": 9
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1742": {
+      "id": "17_1742",
+      "name": "Guna",
+      "hindi": "गुना",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1742",
+      "totalJobCards": 36371,
+      "activeJobCards": 29096,
+      "totalWorkers": 29237,
+      "activeWorkers": 22490,
+      "totalHouseholdsWorked": 15742,
+      "totalIndividualsWorked": 22490,
+      "averageWageRate": 240,
+      "averageDaysEmployment": 77,
+      "completedWorks": 2771,
+      "ongoingWorks": 533,
+      "totalWorksUndertaken": 3304,
+      "totalExpenditure": 2428.92,
+      "wageExpenditure": 2159.04,
+      "materialExpenditure": 269.88,
+      "scWorkers": 3373,
+      "stWorkers": 1799,
+      "womenWorkers": 11694,
+      "differentlyAbledWorkers": 449,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 16614,
+          "wages": 225,
+          "works": 484
+        },
+        {
+          "month": "May",
+          "employment": 16584,
+          "wages": 269,
+          "works": 316
+        },
+        {
+          "month": "Jun",
+          "employment": 17344,
+          "wages": 271,
+          "works": 206
+        },
+        {
+          "month": "Jul",
+          "employment": 17293,
+          "wages": 234,
+          "works": 249
+        },
+        {
+          "month": "Aug",
+          "employment": 28416,
+          "wages": 203,
+          "works": 315
+        },
+        {
+          "month": "Sep",
+          "employment": 16382,
+          "wages": 284,
+          "works": 350
+        },
+        {
+          "month": "Oct",
+          "employment": 19171,
+          "wages": 208,
+          "works": 508
+        },
+        {
+          "month": "Nov",
+          "employment": 23631,
+          "wages": 226,
+          "works": 574
+        },
+        {
+          "month": "Dec",
+          "employment": 20981,
+          "wages": 194,
+          "works": 634
+        },
+        {
+          "month": "Jan",
+          "employment": 22770,
+          "wages": 237,
+          "works": 592
+        },
+        {
+          "month": "Feb",
+          "employment": 21337,
+          "wages": 219,
+          "works": 225
+        },
+        {
+          "month": "Mar",
+          "employment": 22097,
+          "wages": 258,
+          "works": 574
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 24,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 27,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 27,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 11,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 14,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 80,
+        "within30Days": 28,
+        "beyond30Days": 8
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1743": {
+      "id": "17_1743",
+      "name": "Ashoknagar",
+      "hindi": "अशोकनगर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1743",
+      "totalJobCards": 52947,
+      "activeJobCards": 42357,
+      "totalWorkers": 56938,
+      "activeWorkers": 43799,
+      "totalHouseholdsWorked": 30659,
+      "totalIndividualsWorked": 43799,
+      "averageWageRate": 254,
+      "averageDaysEmployment": 90,
+      "completedWorks": 1655,
+      "ongoingWorks": 1367,
+      "totalWorksUndertaken": 3022,
+      "totalExpenditure": 5006.2257,
+      "wageExpenditure": 4449.9784,
+      "materialExpenditure": 556.2473,
+      "scWorkers": 6569,
+      "stWorkers": 3503,
+      "womenWorkers": 22775,
+      "differentlyAbledWorkers": 875,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 31506,
+          "wages": 248,
+          "works": 419
+        },
+        {
+          "month": "May",
+          "employment": 55641,
+          "wages": 243,
+          "works": 506
+        },
+        {
+          "month": "Jun",
+          "employment": 50543,
+          "wages": 273,
+          "works": 318
+        },
+        {
+          "month": "Jul",
+          "employment": 39396,
+          "wages": 222,
+          "works": 657
+        },
+        {
+          "month": "Aug",
+          "employment": 32752,
+          "wages": 226,
+          "works": 607
+        },
+        {
+          "month": "Sep",
+          "employment": 36117,
+          "wages": 234,
+          "works": 579
+        },
+        {
+          "month": "Oct",
+          "employment": 52104,
+          "wages": 275,
+          "works": 348
+        },
+        {
+          "month": "Nov",
+          "employment": 48875,
+          "wages": 273,
+          "works": 415
+        },
+        {
+          "month": "Dec",
+          "employment": 56221,
+          "wages": 274,
+          "works": 260
+        },
+        {
+          "month": "Jan",
+          "employment": 38480,
+          "wages": 268,
+          "works": 203
+        },
+        {
+          "month": "Feb",
+          "employment": 42441,
+          "wages": 269,
+          "works": 270
+        },
+        {
+          "month": "Mar",
+          "employment": 40300,
+          "wages": 209,
+          "works": 299
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 37,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 18,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 12,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 19,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 6,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 80,
+        "within30Days": 18,
+        "beyond30Days": 10
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1745": {
+      "id": "17_1745",
+      "name": "East Nimar",
+      "hindi": "पूर्व निमाड़",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1745",
+      "totalJobCards": 54735,
+      "activeJobCards": 43788,
+      "totalWorkers": 59792,
+      "activeWorkers": 45994,
+      "totalHouseholdsWorked": 32195,
+      "totalIndividualsWorked": 45994,
+      "averageWageRate": 252,
+      "averageDaysEmployment": 59,
+      "completedWorks": 2881,
+      "ongoingWorks": 906,
+      "totalWorksUndertaken": 3787,
+      "totalExpenditure": 5215.7196,
+      "wageExpenditure": 4636.1952,
+      "materialExpenditure": 579.5244,
+      "scWorkers": 6899,
+      "stWorkers": 3679,
+      "womenWorkers": 23916,
+      "differentlyAbledWorkers": 919,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 38486,
+          "wages": 232,
+          "works": 591
+        },
+        {
+          "month": "May",
+          "employment": 40923,
+          "wages": 253,
+          "works": 330
+        },
+        {
+          "month": "Jun",
+          "employment": 51325,
+          "wages": 298,
+          "works": 420
+        },
+        {
+          "month": "Jul",
+          "employment": 43669,
+          "wages": 294,
+          "works": 495
+        },
+        {
+          "month": "Aug",
+          "employment": 54051,
+          "wages": 253,
+          "works": 349
+        },
+        {
+          "month": "Sep",
+          "employment": 52722,
+          "wages": 227,
+          "works": 564
+        },
+        {
+          "month": "Oct",
+          "employment": 57311,
+          "wages": 257,
+          "works": 242
+        },
+        {
+          "month": "Nov",
+          "employment": 48793,
+          "wages": 255,
+          "works": 215
+        },
+        {
+          "month": "Dec",
+          "employment": 47430,
+          "wages": 274,
+          "works": 494
+        },
+        {
+          "month": "Jan",
+          "employment": 42560,
+          "wages": 298,
+          "works": 487
+        },
+        {
+          "month": "Feb",
+          "employment": 45944,
+          "wages": 296,
+          "works": 521
+        },
+        {
+          "month": "Mar",
+          "employment": 56038,
+          "wages": 275,
+          "works": 422
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 33,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 22,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 27,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 21,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 9,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 93,
+        "within30Days": 26,
+        "beyond30Days": 7
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1746": {
+      "id": "17_1746",
+      "name": "Burhanpur",
+      "hindi": "बुरहानपुर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1746",
+      "totalJobCards": 22281,
+      "activeJobCards": 17824,
+      "totalWorkers": 24702,
+      "activeWorkers": 19002,
+      "totalHouseholdsWorked": 13301,
+      "totalIndividualsWorked": 19002,
+      "averageWageRate": 249,
+      "averageDaysEmployment": 67,
+      "completedWorks": 3412,
+      "ongoingWorks": 2035,
+      "totalWorksUndertaken": 5447,
+      "totalExpenditure": 2129.1741,
+      "wageExpenditure": 1892.5992,
+      "materialExpenditure": 236.5749,
+      "scWorkers": 2850,
+      "stWorkers": 1520,
+      "womenWorkers": 9881,
+      "differentlyAbledWorkers": 380,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 23739,
+          "wages": 241,
+          "works": 664
+        },
+        {
+          "month": "May",
+          "employment": 17247,
+          "wages": 219,
+          "works": 643
+        },
+        {
+          "month": "Jun",
+          "employment": 18957,
+          "wages": 230,
+          "works": 608
+        },
+        {
+          "month": "Jul",
+          "employment": 23826,
+          "wages": 209,
+          "works": 671
+        },
+        {
+          "month": "Aug",
+          "employment": 21826,
+          "wages": 203,
+          "works": 280
+        },
+        {
+          "month": "Sep",
+          "employment": 21851,
+          "wages": 295,
+          "works": 480
+        },
+        {
+          "month": "Oct",
+          "employment": 22393,
+          "wages": 276,
+          "works": 616
+        },
+        {
+          "month": "Nov",
+          "employment": 18702,
+          "wages": 298,
+          "works": 552
+        },
+        {
+          "month": "Dec",
+          "employment": 19020,
+          "wages": 245,
+          "works": 684
+        },
+        {
+          "month": "Jan",
+          "employment": 22070,
+          "wages": 269,
+          "works": 280
+        },
+        {
+          "month": "Feb",
+          "employment": 17811,
+          "wages": 286,
+          "works": 473
+        },
+        {
+          "month": "Mar",
+          "employment": 17676,
+          "wages": 224,
+          "works": 516
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 46,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 35,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 23,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 22,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 13,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 81,
+        "within30Days": 17,
+        "beyond30Days": 5
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1747": {
+      "id": "17_1747",
+      "name": "Alirajpur",
+      "hindi": "अलीराजपुर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1747",
+      "totalJobCards": 27195,
+      "activeJobCards": 21756,
+      "totalWorkers": 25225,
+      "activeWorkers": 19404,
+      "totalHouseholdsWorked": 13582,
+      "totalIndividualsWorked": 19404,
+      "averageWageRate": 238,
+      "averageDaysEmployment": 49,
+      "completedWorks": 3653,
+      "ongoingWorks": 2322,
+      "totalWorksUndertaken": 5975,
+      "totalExpenditure": 2078.1684,
+      "wageExpenditure": 1847.2608,
+      "materialExpenditure": 230.9076,
+      "scWorkers": 2910,
+      "stWorkers": 1552,
+      "womenWorkers": 10090,
+      "differentlyAbledWorkers": 388,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 24743,
+          "wages": 259,
+          "works": 617
+        },
+        {
+          "month": "May",
+          "employment": 22351,
+          "wages": 190,
+          "works": 553
+        },
+        {
+          "month": "Jun",
+          "employment": 15983,
+          "wages": 244,
+          "works": 423
+        },
+        {
+          "month": "Jul",
+          "employment": 22181,
+          "wages": 270,
+          "works": 233
+        },
+        {
+          "month": "Aug",
+          "employment": 24509,
+          "wages": 213,
+          "works": 552
+        },
+        {
+          "month": "Sep",
+          "employment": 17896,
+          "wages": 245,
+          "works": 484
+        },
+        {
+          "month": "Oct",
+          "employment": 16087,
+          "wages": 266,
+          "works": 599
+        },
+        {
+          "month": "Nov",
+          "employment": 22253,
+          "wages": 222,
+          "works": 459
+        },
+        {
+          "month": "Dec",
+          "employment": 22361,
+          "wages": 223,
+          "works": 325
+        },
+        {
+          "month": "Jan",
+          "employment": 21421,
+          "wages": 260,
+          "works": 376
+        },
+        {
+          "month": "Feb",
+          "employment": 16902,
+          "wages": 222,
+          "works": 356
+        },
+        {
+          "month": "Mar",
+          "employment": 24761,
+          "wages": 255,
+          "works": 672
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 45,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 24,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 21,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 14,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 9,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 78,
+        "within30Days": 16,
+        "beyond30Days": 7
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1748": {
+      "id": "17_1748",
+      "name": "Anuppur",
+      "hindi": "अनूपपुर",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1748",
+      "totalJobCards": 23444,
+      "activeJobCards": 18755,
+      "totalWorkers": 26347,
+      "activeWorkers": 20267,
+      "totalHouseholdsWorked": 14186,
+      "totalIndividualsWorked": 20267,
+      "averageWageRate": 252,
+      "averageDaysEmployment": 79,
+      "completedWorks": 3970,
+      "ongoingWorks": 2034,
+      "totalWorksUndertaken": 6004,
+      "totalExpenditure": 2298.2778,
+      "wageExpenditure": 2042.9136,
+      "materialExpenditure": 255.3642,
+      "scWorkers": 3040,
+      "stWorkers": 1621,
+      "womenWorkers": 10538,
+      "differentlyAbledWorkers": 405,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 21761,
+          "wages": 214,
+          "works": 451
+        },
+        {
+          "month": "May",
+          "employment": 19396,
+          "wages": 227,
+          "works": 294
+        },
+        {
+          "month": "Jun",
+          "employment": 14790,
+          "wages": 269,
+          "works": 365
+        },
+        {
+          "month": "Jul",
+          "employment": 19997,
+          "wages": 224,
+          "works": 566
+        },
+        {
+          "month": "Aug",
+          "employment": 23789,
+          "wages": 249,
+          "works": 221
+        },
+        {
+          "month": "Sep",
+          "employment": 19118,
+          "wages": 266,
+          "works": 207
+        },
+        {
+          "month": "Oct",
+          "employment": 21036,
+          "wages": 219,
+          "works": 253
+        },
+        {
+          "month": "Nov",
+          "employment": 24064,
+          "wages": 235,
+          "works": 308
+        },
+        {
+          "month": "Dec",
+          "employment": 22250,
+          "wages": 212,
+          "works": 489
+        },
+        {
+          "month": "Jan",
+          "employment": 18186,
+          "wages": 250,
+          "works": 453
+        },
+        {
+          "month": "Feb",
+          "employment": 23589,
+          "wages": 201,
+          "works": 421
+        },
+        {
+          "month": "Mar",
+          "employment": 23127,
+          "wages": 270,
+          "works": 410
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 30,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 24,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 15,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 15,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 7,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 81,
+        "within30Days": 23,
+        "beyond30Days": 13
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1749": {
+      "id": "17_1749",
+      "name": "Singrauli",
+      "hindi": "सिंगरौली",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1749",
+      "totalJobCards": 66239,
+      "activeJobCards": 52991,
+      "totalWorkers": 69696,
+      "activeWorkers": 53613,
+      "totalHouseholdsWorked": 37529,
+      "totalIndividualsWorked": 53613,
+      "averageWageRate": 231,
+      "averageDaysEmployment": 88,
+      "completedWorks": 2017,
+      "ongoingWorks": 1682,
+      "totalWorksUndertaken": 3699,
+      "totalExpenditure": 5573.07135,
+      "wageExpenditure": 4953.8412,
+      "materialExpenditure": 619.23015,
+      "scWorkers": 8041,
+      "stWorkers": 4289,
+      "womenWorkers": 27878,
+      "differentlyAbledWorkers": 1072,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 61899,
+          "wages": 222,
+          "works": 490
+        },
+        {
+          "month": "May",
+          "employment": 44186,
+          "wages": 185,
+          "works": 207
+        },
+        {
+          "month": "Jun",
+          "employment": 40509,
+          "wages": 227,
+          "works": 229
+        },
+        {
+          "month": "Jul",
+          "employment": 62250,
+          "wages": 194,
+          "works": 236
+        },
+        {
+          "month": "Aug",
+          "employment": 58831,
+          "wages": 261,
+          "works": 417
+        },
+        {
+          "month": "Sep",
+          "employment": 42468,
+          "wages": 232,
+          "works": 294
+        },
+        {
+          "month": "Oct",
+          "employment": 52531,
+          "wages": 276,
+          "works": 245
+        },
+        {
+          "month": "Nov",
+          "employment": 64899,
+          "wages": 275,
+          "works": 450
+        },
+        {
+          "month": "Dec",
+          "employment": 66448,
+          "wages": 240,
+          "works": 206
+        },
+        {
+          "month": "Jan",
+          "employment": 52350,
+          "wages": 250,
+          "works": 601
+        },
+        {
+          "month": "Feb",
+          "employment": 43903,
+          "wages": 273,
+          "works": 672
+        },
+        {
+          "month": "Mar",
+          "employment": 62782,
+          "wages": 252,
+          "works": 511
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 45,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 22,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 13,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 17,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 14,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 94,
+        "within30Days": 21,
+        "beyond30Days": 10
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1750": {
+      "id": "17_1750",
+      "name": "Sidhi",
+      "hindi": "सीधी",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1750",
+      "totalJobCards": 30116,
+      "activeJobCards": 24092,
+      "totalWorkers": 24801,
+      "activeWorkers": 19078,
+      "totalHouseholdsWorked": 13354,
+      "totalIndividualsWorked": 19078,
+      "averageWageRate": 220,
+      "averageDaysEmployment": 92,
+      "completedWorks": 1946,
+      "ongoingWorks": 1410,
+      "totalWorksUndertaken": 3356,
+      "totalExpenditure": 1888.722,
+      "wageExpenditure": 1678.864,
+      "materialExpenditure": 209.858,
+      "scWorkers": 2861,
+      "stWorkers": 1526,
+      "womenWorkers": 9920,
+      "differentlyAbledWorkers": 381,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 15427,
+          "wages": 246,
+          "works": 220
+        },
+        {
+          "month": "May",
+          "employment": 21950,
+          "wages": 247,
+          "works": 240
+        },
+        {
+          "month": "Jun",
+          "employment": 18674,
+          "wages": 176,
+          "works": 320
+        },
+        {
+          "month": "Jul",
+          "employment": 18254,
+          "wages": 220,
+          "works": 516
+        },
+        {
+          "month": "Aug",
+          "employment": 17235,
+          "wages": 185,
+          "works": 617
+        },
+        {
+          "month": "Sep",
+          "employment": 18253,
+          "wages": 216,
+          "works": 586
+        },
+        {
+          "month": "Oct",
+          "employment": 19933,
+          "wages": 221,
+          "works": 510
+        },
+        {
+          "month": "Nov",
+          "employment": 15500,
+          "wages": 181,
+          "works": 648
+        },
+        {
+          "month": "Dec",
+          "employment": 17964,
+          "wages": 260,
+          "works": 668
+        },
+        {
+          "month": "Jan",
+          "employment": 15054,
+          "wages": 205,
+          "works": 637
+        },
+        {
+          "month": "Feb",
+          "employment": 17467,
+          "wages": 249,
+          "works": 679
+        },
+        {
+          "month": "Mar",
+          "employment": 15552,
+          "wages": 260,
+          "works": 390
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 22,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 21,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 16,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 12,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 6,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 77,
+        "within30Days": 26,
+        "beyond30Days": 14
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1751": {
+      "id": "17_1751",
+      "name": "Shahdol",
+      "hindi": "शहडोल",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1751",
+      "totalJobCards": 67628,
+      "activeJobCards": 54102,
+      "totalWorkers": 58780,
+      "activeWorkers": 45216,
+      "totalHouseholdsWorked": 31651,
+      "totalIndividualsWorked": 45216,
+      "averageWageRate": 264,
+      "averageDaysEmployment": 68,
+      "completedWorks": 2085,
+      "ongoingWorks": 1999,
+      "totalWorksUndertaken": 4084,
+      "totalExpenditure": 5371.6608,
+      "wageExpenditure": 4774.8096,
+      "materialExpenditure": 596.8512,
+      "scWorkers": 6782,
+      "stWorkers": 3617,
+      "womenWorkers": 23512,
+      "differentlyAbledWorkers": 904,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 43206,
+          "wages": 216,
+          "works": 693
+        },
+        {
+          "month": "May",
+          "employment": 58285,
+          "wages": 272,
+          "works": 211
+        },
+        {
+          "month": "Jun",
+          "employment": 52093,
+          "wages": 229,
+          "works": 568
+        },
+        {
+          "month": "Jul",
+          "employment": 37596,
+          "wages": 252,
+          "works": 382
+        },
+        {
+          "month": "Aug",
+          "employment": 55585,
+          "wages": 260,
+          "works": 469
+        },
+        {
+          "month": "Sep",
+          "employment": 56549,
+          "wages": 249,
+          "works": 394
+        },
+        {
+          "month": "Oct",
+          "employment": 57435,
+          "wages": 270,
+          "works": 403
+        },
+        {
+          "month": "Nov",
+          "employment": 36053,
+          "wages": 239,
+          "works": 449
+        },
+        {
+          "month": "Dec",
+          "employment": 51561,
+          "wages": 295,
+          "works": 532
+        },
+        {
+          "month": "Jan",
+          "employment": 34454,
+          "wages": 304,
+          "works": 437
+        },
+        {
+          "month": "Feb",
+          "employment": 35962,
+          "wages": 294,
+          "works": 514
+        },
+        {
+          "month": "Mar",
+          "employment": 55700,
+          "wages": 234,
+          "works": 644
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 32,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 36,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 25,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 19,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 8,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 76,
+        "within30Days": 21,
+        "beyond30Days": 7
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    },
+    "17_1752": {
+      "id": "17_1752",
+      "name": "Agar Malwa",
+      "hindi": "आगर मालवा",
+      "state": "Madhya Pradesh",
+      "stateCode": "17",
+      "districtCode": "1752",
+      "totalJobCards": 54754,
+      "activeJobCards": 43803,
+      "totalWorkers": 59957,
+      "activeWorkers": 46121,
+      "totalHouseholdsWorked": 32284,
+      "totalIndividualsWorked": 46121,
+      "averageWageRate": 224,
+      "averageDaysEmployment": 73,
+      "completedWorks": 1886,
+      "ongoingWorks": 2234,
+      "totalWorksUndertaken": 4120,
+      "totalExpenditure": 4648.9968,
+      "wageExpenditure": 4132.4416,
+      "materialExpenditure": 516.5552,
+      "scWorkers": 6918,
+      "stWorkers": 3689,
+      "womenWorkers": 23982,
+      "differentlyAbledWorkers": 922,
+      "monthlyData": [
+        {
+          "month": "Apr",
+          "employment": 55531,
+          "wages": 252,
+          "works": 559
+        },
+        {
+          "month": "May",
+          "employment": 53615,
+          "wages": 262,
+          "works": 249
+        },
+        {
+          "month": "Jun",
+          "employment": 47290,
+          "wages": 219,
+          "works": 588
+        },
+        {
+          "month": "Jul",
+          "employment": 37612,
+          "wages": 214,
+          "works": 624
+        },
+        {
+          "month": "Aug",
+          "employment": 41189,
+          "wages": 210,
+          "works": 241
+        },
+        {
+          "month": "Sep",
+          "employment": 49372,
+          "wages": 250,
+          "works": 568
+        },
+        {
+          "month": "Oct",
+          "employment": 55155,
+          "wages": 207,
+          "works": 634
+        },
+        {
+          "month": "Nov",
+          "employment": 46698,
+          "wages": 258,
+          "works": 412
+        },
+        {
+          "month": "Dec",
+          "employment": 34456,
+          "wages": 242,
+          "works": 600
+        },
+        {
+          "month": "Jan",
+          "employment": 48817,
+          "wages": 226,
+          "works": 532
+        },
+        {
+          "month": "Feb",
+          "employment": 38995,
+          "wages": 205,
+          "works": 223
+        },
+        {
+          "month": "Mar",
+          "employment": 56547,
+          "wages": 232,
+          "works": 559
+        }
+      ],
+      "workCategories": [
+        {
+          "name": "Rural Connectivity",
+          "value": 43,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Water Conservation",
+          "value": 19,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Agriculture",
+          "value": 13,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Rural Infrastructure",
+          "value": 11,
+          "color": "#ff7300"
+        },
+        {
+          "name": "Others",
+          "value": 9,
+          "color": "#8dd1e1"
+        }
+      ],
+      "paymentStatus": {
+        "within15Days": 92,
+        "within30Days": 15,
+        "beyond30Days": 6
+      },
+      "lastUpdated": "2025-10-29T10:24:06.498Z",
+      "dataSource": "Government MGNREGA Database (Cached)",
+      "financialYear": "2024-25",
+      "month": "Oct",
+      "year": "2024"
+    }
+  }
+}
