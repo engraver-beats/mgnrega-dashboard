@@ -78,6 +78,49 @@ app.get('/api/districts/:districtId', (req, res) => {
   });
 });
 
+// Get states endpoint (required by frontend)
+app.get('/api/states', (req, res) => {
+  res.json({
+    success: true,
+    data: [
+      {
+        id: '17',
+        name: 'Madhya Pradesh',
+        code: 'MP',
+        totalDistricts: Object.keys(realData.districts || {}).length
+      }
+    ],
+    total: 1,
+    dataSource: 'Real Government MGNREGA API'
+  });
+});
+
+// Search districts endpoint
+app.get('/api/districts/search', (req, res) => {
+  const { q, state } = req.query;
+  
+  if (!q) {
+    return res.json({
+      success: true,
+      data: Object.values(realData.districts || {}),
+      total: Object.keys(realData.districts || {}).length
+    });
+  }
+  
+  const searchTerm = q.toLowerCase();
+  const filteredDistricts = Object.values(realData.districts || {}).filter(district => 
+    district.name.toLowerCase().includes(searchTerm) ||
+    district.id.includes(searchTerm)
+  );
+  
+  res.json({
+    success: true,
+    data: filteredDistricts,
+    total: filteredDistricts.length,
+    searchTerm: q
+  });
+});
+
 // Get raw government records for debugging
 app.get('/api/raw-data', (req, res) => {
   res.json({
