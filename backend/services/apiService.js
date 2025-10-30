@@ -10,8 +10,6 @@ class APIService {
     this.apiKey = process.env.DATA_GOV_API_KEY || 'your-api-key';
     this.retryAttempts = 3;
     this.retryDelay = 1000; // 1 second
-<<<<<<< HEAD
-=======
     
     // MGNREGA API Resource IDs from data.gov.in
     this.resourceIds = {
@@ -20,7 +18,6 @@ class APIService {
       wages: 'b9c3d4e5-f6g7-8901-bcde-f23456789012',      // Wages Data (example)
       works: 'c0d4e5f6-g7h8-9012-cdef-345678901234'       // Works Data (example)
     };
->>>>>>> origin/main
   }
 
   async fetchWithRetry(url, options = {}, attempt = 1) {
@@ -57,27 +54,6 @@ class APIService {
     }
 
     try {
-<<<<<<< HEAD
-      // Mock API endpoint - replace with actual data.gov.in endpoint
-      const url = `${this.baseURL}/mgnrega-performance`;
-      const params = {
-        'api-key': this.apiKey,
-        'format': 'json',
-        'district_code': districtCode,
-        'month': month,
-        'year': year,
-        'limit': 1000
-      };
-
-      const data = await this.fetchWithRetry(url, { params });
-      
-      // Cache the successful response
-      cache.set(cacheKey, data);
-      
-      return data;
-    } catch (error) {
-      console.error('Failed to fetch MGNREGA data:', error);
-=======
       // Actual MGNREGA API endpoints from data.gov.in
       const url = `${this.baseURL}/${this.resourceIds.performance}`;
       const params = {
@@ -103,69 +79,117 @@ class APIService {
     } catch (error) {
       console.error('❌ Failed to fetch MGNREGA data from data.gov.in:', error.message);
       console.log('🔄 Falling back to mock data for development...');
->>>>>>> origin/main
       
       // Return mock data if API fails (for development)
       return this.getMockData(districtCode, month, year);
     }
   }
 
-<<<<<<< HEAD
-=======
   // Process and normalize data.gov.in API response
-  processAPIResponse(apiData) {
-    try {
-      // data.gov.in returns data in 'records' array
-      const records = apiData.records || [];
+  // processAPIResponse(apiData) {
+  //   try {
+  //     // data.gov.in returns data in 'records' array
+  //     const records = apiData.records || [];
       
-      if (records.length === 0) {
-        console.log('⚠️ No records found in API response, using mock data');
-        return null;
+  //     if (records.length === 0) {
+  //       console.log('⚠️ No records found in API response, using mock data');
+  //       return null;
+  //     }
+
+  //     // Aggregate the data from multiple records
+  //     const aggregated = records.reduce((acc, record) => {
+  //       acc.totalJobCards += parseInt(record.total_job_cards || 0);
+  //       acc.activeJobCards += parseInt(record.active_job_cards || 0);
+  //       acc.totalHouseholds += parseInt(record.total_households || 0);
+  //       acc.householdsWorked += parseInt(record.households_worked || 0);
+  //       acc.personDaysGenerated += parseInt(record.person_days_generated || 0);
+  //       acc.womenParticipation += parseInt(record.women_participation || 0);
+  //       acc.totalWagesPaid += parseFloat(record.total_wages_paid || 0);
+  //       acc.averageWageRate += parseFloat(record.average_wage_rate || 0);
+  //       acc.worksCompleted += parseInt(record.works_completed || 0);
+  //       acc.worksOngoing += parseInt(record.works_ongoing || 0);
+  //       return acc;
+  //     }, {
+  //       totalJobCards: 0,
+  //       activeJobCards: 0,
+  //       totalHouseholds: 0,
+  //       householdsWorked: 0,
+  //       personDaysGenerated: 0,
+  //       womenParticipation: 0,
+  //       totalWagesPaid: 0,
+  //       averageWageRate: 0,
+  //       worksCompleted: 0,
+  //       worksOngoing: 0
+  //     });
+
+  //     // Calculate averages and percentages
+  //     const recordCount = records.length;
+  //     aggregated.averageWageRate = aggregated.averageWageRate / recordCount;
+  //     aggregated.womenParticipationPercent = aggregated.totalHouseholds > 0 
+  //       ? (aggregated.womenParticipation / aggregated.totalHouseholds) * 100 
+  //       : 0;
+
+  //     console.log(`📊 Processed ${recordCount} records from data.gov.in API`);
+  //     return aggregated;
+      
+  //   } catch (error) {
+  //     console.error('❌ Error processing API response:', error.message);
+  //     return null;
+  //   }
+  // }
+
+processAPIResponse(apiData) {
+  try {
+    const records = apiData.records || [];
+    if (records.length === 0) return null;
+
+    const r = records[0]; // Most APIs return one record per district
+
+    const district = {
+      success: true,
+
+      // ✅ Map real API fields
+      totalJobCards: parseInt(r.total_jobcards_issued) || 0,
+      activeWorkers: parseInt(r.active_worker) || 0,
+      totalPersonDays: parseInt(r.total_persondays) || 0,
+      womenPersonDays: parseInt(r.women_persondays) || 0,
+      totalExpenditure: parseFloat(r.total_expenditure) || 0,
+      paymentDone: parseFloat(r.payment_done) || 0,
+      paymentPending: parseFloat(r.payment_pending) || 0,
+      worksCompleted: parseInt(r.works_completed) || 0,
+      worksOngoing: parseInt(r.works_ongoing) || 0,
+      avgWageRate: parseFloat(r.avg_wage_rate) || 0,
+
+      // ✅ Build real charts using ONLY actual data:
+      charts: {
+        employmentTrend: [
+          { name: "कुल व्यक्ति दिवस", value: parseInt(r.total_persondays) || 0 },
+          { name: "महिला व्यक्ति दिवस", value: parseInt(r.women_persondays) || 0 }
+        ],
+        wagesTrend: [
+          { name: "कुल व्यय", value: parseFloat(r.total_expenditure) || 0 },
+        ],
+        workCategories: [
+          { hindi: "पूर्ण कार्य", value: parseInt(r.works_completed) || 0, color: "#22c55e" },
+          { hindi: "चालू कार्य", value: parseInt(r.works_ongoing) || 0, color: "#fb923c" }
+        ],
+        paymentStatus: [
+          { name: "भुगतान हो चुका", value: parseFloat(r.payment_done) || 0, color: "#16a34a" },
+          { name: "लंबित", value: parseFloat(r.payment_pending) || 0, color: "#ef4444" }
+        ]
       }
+    };
 
-      // Aggregate the data from multiple records
-      const aggregated = records.reduce((acc, record) => {
-        acc.totalJobCards += parseInt(record.total_job_cards || 0);
-        acc.activeJobCards += parseInt(record.active_job_cards || 0);
-        acc.totalHouseholds += parseInt(record.total_households || 0);
-        acc.householdsWorked += parseInt(record.households_worked || 0);
-        acc.personDaysGenerated += parseInt(record.person_days_generated || 0);
-        acc.womenParticipation += parseInt(record.women_participation || 0);
-        acc.totalWagesPaid += parseFloat(record.total_wages_paid || 0);
-        acc.averageWageRate += parseFloat(record.average_wage_rate || 0);
-        acc.worksCompleted += parseInt(record.works_completed || 0);
-        acc.worksOngoing += parseInt(record.works_ongoing || 0);
-        return acc;
-      }, {
-        totalJobCards: 0,
-        activeJobCards: 0,
-        totalHouseholds: 0,
-        householdsWorked: 0,
-        personDaysGenerated: 0,
-        womenParticipation: 0,
-        totalWagesPaid: 0,
-        averageWageRate: 0,
-        worksCompleted: 0,
-        worksOngoing: 0
-      });
+    console.log("✅ Processed REAL MGNREGA district data");
+    return district;
 
-      // Calculate averages and percentages
-      const recordCount = records.length;
-      aggregated.averageWageRate = aggregated.averageWageRate / recordCount;
-      aggregated.womenParticipationPercent = aggregated.totalHouseholds > 0 
-        ? (aggregated.womenParticipation / aggregated.totalHouseholds) * 100 
-        : 0;
-
-      console.log(`📊 Processed ${recordCount} records from data.gov.in API`);
-      return aggregated;
-      
-    } catch (error) {
-      console.error('❌ Error processing API response:', error.message);
-      return null;
-    }
+  } catch (error) {
+    console.error("❌ Error processing real API response:", error);
+    return null;
   }
+}
 
->>>>>>> origin/main
+
   // Mock data for development and API failures
   getMockData(districtCode, month, year) {
     const baseData = {
@@ -243,7 +267,3 @@ class APIService {
 }
 
 module.exports = new APIService();
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/main
