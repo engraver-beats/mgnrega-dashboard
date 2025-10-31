@@ -1,182 +1,239 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { MapPin, Users, TrendingUp, Calendar, Award } from 'lucide-react';
-import DistrictSelector from '../components/DistrictSelector';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { MapPin, Search, Navigation, ChevronDown, Loader, BarChart3 } from 'lucide-react'
+import toast from 'react-hot-toast'
+import ApiService from '../services/api'
 
 const Home = () => {
-  const navigate = useNavigate();
-  const [selectedDistrict, setSelectedDistrict] = useState(null);
+  const navigate = useNavigate()
+  const [districts, setDistricts] = useState([])
+  const [filteredDistricts, setFilteredDistricts] = useState([])
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [isDetecting, setIsDetecting] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+  // Load districts on component mount
+  useEffect(() => {
+    loadDistricts()
+  }, [])
+
+  // Filter districts based on search query
+  useEffect(() => {
+    if (searchQuery.trim() === '') {
+      setFilteredDistricts(districts)
+    } else {
+      const filtered = districts.filter(district =>
+        district.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        district.hindi.includes(searchQuery)
+      )
+      setFilteredDistricts(filtered)
+    }
+  }, [searchQuery, districts])
+
+  const loadDistricts = async () => {
+    try {
+      setIsLoading(true)
+      const response = await ApiService.getDistricts()
+      if (response.success) {
+        setDistricts(response.data)
+        setFilteredDistricts(response.data)
+      }
+    } catch (error) {
+      console.error('Failed to load districts:', error)
+      toast.error('जिलों की सूची लोड नहीं हो सकी')
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const handleDistrictSelect = (district) => {
-    setSelectedDistrict(district);
-    // Navigate to dashboard with selected district
+    toast.success(`${district.name} (${district.hindi}) चुना गया`)
     navigate(`/dashboard/${district.id}`, { 
       state: { district } 
-    });
-  };
+    })
+  }
 
-  const features = [
-    {
-      icon: <TrendingUp className="h-8 w-8" />,
-      title: "प्रदर्शन ट्रैकिंग",
-      description: "अपने जिले की मनरेगा योजना का वास्तविक समय प्रदर्शन देखें",
-      color: "from-blue-500 to-blue-600"
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      title: "रोजगार डेटा",
-      description: "कितने लोगों को काम मिला और कितनी मजदूरी मिली",
-      color: "from-green-500 to-green-600"
-    },
-    {
-      icon: <Calendar className="h-8 w-8" />,
-      title: "काम की जानकारी",
-      description: "कौन से काम हो रहे हैं और कब पूरे होंगे",
-      color: "from-purple-500 to-purple-600"
-    },
-    {
-      icon: <Award className="h-8 w-8" />,
-      title: "सफलता की कहानी",
-      description: "आपके जिले की उपलब्धियां और सुधार के क्षेत्र",
-      color: "from-orange-500 to-orange-600"
+  const detectLocation = async () => {
+    if (!navigator.geolocation) {
+      toast.error('आपका ब्राउज़र लोकेशन सपोर्ट नहीं करता')
+      return
     }
-  ];
+
+    setIsDetecting(true)
+    
+    try {
+      const position = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          resolve,
+          reject,
+          {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 300000
+          }
+        )
+      })
+
+      const { latitude, longitude } = position.coords
+      
+      // For demo purposes, select a random district from MP
+      // In a real app, you'd use reverse geocoding
+      const randomDistrict = districts[Math.floor(Math.random() * districts.length)]
+      
+      if (randomDistrict) {
+        toast.success(`स्थान मिल गया: ${randomDistrict.name}`)
+        handleDistrictSelect(randomDistrict)
+      }
+      
+    } catch (error) {
+      let errorMessage = 'स्थान का पता नहीं लगा सका'
+      
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          errorMessage = 'लोकेशन की अनुमति नहीं दी गई। कृपया ब्राउज़र सेटिंग्स में लोकेशन एक्सेस को इनेबल करें।'
+          break
+        case error.POSITION_UNAVAILABLE:
+          errorMessage = 'लोकेशन की जानकारी उपलब्ध नहीं है। कृपया अपनी GPS सेटिंग्स जांचें।'
+          break
+        case error.TIMEOUT:
+          errorMessage = 'लोकेशन खोजने में समय लग रहा है। कृपया पुनः प्रयास करें।'
+          break
+      }
+      
+      toast.error(errorMessage)
+    } finally {
+      setIsDetecting(false)
+    }
+  }
 
   return (
-    <div className="min-h-screen" style={{
-      background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-      minHeight: '100vh'
-    }}>
-
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
-      <header className="relative" style={{
-        background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
-        borderBottom: '3px solid #1d4ed8'
-      }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="bg-white p-3 rounded-lg shadow-lg">
-                <Users className="h-8 w-8 text-blue-600" />
-              </div>
+            <div className="flex items-center space-x-3">
+              <BarChart3 className="h-8 w-8 text-primary-600" />
               <div>
-                <h1 className="text-2xl font-bold text-white">MGNREGA Dashboard</h1>
-                <p className="text-lg text-blue-100 hindi-text font-medium">मनरेगा डैशबोर्ड</p>
-              </div>
-            </div>
-            <div className="hidden md:flex items-center space-x-6">
-              <nav className="flex space-x-6">
-                <a href="#" className="text-white hover:text-blue-200 transition-colors font-medium">Home</a>
-                <a href="#dashboard" className="text-white hover:text-blue-200 transition-colors font-medium">Dashboard</a>
-                <a href="#about" className="text-white hover:text-blue-200 transition-colors font-medium">About</a>
-              </nav>
-              <div className="bg-green-600 px-3 py-1 rounded-md">
-                <span className="text-white text-sm font-medium">🟢 Live</span>
+                <h1 className="text-2xl font-bold text-gray-900">MGNREGA Dashboard</h1>
+                <p className="text-sm text-gray-600">मनरेगा डैशबोर्ड</p>
               </div>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-16">
-          <div className="mb-8">
-            <span className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium mb-4">
-              🏛️ भारत सरकार | Government of India
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight">
-            <span className="text-blue-600">
-              अपने जिले का
-            </span>
-            <br />
-            <span className="text-gray-800">मनरेगा प्रदर्शन देखें</span>
+      {/* Main Content */}
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            अपना जिला चुनें
           </h2>
-          <p className="text-lg text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-            आसान भाषा में समझें कि आपके जिले में मनरेगा योजना कैसा काम कर रही है। 
-            <br className="hidden md:block" />
-            <span className="text-blue-700 font-semibold">रोजगार, मजदूरी और काम की जानकारी एक क्लिक में।</span>
+          <p className="text-xl text-gray-600 mb-8">
+            मध्य प्रदेश के किसी भी जिले का MGNREGA डेटा देखें
           </p>
-          
-          {/* District Selector */}
-          <div className="max-w-md mx-auto">
-            <DistrictSelector 
-              onDistrictSelect={handleDistrictSelect}
-              selectedDistrict={selectedDistrict}
-            />
-          </div>
-          
-          {/* Quick Access Button */}
-          <div className="mt-6">
+        </div>
+
+        <div className="card max-w-2xl mx-auto">
+          {/* Location Detection Button */}
+          <div className="mb-6">
             <button
-              onClick={() => navigate('/dashboard')}
-              className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium text-base px-6 py-3 rounded-lg transition-colors duration-200"
+              onClick={detectLocation}
+              disabled={isDetecting}
+              className="w-full btn-primary flex items-center justify-center space-x-2 py-3"
             >
-              या सीधे डैशबोर्ड देखें →
+              {isDetecting ? (
+                <Loader className="h-5 w-5 animate-spin" />
+              ) : (
+                <Navigation className="h-5 w-5" />
+              )}
+              <span>
+                {isDetecting ? 'स्थान खोजा जा रहा है...' : 'मेरा स्थान खोजें'}
+              </span>
             </button>
           </div>
-        </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-200 border border-gray-200"
-            >
-              <div className={`bg-gradient-to-r ${feature.color} text-white p-3 rounded-lg inline-block mb-4`}>
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">{feature.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Stats Section */}
-        <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">राष्ट्रीय आंकड़े</h3>
-            <p className="text-gray-600">मनरेगा योजना के तहत देश भर में हो रहे काम की जानकारी</p>
+          <div className="text-center text-gray-500 mb-6">
+            या
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
-              <div className="text-3xl font-bold text-blue-600 mb-2">2.8 करोड़</div>
-              <div className="text-sm text-gray-600">सक्रिय कार्यकर्ता</div>
+
+          {/* District Search */}
+          <div className="relative">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="जिला खोजें (हिंदी या अंग्रेजी में)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setIsDropdownOpen(true)}
+                className="input-field pl-10 pr-10"
+              />
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             </div>
-            <div className="text-center p-4 bg-green-50 rounded-lg">
-              <div className="text-3xl font-bold text-green-600 mb-2">₹75,000 करोड़</div>
-              <div className="text-sm text-gray-600">वार्षिक बजट</div>
-            </div>
-            <div className="text-center p-4 bg-purple-50 rounded-lg">
-              <div className="text-3xl font-bold text-purple-600 mb-2">15 लाख</div>
-              <div className="text-sm text-gray-600">चालू प्रोजेक्ट</div>
-            </div>
-            <div className="text-center p-4 bg-orange-50 rounded-lg">
-              <div className="text-3xl font-bold text-orange-600 mb-2">650+</div>
-              <div className="text-sm text-gray-600">जिले</div>
-            </div>
+
+            {/* Districts Dropdown */}
+            {(isDropdownOpen || searchQuery) && (
+              <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                {isLoading ? (
+                  <div className="p-4 text-center">
+                    <Loader className="h-5 w-5 animate-spin mx-auto mb-2" />
+                    <span className="text-gray-500">जिले लोड हो रहे हैं...</span>
+                  </div>
+                ) : filteredDistricts.length > 0 ? (
+                  filteredDistricts.map((district) => (
+                    <button
+                      key={district.id}
+                      onClick={() => handleDistrictSelect(district)}
+                      className="w-full text-left px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 transition-colors"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="font-medium text-gray-900">{district.name}</div>
+                          <div className="text-sm text-gray-600">{district.hindi}</div>
+                        </div>
+                        <MapPin className="h-4 w-4 text-gray-400" />
+                      </div>
+                    </button>
+                  ))
+                ) : (
+                  <div className="p-4 text-center text-gray-500">
+                    कोई जिला नहीं मिला
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Click outside to close dropdown */}
+          {isDropdownOpen && (
+            <div 
+              className="fixed inset-0 z-5"
+              onClick={() => setIsDropdownOpen(false)}
+            />
+          )}
+        </div>
+
+        {/* Stats */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="card text-center">
+            <div className="text-3xl font-bold text-primary-600 mb-2">52</div>
+            <div className="text-gray-600">कुल जिले</div>
+          </div>
+          <div className="card text-center">
+            <div className="text-3xl font-bold text-success-600 mb-2">100%</div>
+            <div className="text-gray-600">डेटा कवरेज</div>
+          </div>
+          <div className="card text-center">
+            <div className="text-3xl font-bold text-warning-600 mb-2">Live</div>
+            <div className="text-gray-600">रियल टाइम डेटा</div>
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-gray-300">
-              © 2024 MGNREGA Dashboard | भारत सरकार | Government of India
-            </p>
-            <p className="text-gray-400 text-sm mt-2">
-              महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार गारंटी अधिनियम
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
+

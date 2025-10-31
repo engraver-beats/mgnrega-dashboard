@@ -3,20 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
-import About from './pages/About'
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard/:districtId?" element={<Dashboard />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
         <Toaster 
-          position="top-center"
+          position="top-right"
           toastOptions={{
             duration: 4000,
             style: {
@@ -25,9 +18,16 @@ function App() {
             },
           }}
         />
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard/:districtId" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
       </div>
     </Router>
   )
 }
 
 export default App
+
