@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Test</title>
+</head>
+<body>
+    <h1>Location Detection Test</h1>
+    <button onclick="testLocation()">Test Location Detection</button>
+    <div id="result"></div>
+
+    <script>
+        function testLocation() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing location...';
+
+            if (!navigator.geolocation) {
+                resultDiv.innerHTML = 'Geolocation is not supported by this browser.';
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude, accuracy } = position.coords;
+                    resultDiv.innerHTML = `
+                        <h3>Location Found!</h3>
+                        <p>Latitude: ${latitude}</p>
+                        <p>Longitude: ${longitude}</p>
+                        <p>Accuracy: ${accuracy} meters</p>
+                    `;
+                },
+                (error) => {
+                    let errorMessage = 'Location detection failed: ';
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage += 'Location access denied by user.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage += 'Location information unavailable.';
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage += 'Location request timed out.';
+                            break;
+                        default:
+                            errorMessage += error.message;
+                    }
+                    resultDiv.innerHTML = `<p style="color: red;">${errorMessage}</p>`;
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 15000,
+                    maximumAge: 300000
+                }
+            );
+        }
+    </script>
+</body>
+</html>
+

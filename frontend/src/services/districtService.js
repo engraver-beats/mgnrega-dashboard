@@ -171,15 +171,33 @@ export const detectUserLocation = async () => {
   }
 };
 
-// Fallback location detection with improved accuracy
+// Fallback location detection with improved accuracy and error handling
 const fallbackLocationDetection = () => {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
-      reject(new Error('Geolocation is not supported by this browser.'));
+      const error = new Error('आपका ब्राउज़र लोकेशन सपोर्ट नहीं करता। कृपया मैन्युअल रूप से जिला चुनें।');
+      error.code = 'GEOLOCATION_NOT_SUPPORTED';
+      reject(error);
       return;
     }
 
     console.log('🌍 Starting GPS location detection...');
+
+    // First, check if we have permission
+    if (navigator.permissions) {
+      navigator.permissions.query({name: 'geolocation'}).then((result) => {
+        console.log('📍 Geolocation permission status:', result.state);
+        if (result.state === 'denied') {
+          const error = new Error('लोकेशन की अनुमति नहीं दी गई। कृपया ब्राउज़र सेटिंग्स में लोकेशन एक्सेस को इनेबल करें।');
+          error.code = 'PERMISSION_DENIED';
+          reject(error);
+          return;
+        }
+      }).catch(() => {
+        // Permission API not supported, continue with location request
+        console.log('📍 Permission API not supported, proceeding with location request');
+      });
+    }
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -189,13 +207,15 @@ const fallbackLocationDetection = () => {
         // Validate coordinates
         if (!latitude || !longitude || isNaN(latitude) || isNaN(longitude)) {
           console.error('❌ Invalid GPS coordinates received');
-          reject(new Error('Invalid GPS coordinates received'));
+          const error = new Error('अमान्य GPS निर्देशांक प्राप्त हुए। कृपया पुनः प्रयास करें।');
+          error.code = 'INVALID_COORDINATES';
+          reject(error);
           return;
         }
         
-        // Check if coordinates are within India (approximate bounds)
-        if (latitude < 6 || latitude > 37 || longitude < 68 || longitude > 97) {
-          console.warn('⚠️ Coordinates appear to be outside India, using fallback');
+        // More lenient check for India bounds (including nearby regions)
+        if (latitude < 5 || latitude > 38 || longitude < 67 || longitude > 98) {
+          console.warn('⚠️ Coordinates appear to be outside India region, but continuing...');
         }
         
         const nearestDistrict = findNearestFallbackDistrict(latitude, longitude);
@@ -215,27 +235,36 @@ const fallbackLocationDetection = () => {
       (error) => {
         console.error('❌ GPS location detection failed:', error);
         
-        // Provide more specific error messages
-        let errorMessage = 'Location detection failed';
+        // Provide more specific error messages in Hindi and English
+        let errorMessage = 'स्थान का पता लगाने में विफल';
+        let errorCode = 'UNKNOWN_ERROR';
+        
         switch(error.code) {
           case error.PERMISSION_DENIED:
-            errorMessage = 'Location access denied. Please enable location permissions and try again.';
+            errorMessage = 'लोकेशन की अनुमति नहीं दी गई। कृपया ब्राउज़र सेटिंग्स में लोकेशन एक्सेस को इनेबल करके पुनः प्रयास करें।';
+            errorCode = 'PERMISSION_DENIED';
             break;
           case error.POSITION_UNAVAILABLE:
-            errorMessage = 'Location information unavailable. Please check your GPS settings.';
+            errorMessage = 'लोकेशन की जानकारी उपलब्ध नहीं है। कृपया अपनी GPS सेटिंग्स जांचें या मैन्युअल रूप से जिला चुनें।';
+            errorCode = 'POSITION_UNAVAILABLE';
             break;
           case error.TIMEOUT:
-            errorMessage = 'Location request timed out. Please try again.';
+            errorMessage = 'लोकेशन खोजने में समय लग रहा है। कृपया पुनः प्रयास करें या मैन्युअल रूप से जिला चुनें।';
+            errorCode = 'TIMEOUT';
             break;
           default:
-            errorMessage = `Location error: ${error.message}`;
+            errorMessage = `लोकेशन एरर: ${error.message}। कृपया मैन्युअल रूप से जिला चुनें।`;
+            errorCode = 'UNKNOWN_ERROR';
         }
         
-        reject(new Error(errorMessage));
+        const customError = new Error(errorMessage);
+        customError.code = errorCode;
+        customError.originalError = error;
+        reject(customError);
       },
       {
         enableHighAccuracy: true,
-        timeout: 15000, // Increased timeout for better accuracy
+        timeout: 25000, // Increased timeout to 25 seconds for better success rate
         maximumAge: 300000 // 5 minutes cache
       }
     );

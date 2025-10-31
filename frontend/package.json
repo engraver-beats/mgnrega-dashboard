@@ -20,7 +20,6 @@
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.15.0",
     "recharts": "^3.3.0"
-    "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

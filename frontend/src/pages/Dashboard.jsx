@@ -26,10 +26,22 @@ const Dashboard = () => {
   // Load district data
   useEffect(() => {
     const loadDistrictData = async () => {
+      // Check if we have district data from navigation state
+      if (!districtId && location.state?.district) {
+        console.log("📊 Using district data from navigation state:", location.state.district.name);
+        setSelectedDistrict(location.state.district);
+        setLoading(false);
+        return;
+      }
+      
       if (!districtId) {
+        console.log("⚠️ No districtId provided in URL parameters and no state data");
         setLoading(false)
         return
       }
+      }
+      
+      console.log('📊 Loading district data for:', districtId);
 
       try {
         setLoading(true)
@@ -55,7 +67,7 @@ const Dashboard = () => {
     }
 
     loadDistrictData()
-  }, [districtId])
+  }, [districtId, location.state])
 
   // Handle district selection
   const handleDistrictSelect = (district) => {

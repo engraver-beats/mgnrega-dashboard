@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Search, Navigation, ChevronDown, Loader } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { searchDistricts, detectUserLocation, getAllStates, getDistrictsByState } from '../services/districtService';
 
 const DistrictSelector = ({ onDistrictSelect, selectedDistrict }) => {
@@ -46,11 +47,12 @@ const DistrictSelector = ({ onDistrictSelect, selectedDistrict }) => {
     try {
       const district = await detectUserLocation();
       onDistrictSelect(district);
+      toast.success(`स्थान मिल गया: ${district.name} (${district.hindi})`, { duration: 3000, icon: "✅" });
       setIsOpen(false);
       setSearchQuery('');
     } catch (error) {
       console.error('Location detection failed:', error);
-      alert('स्थान का पता नहीं लगा सका। कृपया मैन्युअल रूप से जिला चुनें।');
+      toast.error(error.message || "स्थान का पता नहीं लगा सका। कृपया मैन्युअल रूप से जिला चुनें।", { duration: 5000, icon: "📍" });
     } finally {
       setIsDetecting(false);
     }
@@ -58,6 +60,7 @@ const DistrictSelector = ({ onDistrictSelect, selectedDistrict }) => {
 
   const handleDistrictSelect = (district) => {
     onDistrictSelect(district);
+      toast.success(`स्थान मिल गया: ${district.name} (${district.hindi})`, { duration: 3000, icon: "✅" });
     setIsOpen(false);
     setSearchQuery('');
     setSelectedState('');
