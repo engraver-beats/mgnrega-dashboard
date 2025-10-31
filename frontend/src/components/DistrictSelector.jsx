@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { MapPin, Search, Navigation, ChevronDown, Loader } from 'lucide-react';
 import toast from 'react-hot-toast';
 import ApiService from '../services/api';
+import useLocation from '../hooks/useLocation';
 
 const DistrictSelector = ({ onDistrictSelect, selectedDistrict }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [allDistricts, setAllDistricts] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-  const [isDetecting, setIsDetecting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  
+  // Use the custom location hook
+  const { isDetecting, detectLocation } = useLocation();
 
   // Load all districts on component mount
   useEffect(() => {
@@ -65,110 +68,12 @@ const DistrictSelector = ({ onDistrictSelect, selectedDistrict }) => {
   }, [searchQuery, allDistricts]);
 
   const handleLocationDetect = async () => {
-    if (!navigator.geolocation) {
-      toast.error('आपका ब्राउज़र लोकेशन सपोर्ट नहीं करता');
-      return;
-    }
-
-    setIsDetecting(true);
+    const result = await detectLocation(allDistricts);
     
-    try {
-      console.log('📍 Starting location detection...');
-      
-      // Check for permission first
-      if (navigator.permissions) {
-        const permission = await navigator.permissions.query({name: 'geolocation'});
-        if (permission.state === 'denied') {
-          throw new Error('PERMISSION_DENIED');
-        }
-      }
-      
-      const position = await new Promise((resolve, reject) => {
-        const timeoutId = setTimeout(() => {
-          reject(new Error('TIMEOUT'));
-        }, 25000); // 25 second timeout
-        
-        navigator.geolocation.getCurrentPosition(
-          (pos) => {
-            clearTimeout(timeoutId);
-            resolve(pos);
-          },
-          (error) => {
-            clearTimeout(timeoutId);
-            reject(error);
-          },
-          {
-            enableHighAccuracy: true,
-            timeout: 20000,
-            maximumAge: 300000 // 5 minutes
-          }
-        );
-      });
-
-      const { latitude, longitude } = position.coords;
-      console.log(`📍 Location detected: ${latitude}, ${longitude}`);
-      
-      // Find nearest MP district based on coordinates
-      // For now, we'll use a simple distance calculation
-      let nearestDistrict = null;
-      let minDistance = Infinity;
-      
-      allDistricts.forEach(district => {
-        // Simple distance calculation (not perfectly accurate but good enough)
-        const distance = Math.sqrt(
-          Math.pow(latitude - (district.lat || 23.2599), 2) + 
-          Math.pow(longitude - (district.lng || 77.4126), 2)
-        );
-        
-        if (distance < minDistance) {
-          minDistance = distance;
-          nearestDistrict = district;
-        }
-      });
-      
-      if (nearestDistrict) {
-        console.log(`🎯 Nearest district found: ${nearestDistrict.name}`);
-        onDistrictSelect(nearestDistrict);
-        toast.success(`स्थान मिल गया: ${nearestDistrict.name} (${nearestDistrict.hindi})`, { 
-          duration: 3000, 
-          icon: "✅" 
-        });
-        setIsOpen(false);
-        setSearchQuery('');
-      } else {
-        // Fallback: select a random MP district
-        const randomDistrict = allDistricts[Math.floor(Math.random() * allDistricts.length)];
-        if (randomDistrict) {
-          console.log(`🎲 Using random district: ${randomDistrict.name}`);
-          onDistrictSelect(randomDistrict);
-          toast.success(`स्थान मिल गया: ${randomDistrict.name} (${randomDistrict.hindi})`, { 
-            duration: 3000, 
-            icon: "✅" 
-          });
-          setIsOpen(false);
-          setSearchQuery('');
-        }
-      }
-      
-    } catch (error) {
-      console.error('❌ Location detection failed:', error);
-      
-      let errorMessage = 'स्थान का पता नहीं लगा सका';
-      
-      if (error.message === 'PERMISSION_DENIED' || error.code === 1) {
-        errorMessage = 'लोकेशन की अनुमति नहीं दी गई। कृपया ब्राउज़र सेटिंग्स में लोकेशन एक्सेस को इनेबल करें।';
-      } else if (error.code === 2) {
-        errorMessage = 'लोकेशन की जानकारी उपलब्ध नहीं है। कृपया अपनी GPS सेटिंग्स जांचें।';
-      } else if (error.message === 'TIMEOUT' || error.code === 3) {
-        errorMessage = 'लोकेशन खोजने में समय लग रहा है। कृपया पुनः प्रयास करें।';
-      }
-      
-      toast.error(errorMessage, { 
-        duration: 5000, 
-        icon: "📍" 
-      });
-    } finally {
-      setIsDetecting(false);
+    if (result && result.nearestDistrict) {
+      onDistrictSelect(result.nearestDistrict);
+      setIsOpen(false);
+      setSearchQuery('');
     }
   };
 
