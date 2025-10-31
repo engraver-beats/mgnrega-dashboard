@@ -1,376 +1,270 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
-import { ArrowLeft, MapPin, Calendar, TrendingUp, Users, IndianRupee, Briefcase, Clock, BarChart3, RefreshCw, Wifi, WifiOff, AlertCircle } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import { getDistrictData, checkBackendStatus, refreshData } from '../services/districtService'
-import { 
-  EmploymentTrendChart, 
-  WorkCategoriesChart, 
-  MonthlyWagesChart, 
-  PaymentStatusChart,
-  QuickStatsCard,
-  ProgressBar
-} from '../components/SimpleCharts'
-import DistrictSelector from '../components/DistrictSelector'
+import { ArrowLeft, MapPin, Users, IndianRupee, Briefcase, Calendar, BarChart3 } from 'lucide-react'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
+import toast from 'react-hot-toast'
+import ApiService from '../services/api'
 
 const Dashboard = () => {
   const { districtId } = useParams()
   const location = useLocation()
   const navigate = useNavigate()
-  const [selectedDistrict, setSelectedDistrict] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [backendStatus, setBackendStatus] = useState({ available: false, status: 'checking' })
-  const [refreshing, setRefreshing] = useState(false)
+  
+  const [district, setDistrict] = useState(location.state?.district || null)
+  const [districtData, setDistrictData] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
-  // Load district data
   useEffect(() => {
-    const loadDistrictData = async () => {
-      if (!districtId) {
-        setLoading(false)
-        return
-      }
-
-      try {
-        setLoading(true)
-        setError(null)
-        
-        // Check backend status
-        const status = await checkBackendStatus()
-        setBackendStatus(status)
-        
-        // Load district data
-        const data = await getDistrictData(districtId)
-        if (data) {
-          setSelectedDistrict(data)
-        } else {
-          setError('जिले का डेटा नहीं मिला')
-        }
-      } catch (err) {
-        console.error('Error loading district data:', err)
-        setError('डेटा लोड करने में समस्या हुई')
-      } finally {
-        setLoading(false)
-      }
-    }
-
     loadDistrictData()
   }, [districtId])
 
-  // Handle district selection
-  const handleDistrictSelect = (district) => {
-    setSelectedDistrict(district)
-    navigate(`/dashboard/${district.id}`)
-  }
-
-  // Handle data refresh
-  const handleRefreshData = async () => {
+  const loadDistrictData = async () => {
     try {
-      setRefreshing(true)
-      await refreshData()
+      setIsLoading(true)
       
-      // Reload current district data
-      if (districtId) {
-        const data = await getDistrictData(districtId)
-        if (data) {
-          setSelectedDistrict(data)
-        }
+      // If we have district from navigation state, use it
+      if (location.state?.district && !districtId) {
+        setDistrict(location.state.district)
+        generateMockData(location.state.district)
+        return
       }
       
-      // Update backend status
-      const status = await checkBackendStatus()
-      setBackendStatus(status)
-      
+      // If we have districtId, fetch district data
+      if (districtId) {
+        const response = await ApiService.getDistrict(districtId)
+        if (response.success) {
+          setDistrict(response.data)
+          generateMockData(response.data)
+        }
+      }
     } catch (error) {
-      console.error('Failed to refresh data:', error)
-      alert('डेटा रिफ्रेश करने में समस्या हुई')
+      console.error('Failed to load district data:', error)
+      toast.error('जिले का डेटा लोड नहीं हो सका')
     } finally {
-      setRefreshing(false)
+      setIsLoading(false)
     }
   }
 
-  if (loading) {
+  // Generate mock MGNREGA data for demonstration
+  const generateMockData = (districtInfo) => {
+    const mockData = {
+      totalJobCards: Math.floor(Math.random() * 50000) + 20000,
+      activeWorkers: Math.floor(Math.random() * 30000) + 15000,
+      completedWorks: Math.floor(Math.random() * 1000) + 500,
+      ongoingWorks: Math.floor(Math.random() * 200) + 50,
+      totalExpenditure: Math.floor(Math.random() * 10000000) + 5000000,
+      averageWage: Math.floor(Math.random() * 50) + 200,
+      
+      monthlyData: [
+        { month: 'जन', workers: Math.floor(Math.random() * 5000) + 2000, expenditure: Math.floor(Math.random() * 1000000) + 500000 },
+        { month: 'फर', workers: Math.floor(Math.random() * 5000) + 2000, expenditure: Math.floor(Math.random() * 1000000) + 500000 },
+        { month: 'मार', workers: Math.floor(Math.random() * 5000) + 2000, expenditure: Math.floor(Math.random() * 1000000) + 500000 },
+        { month: 'अप्र', workers: Math.floor(Math.random() * 5000) + 2000, expenditure: Math.floor(Math.random() * 1000000) + 500000 },
+        { month: 'मई', workers: Math.floor(Math.random() * 5000) + 2000, expenditure: Math.floor(Math.random() * 1000000) + 500000 },
+        { month: 'जून', workers: Math.floor(Math.random() * 5000) + 2000, expenditure: Math.floor(Math.random() * 1000000) + 500000 },
+      ],
+      
+      workCategories: [
+        { name: 'जल संरक्षण', value: Math.floor(Math.random() * 200) + 100, color: '#3b82f6' },
+        { name: 'सड़क निर्माण', value: Math.floor(Math.random() * 150) + 80, color: '#10b981' },
+        { name: 'भवन निर्माण', value: Math.floor(Math.random() * 100) + 50, color: '#f59e0b' },
+        { name: 'कृषि कार्य', value: Math.floor(Math.random() * 120) + 60, color: '#ef4444' },
+      ]
+    }
+    
+    setDistrictData(mockData)
+  }
+
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('hi-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(amount)
+  }
+
+  const formatNumber = (num) => {
+    return new Intl.NumberFormat('hi-IN').format(num)
+  }
+
+  if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
           <p className="text-gray-600">डेटा लोड हो रहा है...</p>
         </div>
       </div>
     )
   }
 
-  if (error) {
+  if (!district) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center">
-        <div className="text-center bg-white p-8 rounded-lg shadow-lg">
-          <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-gray-800 mb-2">समस्या हुई</h2>
-          <p className="text-gray-600 mb-4">{error}</p>
-          <Link 
-            to="/" 
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            वापस जाएं
-          </Link>
-        </div>
-      </div>
-    )
-  }
-
-  if (!selectedDistrict) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-800 mb-8">जिला चुनें</h1>
-            <div className="max-w-md mx-auto">
-              <DistrictSelector onDistrictSelect={handleDistrictSelect} />
-            </div>
-          </div>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600 mb-4">कोई जिला नहीं मिला</p>
+          <button onClick={() => navigate('/')} className="btn-primary">
+            होम पर वापस जाएं
+          </button>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="container mx-auto px-4 py-4">
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link 
-                to="/" 
-                className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
+              <button
+                onClick={() => navigate('/')}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
               >
                 <ArrowLeft className="h-5 w-5" />
-                <span className="font-medium">वापस</span>
-              </Link>
-              
+              </button>
               <div className="flex items-center space-x-3">
-                <div className="bg-blue-100 p-2 rounded-lg">
-                  <BarChart3 className="h-6 w-6 text-blue-600" />
-                </div>
+                <BarChart3 className="h-8 w-8 text-primary-600" />
                 <div>
-                  <h1 className="text-xl font-bold text-gray-800">MGNREGA डैशबोर्ड</h1>
-                  <p className="text-sm text-gray-600">जिला प्रदर्शन विश्लेषण</p>
+                  <h1 className="text-2xl font-bold text-gray-900">{district.name}</h1>
+                  <p className="text-sm text-gray-600">{district.hindi} - MGNREGA डैशबोर्ड</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 text-sm text-gray-500">
+              <MapPin className="h-4 w-4" />
+              <span>मध्य प्रदेश</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {districtData && (
+          <>
+            {/* Key Metrics */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <div className="card">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">कुल जॉब कार्ड</p>
+                    <p className="text-2xl font-bold text-gray-900">{formatNumber(districtData.totalJobCards)}</p>
+                  </div>
+                  <div className="p-3 bg-blue-100 rounded-full">
+                    <Users className="h-6 w-6 text-blue-600" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">सक्रिय श्रमिक</p>
+                    <p className="text-2xl font-bold text-gray-900">{formatNumber(districtData.activeWorkers)}</p>
+                  </div>
+                  <div className="p-3 bg-green-100 rounded-full">
+                    <Briefcase className="h-6 w-6 text-green-600" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">कुल व्यय</p>
+                    <p className="text-2xl font-bold text-gray-900">{formatCurrency(districtData.totalExpenditure)}</p>
+                  </div>
+                  <div className="p-3 bg-yellow-100 rounded-full">
+                    <IndianRupee className="h-6 w-6 text-yellow-600" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">औसत मजदूरी</p>
+                    <p className="text-2xl font-bold text-gray-900">₹{districtData.averageWage}</p>
+                  </div>
+                  <div className="p-3 bg-purple-100 rounded-full">
+                    <Calendar className="h-6 w-6 text-purple-600" />
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Backend Status & Refresh */}
-            <div className="flex items-center space-x-4">
-              {/* Data Source Indicator */}
-              <div className="flex items-center space-x-2">
-                {selectedDistrict?.dataSource?.includes('Real Government') ? (
-                  <>
-                    <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm text-green-600 font-medium">🏛️ सरकारी डेटा</span>
-                  </>
-                ) : selectedDistrict?.dataSource?.includes('Government District Database') ? (
-                  <>
-                    <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
-                    <span className="text-sm text-blue-600 font-medium">📊 सरकारी जिला डेटाबेस</span>
-                  </>
-                ) : (
-                  <>
-                    <div className="h-2 w-2 bg-orange-500 rounded-full"></div>
-                    <span className="text-sm text-orange-600 font-medium">📱 स्थानीय डेटा</span>
-                  </>
-                )}
+            {/* Charts */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+              {/* Monthly Workers Chart */}
+              <div className="card">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">मासिक श्रमिक गतिविधि</h3>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={districtData.monthlyData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip 
+                      formatter={(value, name) => [
+                        formatNumber(value), 
+                        name === 'workers' ? 'श्रमिक' : 'व्यय'
+                      ]}
+                    />
+                    <Bar dataKey="workers" fill="#3b82f6" />
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
 
-              {/* Backend Status Indicator */}
-              <div className="flex items-center space-x-2">
-                {backendStatus.available ? (
-                  <>
-                    <Wifi className="h-4 w-4 text-green-500" />
-                    <span className="text-sm text-green-600 font-medium">लाइव कनेक्शन</span>
-                  </>
-                ) : (
-                  <>
-                    <WifiOff className="h-4 w-4 text-orange-500" />
-                    <span className="text-sm text-orange-600 font-medium">ऑफलाइन मोड</span>
-                  </>
-                )}
+              {/* Work Categories Pie Chart */}
+              <div className="card">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">कार्य श्रेणियां</h3>
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={districtData.workCategories}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="value"
+                    >
+                      {districtData.workCategories.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <Tooltip formatter={(value) => [formatNumber(value), 'कार्य']} />
+                  </PieChart>
+                </ResponsiveContainer>
               </div>
-
-              {/* Refresh Button */}
-              {backendStatus.available && (
-                <button
-                  onClick={handleRefreshData}
-                  disabled={refreshing}
-                  className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
-                >
-                  <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
-                  <span className="text-sm font-medium">
-                    {refreshing ? 'रिफ्रेश हो रहा है...' : 'डेटा रिफ्रेश करें'}
-                  </span>
-                </button>
-              )}
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div className="container mx-auto px-4 py-8">
-        {/* District Info Header */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-8 border border-gray-200">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center space-x-4">
-              <div className="bg-blue-100 p-3 rounded-lg">
-                <MapPin className="h-8 w-8 text-blue-600" />
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-gray-800">{selectedDistrict.hindi}</h2>
-                <p className="text-gray-600">{selectedDistrict.name}, {selectedDistrict.state}</p>
-                <div className="flex items-center space-x-2 mt-1">
-                  <Calendar className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-500">{selectedDistrict.currentMonth}</span>
+            {/* Work Status */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="card">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">पूर्ण कार्य</h3>
+                <div className="text-3xl font-bold text-green-600 mb-2">
+                  {formatNumber(districtData.completedWorks)}
                 </div>
+                <p className="text-gray-600">कुल पूर्ण किए गए कार्य</p>
               </div>
-            </div>
-            
-            <div className="text-right">
-              <div className="text-xs text-gray-500 mb-1">डेटा स्रोत</div>
-              <div className="flex items-center space-x-2">
-                {selectedDistrict?.dataSource?.includes('Real Government') ? (
-                  <>
-                    <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium text-green-700">🟢 वास्तविक सरकारी डेटा</span>
-                  </>
-                ) : selectedDistrict?.dataSource?.includes('Government District Database') ? (
-                  <>
-                    <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
-                    <span className="text-sm font-medium text-blue-700">🟡 सरकारी जिला डेटाबेस</span>
-                  </>
-                ) : (
-                  <>
-                    <div className="h-2 w-2 bg-orange-500 rounded-full"></div>
-                    <span className="text-sm font-medium text-orange-700">📱 पैटर्न आधारित डेटा</span>
-                  </>
-                )}
-              </div>
-              {selectedDistrict.lastUpdated && (
-                <div className="text-xs text-gray-500 mt-1">
-                  अपडेट: {new Date(selectedDistrict.lastUpdated).toLocaleDateString('hi-IN')}
+
+              <div className="card">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">चालू कार्य</h3>
+                <div className="text-3xl font-bold text-orange-600 mb-2">
+                  {formatNumber(districtData.ongoingWorks)}
                 </div>
-              )}
+                <p className="text-gray-600">वर्तमान में चल रहे कार्य</p>
+              </div>
             </div>
-          </div>
-
-          {/* District Selector */}
-          <div className="mb-6">
-            <DistrictSelector 
-              onDistrictSelect={handleDistrictSelect} 
-              selectedDistrict={selectedDistrict}
-            />
-          </div>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <QuickStatsCard
-              icon={<Users className="h-6 w-6" />}
-              title="कुल जॉब कार्ड"
-              value={selectedDistrict.totalJobCards?.toLocaleString('hi-IN') || '0'}
-              subtitle={`${selectedDistrict.activeJobCards?.toLocaleString('hi-IN') || '0'} सक्रिय`}
-              color="bg-blue-100 text-blue-600"
-              bgColor="bg-blue-50"
-            />
-            
-            <QuickStatsCard
-              icon={<Briefcase className="h-6 w-6" />}
-              title="रोजगार प्रदान"
-              value={selectedDistrict.employmentProvided?.toLocaleString('hi-IN') || '0'}
-              subtitle="व्यक्ति दिवस"
-              color="bg-green-100 text-green-600"
-              bgColor="bg-green-50"
-            />
-            
-            <QuickStatsCard
-              icon={<IndianRupee className="h-6 w-6" />}
-              title="कुल मजदूरी"
-              value={`₹${(selectedDistrict.totalWagesPaid / 1000000)?.toFixed(1) || '0'}L`}
-              subtitle={`औसत ₹${selectedDistrict.averageWageRate || '0'}/दिन`}
-              color="bg-yellow-100 text-yellow-600"
-              bgColor="bg-yellow-50"
-            />
-            
-            <QuickStatsCard
-              icon={<TrendingUp className="h-6 w-6" />}
-              title="महिला भागीदारी"
-              value={`${selectedDistrict.womenParticipation || '0'}%`}
-              subtitle={`${selectedDistrict.womenPersonDays?.toLocaleString('hi-IN') || '0'} व्यक्ति दिवस`}
-              color="bg-purple-100 text-purple-600"
-              bgColor="bg-purple-50"
-            />
-          </div>
-        </div>
-
-        {/* Progress Indicators */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-8 border border-gray-200">
-          <h3 className="text-xl font-bold text-gray-800 mb-6">प्रगति सूचक</h3>
-          <div className="space-y-4">
-            <ProgressBar
-              label="सक्रिय जॉब कार्ड"
-              value={selectedDistrict.activeJobCards || 0}
-              maxValue={selectedDistrict.totalJobCards || 1}
-              color="#3b82f6"
-              unit=""
-            />
-            <ProgressBar
-              label="पूर्ण कार्य"
-              value={selectedDistrict.worksCompleted || 0}
-              maxValue={(selectedDistrict.worksCompleted || 0) + (selectedDistrict.worksOngoing || 0)}
-              color="#10b981"
-              unit=" कार्य"
-            />
-            <ProgressBar
-              label="महिला भागीदारी"
-              value={selectedDistrict.womenPersonDays || 0}
-              maxValue={selectedDistrict.totalPersonDays || 1}
-              color="#8b5cf6"
-              unit=" दिन"
-            />
-          </div>
-        </div>
-
-        {/* Charts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {/* Employment Trend */}
-          <EmploymentTrendChart data={selectedDistrict.monthlyData || []} />
-          
-          {/* Work Categories */}
-          <WorkCategoriesChart data={selectedDistrict.workCategories || []} />
-          
-          {/* Monthly Wages */}
-          <MonthlyWagesChart data={selectedDistrict.monthlyData || []} />
-          
-          {/* Payment Status */}
-          <PaymentStatusChart data={selectedDistrict.paymentStatus || []} />
-        </div>
-
-        {/* Footer Info */}
-        <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
-          <div className="text-center">
-            <p className="text-sm text-gray-600 mb-2">
-              📊 यह डैशबोर्ड महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार गारंटी अधिनियम (MGNREGA) के तहत जिला स्तरीय प्रदर्शन दिखाता है
-            </p>
-            <p className="text-xs text-gray-500">
-              डेटा स्रोत: ग्रामीण विकास मंत्रालय, भारत सरकार | 
-              {backendStatus.available ? ' 🟢 लाइव डेटा' : ' 🟡 ऑफलाइन मोड'}
-            </p>
-            {backendStatus.lastUpdated && (
-              <p className="text-xs text-gray-500 mt-1">
-                अंतिम अपडेट: {new Date(backendStatus.lastUpdated).toLocaleString('hi-IN')}
-              </p>
-            )}
-          </div>
-        </div>
-      </div>
+          </>
+        )}
+      </main>
     </div>
   )
 }
 
 export default Dashboard
+
